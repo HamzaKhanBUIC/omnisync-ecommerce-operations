@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OmniSync Operations Console — Self-Healing Multi-Channel Inventory Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Command Palette Modal (Ctrl+K / Cmd+K) -->
+  <div id="cmdPalette" class="modal-overlay hidden" tabindex="-1">
+    <div class="cmd-dialog">
+      <div class="cmd-search-box">
+        <svg class="cmd-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+        </svg>
+        <input type="text" id="cmdInput" placeholder="Type a command, search SKUs, orders, or actions (e.g. 'reconcile', 'flash sale', 'SHIRT')..." autocomplete="off">
+        <span class="kbd-shortcut">ESC</span>
+      </div>
+      <div class="cmd-results" id="cmdResults">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="app-layout">
+    <!-- Top Global Navbar -->
+    <header class="navbar">
+      <div class="nav-left">
+        <div class="brand">
+          <div class="brand-logo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">OMNISYNC</span>
+            <span class="brand-sub">OPERATIONS CONSOLE</span>
+          </div>
+        </div>
+        <div class="env-tag">PROD v1.0.0</div>
+      </div>
+
+      <div class="nav-center">
+        <div class="status-pill status-healthy" id="globalStatusPill">
+          <span class="status-dot pulse"></span>
+          <span class="status-label">ENGINE: HEALTHY</span>
+          <span class="status-meta" id="globalLatency">280ms p95</span>
+        </div>
+        <div class="status-pill status-info" id="auditorStatusPill">
+          <span class="status-dot"></span>
+          <span class="status-label" id="auditorLabel">AUDITOR: ACTIVE (30s)</span>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <button class="cmd-trigger-btn" id="openCmdBtn">
+          <span>Search or Command...</span>
+          <span class="kbd-badge">Ctrl K</span>
+        </button>
+        <button class="action-btn btn-ghost" id="quickReconcileBtn" title="Run Immediate Drift Audit">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"/></svg>
+          Reconcile
+        </button>
+        <div class="utc-clock" id="utcClock">00:00:00 UTC</div>
+      </div>
+    </header>
+
+    <!-- Navigation Tab Bar -->
+    <nav class="tab-bar">
+      <button class="tab-btn active" data-tab="overview">
+        <span class="tab-icon">📊</span> Overview
+      </button>
+      <button class="tab-btn" data-tab="inventory">
+        <span class="tab-icon">📦</span> Master Inventory Matrix
+      </button>
+      <button class="tab-btn" data-tab="orders">
+        <span class="tab-icon">🛒</span> Unified Orders
+        <span class="badge-count" id="orderCountBadge">0</span>
+      </button>
+      <button class="tab-btn" data-tab="channels">
+        <span class="tab-icon">🏬</span> Store Hub & Rate Limits
+      </button>
+      <button class="tab-btn" data-tab="drift">
+        <span class="tab-icon">🛡️</span> Drift & Auto-Healing
+        <span class="badge-drift" id="driftBadge">0</span>
+      </button>
+      <button class="tab-btn" data-tab="events">
+        <span class="tab-icon">📡</span> CloudEvents Stream
+      </button>
+      <button class="tab-btn" data-tab="chaos">
+        <span class="tab-icon">⚡</span> Chaos Simulator
+      </button>
+    </nav>
+
+    <!-- Main Viewport Area -->
+    <main class="main-content">
+
+      <!-- ================================================================ -->
+      <!-- TAB 1: EXECUTIVE OVERVIEW -->
+      <!-- ================================================================ -->
+      <section class="tab-pane active" id="pane-overview">
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Active Mapped SKUs</span>
+              <span class="kpi-badge badge-green">100% Synced</span>
+            </div>
+            <div class="kpi-value" id="kpiSkus">2,450</div>
+            <div class="kpi-subtext">Across 4 Warehouse Hubs</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">24h Orders Processed</span>
+              <span class="kpi-badge badge-cyan">+18.4%</span>
+            </div>
+            <div class="kpi-value" id="kpiOrders">1,842</div>
+            <div class="kpi-subtext">0.000% Oversell Rate</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Sync Latency (p95)</span>
+              <span class="kpi-badge badge-green">Sub-Second</span>
+            </div>
+            <div class="kpi-value" id="kpiLatency">280ms</div>
+            <div class="kpi-subtext">Target: &lt; 800ms threshold</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Active Drift & Mismatches</span>
+              <span class="kpi-badge badge-green" id="kpiDriftBadge">Clean</span>
+            </div>
+            <div class="kpi-value text-emerald" id="kpiDrift">0</div>
+            <div class="kpi-subtext" id="kpiDriftSub">All storefronts in parity</div>
+          </div>
+        </div>
+
+        <div class="overview-grid">
+          <!-- Live Telemetry Panel -->
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title-group">
+                <span class="panel-title">Real-Time Sync Telemetry</span>
+                <span class="panel-subtitle">Live Inbound Webhook Throughput & Outbound Broadcasts</span>
+              </div>
+              <span class="status-pill status-healthy">STREAMING</span>
+            </div>
+            <div class="panel-body">
+              <div class="telemetry-sparkline" id="sparkline">
+                <!-- SVG Bars Injected in JS -->
+              </div>
+              <div class="telemetry-stats">
+                <div class="stat-item">
+                  <span class="stat-label">Inbound Rate</span>
+                  <span class="stat-val" id="statInboundRate">12.4 req/s</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">Broadcast p50</span>
+                  <span class="stat-val">190ms</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">Idempotency Hit Rate</span>
+                  <span class="stat-val">99.98%</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">Circuit Breakers</span>
+                  <span class="stat-val text-emerald">2/2 CLOSED</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Channel Share & Health -->
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title-group">
+                <span class="panel-title">Connected Channel Health</span>
+                <span class="panel-subtitle">Active API Token Bucket Budgets</span>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="channel-health-row">
+                <div class="channel-info">
+                  <div class="channel-icon icon-shopify">🛍️</div>
+                  <div>
+                    <div class="channel-name">Shopify US Flagship</div>
+                    <div class="channel-meta">GraphQL Admin API • 1,000 pt bucket</div>
+                  </div>
+                </div>
+                <div class="bucket-meter">
+                  <div class="bucket-bar"><div class="bucket-fill fill-emerald" id="overviewShopifyFill" style="width: 100%;"></div></div>
+                  <span class="bucket-label" id="overviewShopifyLabel">40 / 40 pts (100%)</span>
+                </div>
+              </div>
+              <div class="channel-health-row">
+                <div class="channel-info">
+                  <div class="channel-icon icon-woo">🛒</div>
+                  <div>
+                    <div class="channel-name">WooCommerce EU Central</div>
+                    <div class="channel-meta">REST v3 HPOS • 25 req/s bucket</div>
+                  </div>
+                </div>
+                <div class="bucket-meter">
+                  <div class="bucket-bar"><div class="bucket-fill fill-emerald" id="overviewWooFill" style="width: 100%;"></div></div>
+                  <span class="bucket-label" id="overviewWooLabel">25 / 25 pts (100%)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- TAB 2: MASTER INVENTORY MATRIX -->
+      <!-- ================================================================ -->
+      <section class="tab-pane" id="pane-inventory">
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <div class="search-input-wrap">
+              <svg viewBox="0 0 20 20" fill="currentColor" class="search-icon"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/></svg>
+              <input type="text" id="inventorySearch" placeholder="Filter by SKU, title, or barcode (Press '/' to focus)...">
+            </div>
+            <select id="categoryFilter" class="select-control">
+              <option value="ALL">All Categories</option>
+              <option value="Footwear">Footwear</option>
+              <option value="Apparel">Apparel</option>
+              <option value="Outerwear">Outerwear</option>
+              <option value="Horology">Horology</option>
+              <option value="Accessories">Accessories</option>
+              <option value="Bundles">Composite Bundles</option>
+            </select>
+          </div>
+          <div class="toolbar-right">
+            <button class="action-btn btn-secondary" id="transferStockBtn">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 5a1 1 0 100 2h5.586l-1.293 1.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L13.586 5H8zM12 15a1 1 0 100-2H6.414l1.293-1.293a1 1 0 10-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L6.414 15H12z"/></svg>
+              Transfer Hub Stock
+            </button>
+            <button class="action-btn btn-primary" id="adjustStockQuickBtn">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"/></svg>
+              Manual Adjustment
+            </button>
+          </div>
+        </div>
+
+        <!-- Virtualized Ledger Table Container -->
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="width: 140px;">MASTER SKU</th>
+                <th>PRODUCT TITLE</th>
+                <th style="width: 110px;">CATEGORY</th>
+                <th style="width: 110px; text-align: right;">PRICE</th>
+                <th style="width: 130px; text-align: right;">MASTER STOCK</th>
+                <th style="width: 240px;">WAREHOUSE ALLOCATIONS</th>
+                <th style="width: 180px;">CHANNELS STATUS</th>
+                <th style="width: 110px; text-align: center;">ACTIONS</th>
+              </tr>
+            </thead>
+            <tbody id="inventoryTableBody">
+              <!-- Dynamically populated via Virtualization -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- TAB 3: UNIFIED ORDERS STREAM -->
+      <!-- ================================================================ -->
+      <section class="tab-pane" id="pane-orders">
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <div class="search-input-wrap">
+              <svg viewBox="0 0 20 20" fill="currentColor" class="search-icon"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/></svg>
+              <input type="text" id="orderSearch" placeholder="Search orders by Order #, customer email, or SKU...">
+            </div>
+            <select id="orderStatusFilter" class="select-control">
+              <option value="ALL">All Statuses</option>
+              <option value="SYNCED">SYNCED</option>
+              <option value="SPLIT_ROUTED">SPLIT_ROUTED</option>
+              <option value="FAILED_DLQ">FAILED_DLQ</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="width: 130px;">ORDER #</th>
+                <th style="width: 140px;">ORIGIN STORE</th>
+                <th>CUSTOMER</th>
+                <th>ITEMS & QUANTITY</th>
+                <th style="width: 110px; text-align: right;">TOTAL</th>
+                <th style="width: 130px;">DESTINATION</th>
+                <th style="width: 120px; text-align: center;">STATUS</th>
+                <th style="width: 100px; text-align: center;">INSPECT</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- TAB 4: CHANNEL STORE HUB -->
+      <!-- ================================================================ -->
+      <section class="tab-pane" id="pane-channels">
+        <div class="channel-cards-grid">
+          <!-- Shopify Card -->
+          <div class="channel-card">
+            <div class="card-head">
+              <div class="card-head-left">
+                <span class="store-badge badge-shopify">SHOPIFY</span>
+                <span class="card-title">Shopify US Flagship</span>
+              </div>
+              <span class="status-pill status-healthy">CONNECTED</span>
+            </div>
+            <div class="card-body">
+              <div class="kv-row"><span class="kv-key">Store URL</span><span class="kv-val font-mono">brand-us.myshopify.com</span></div>
+              <div class="kv-row"><span class="kv-key">API Version</span><span class="kv-val font-mono">2026-01 (GraphQL Admin)</span></div>
+              <div class="kv-row"><span class="kv-key">Webhook Cryptography</span><span class="kv-val text-emerald font-mono">HMAC-SHA256 (Constant-Time)</span></div>
+              <div class="kv-row"><span class="kv-key">Secrets Vault</span><span class="kv-val text-emerald font-mono">AES-256-GCM Encrypted</span></div>
+              
+              <div class="rate-limit-section">
+                <div class="section-title">Leaky Bucket Point Capacity</div>
+                <div class="bucket-meter">
+                  <div class="bucket-bar"><div class="bucket-fill fill-emerald" id="shopifyCardFill" style="width: 100%;"></div></div>
+                  <span class="bucket-label font-mono" id="shopifyCardLabel">40 / 40 pts</span>
+                </div>
+              </div>
+
+              <div class="card-actions">
+                <button class="action-btn btn-secondary" onclick="simulatePing('shopify')">Ping Webhook</button>
+                <button class="action-btn btn-secondary" onclick="triggerDriftTest('store_shopify_us')">Inject Drift (-4)</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- WooCommerce Card -->
+          <div class="channel-card">
+            <div class="card-head">
+              <div class="card-head-left">
+                <span class="store-badge badge-woo">WOOCOMMERCE</span>
+                <span class="card-title">WooCommerce EU Central</span>
+              </div>
+              <span class="status-pill status-healthy">CONNECTED</span>
+            </div>
+            <div class="card-body">
+              <div class="kv-row"><span class="kv-key">Store URL</span><span class="kv-val font-mono">shop-eu.brand.com</span></div>
+              <div class="kv-row"><span class="kv-key">Storage Engine</span><span class="kv-val text-emerald font-mono">HPOS Custom Tables (v3)</span></div>
+              <div class="kv-row"><span class="kv-key">Webhook Cryptography</span><span class="kv-val text-emerald font-mono">HMAC-SHA256 (Constant-Time)</span></div>
+              <div class="kv-row"><span class="kv-key">Secrets Vault</span><span class="kv-val text-emerald font-mono">AES-256-GCM Encrypted</span></div>
+
+              <div class="rate-limit-section">
+                <div class="section-title">Token Bucket Capacity</div>
+                <div class="bucket-meter">
+                  <div class="bucket-bar"><div class="bucket-fill fill-emerald" id="wooCardFill" style="width: 100%;"></div></div>
+                  <span class="bucket-label font-mono" id="wooCardLabel">25 / 25 pts</span>
+                </div>
+              </div>
+
+              <div class="card-actions">
+                <button class="action-btn btn-secondary" onclick="simulatePing('woocommerce')">Ping Webhook</button>
+                <button class="action-btn btn-secondary" onclick="triggerDriftTest('store_woo_eu')">Inject Drift (-7)</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- TAB 5: DRIFT & AUTO-HEALING CENTER -->
+      <!-- ================================================================ -->
+      <section class="tab-pane" id="pane-drift">
+        <div class="drift-header-panel">
+          <div class="drift-status-indicator" id="driftStatusIndicator">
+            <div class="status-circle circle-clean"></div>
+            <div>
+              <div class="drift-headline" id="driftHeadline">All Storefronts in Parity</div>
+              <div class="drift-subtext" id="driftSubtext">Master Ledger matches external channel projections across 100% of SKUs.</div>
+            </div>
+          </div>
+          <div class="drift-actions">
+            <button class="action-btn btn-primary" id="healAllBtn" disabled>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>
+              1-Click Auto-Heal All
+            </button>
+            <button class="action-btn btn-secondary" id="runDriftAuditBtn">Run Full Audit</button>
+          </div>
+        </div>
+
+        <div class="table-container" style="margin-top: 16px;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>TIMESTAMP</th>
+                <th>SKU</th>
+                <th>REASON</th>
+                <th>ORIGIN STORE</th>
+                <th style="text-align: right;">DELTA</th>
+                <th style="text-align: right;">RESULTING STOCK</th>
+                <th>REFERENCE / ORDER</th>
+              </tr>
+            </thead>
+            <tbody id="auditTableBody">
+              <!-- Audit Trail Log -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- TAB 6: CLOUDEVENTS STREAM -->
+      <!-- ================================================================ -->
+      <section class="tab-pane" id="pane-events">
+        <div class="terminal-toolbar">
+          <div class="filter-pills">
+            <button class="filter-pill active" data-event-filter="ALL">ALL EVENTS</button>
+            <button class="filter-pill" data-event-filter="com.ecom.inventory.adjusted">INVENTORY DELTAS</button>
+            <button class="filter-pill" data-event-filter="com.ecom.order.rejected">STOCKOUTS</button>
+            <button class="filter-pill" data-event-filter="com.ecom.drift.detected">DRIFT DETECTIONS</button>
+          </div>
+          <div class="terminal-controls">
+            <label class="toggle-wrap">
+              <input type="checkbox" id="autoScrollToggle" checked> Auto-Scroll
+            </label>
+            <button class="action-btn btn-ghost" id="clearTerminalBtn">Clear</button>
+          </div>
+        </div>
+        <div class="terminal-box" id="eventTerminal">
+          <!-- Streamed Events -->
+        </div>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- TAB 7: CHAOS SIMULATOR -->
+      <!-- ================================================================ -->
+      <section class="tab-pane" id="pane-chaos">
+        <div class="chaos-grid">
+          <div class="chaos-card">
+            <div class="chaos-title">⚡ High-Concurrency Flash Sale Burst</div>
+            <div class="chaos-desc">Simulates 100 simultaneous order checkout webhooks across Shopify and WooCommerce competing for scarce inventory. Enforces zero negative balances and 0.000% overselling.</div>
+            <button class="action-btn btn-primary" id="runFlashSaleSimBtn">Launch 100-Order Flash Sale</button>
+          </div>
+          <div class="chaos-card">
+            <div class="chaos-title">🛡️ Signature Tamper Attack</div>
+            <div class="chaos-desc">Simulates an adversarial attacker tampering with webhook prices and quantities using forged HMAC signatures. Verified constant-time rejection.</div>
+            <button class="action-btn btn-secondary" id="runTamperSimBtn">Inject Forged Webhook</button>
+          </div>
+          <div class="chaos-card">
+            <div class="chaos-title">🔄 Replay Attack Inundation</div>
+            <div class="chaos-desc">Fires 50 rapid duplicate webhooks in 1 second. Verifies 100% deduplication via sliding TTL IdempotencyGuard.</div>
+            <button class="action-btn btn-secondary" id="runReplaySimBtn">Fire 50 Replay Inundations</button>
+          </div>
+          <div class="chaos-card">
+            <div class="chaos-title">📉 Silent Channel Drift Injection</div>
+            <div class="chaos-desc">Artificially alters external WooCommerce stock to simulate manual WordPress admin edits, triggering the 15-minute automated self-healing loop.</div>
+            <button class="action-btn btn-secondary" id="runDriftSimBtn">Inject Multi-Store Drift</button>
+          </div>
+        </div>
+
+        <div class="sim-output-box" id="simOutputBox">
+          <div class="sim-placeholder">Click any chaos test above to execute live simulations and observe system invariants in real-time.</div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Adjust Stock Modal -->
+  <div id="adjustModal" class="modal-overlay hidden">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span class="modal-title">Manual Stock Adjustment</span>
+        <button class="close-modal" id="closeAdjustModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Target Master SKU</label>
+          <input type="text" id="adjustSku" class="input-control" readonly>
+        </div>
+        <div class="form-group">
+          <label>Adjustment Delta (+/- units)</label>
+          <div class="delta-quick-btns">
+            <button type="button" class="btn-quick" onclick="setQuickDelta(-10)">-10</button>
+            <button type="button" class="btn-quick" onclick="setQuickDelta(-1)">-1</button>
+            <button type="button" class="btn-quick" onclick="setQuickDelta(1)">+1</button>
+            <button type="button" class="btn-quick" onclick="setQuickDelta(10)">+10</button>
+          </div>
+          <input type="number" id="adjustDelta" class="input-control" value="1">
+        </div>
+        <div class="form-group">
+          <label>Reason</label>
+          <select id="adjustReason" class="select-control">
+            <option value="MANUAL_ADJUSTMENT">Manual Warehouse Adjustment</option>
+            <option value="RETURN">Customer Return Restock</option>
+            <option value="RECONCILIATION_FIX">Forensic Reconciliation Fix</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Warehouse Hub</label>
+          <select id="adjustLocation" class="select-control">
+            <option value="MAIN_US_3PL">Main US 3PL</option>
+            <option value="WEST_US_HUB">West US Distribution</option>
+            <option value="EU_CENTRAL">EU Central Hub</option>
+            <option value="UK_FULFILLMENT">UK Fulfillment</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="action-btn btn-secondary" id="cancelAdjustBtn">Cancel</button>
+        <button class="action-btn btn-primary" id="confirmAdjustBtn">Commit Atomic Mutation</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Stack -->
+  <div class="toast-stack" id="toastStack"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
