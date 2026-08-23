@@ -1,0 +1,6043 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "totalProducts": 100,
+    "totalChannelMappings": 400,
+    "totalStores": 4,
+    "generatedAt": "2026-08-24T03:15:00Z"
+  },
+  "stores": [
+    {
+      "id": "store_shopify_us",
+      "name": "Shopify US Flagship",
+      "platform": "SHOPIFY",
+      "currency": "USD",
+      "rate": 1.0
+    },
+    {
+      "id": "store_shopify_uk",
+      "name": "Shopify UK Storefront",
+      "platform": "SHOPIFY",
+      "currency": "GBP",
+      "rate": 0.79
+    },
+    {
+      "id": "store_woo_eu",
+      "name": "WooCommerce EU Boutique",
+      "platform": "WOOCOMMERCE",
+      "currency": "EUR",
+      "rate": 0.92
+    },
+    {
+      "id": "store_woo_asia",
+      "name": "WooCommerce Asia Hub",
+      "platform": "WOOCOMMERCE",
+      "currency": "JPY",
+      "rate": 152.5
+    }
+  ],
+  "products": [
+    {
+      "id": "prod_shoe_apx_blk_08",
+      "masterSku": "SHOE-APX-BLK-08",
+      "title": "Apex Performance Running Shoes - Stealth Black (US 8)",
+      "category": "Footwear",
+      "brand": "Apex Athletics",
+      "barcode": "840123000001",
+      "price": 159.99,
+      "costPrice": 64.0,
+      "currentStock": 25,
+      "initialStock": 25,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 50,
+      "weightGrams": 820,
+      "options": {
+        "variant": "Stealth Black",
+        "specification": "US 8"
+      }
+    },
+    {
+      "id": "prod_shoe_apx_blk_09",
+      "masterSku": "SHOE-APX-BLK-09",
+      "title": "Apex Performance Running Shoes - Stealth Black (US 9)",
+      "category": "Footwear",
+      "brand": "Apex Athletics",
+      "barcode": "840123000002",
+      "price": 159.99,
+      "costPrice": 64.0,
+      "currentStock": 40,
+      "initialStock": 40,
+      "version": 1,
+      "reorderThreshold": 8,
+      "reorderQuantity": 80,
+      "weightGrams": 820,
+      "options": {
+        "variant": "Stealth Black",
+        "specification": "US 9"
+      }
+    },
+    {
+      "id": "prod_shoe_apx_blk_10",
+      "masterSku": "SHOE-APX-BLK-10",
+      "title": "Apex Performance Running Shoes - Stealth Black (US 10)",
+      "category": "Footwear",
+      "brand": "Apex Athletics",
+      "barcode": "840123000003",
+      "price": 159.99,
+      "costPrice": 64.0,
+      "currentStock": 50,
+      "initialStock": 50,
+      "version": 1,
+      "reorderThreshold": 10,
+      "reorderQuantity": 100,
+      "weightGrams": 820,
+      "options": {
+        "variant": "Stealth Black",
+        "specification": "US 10"
+      }
+    },
+    {
+      "id": "prod_shoe_apx_blk_11",
+      "masterSku": "SHOE-APX-BLK-11",
+      "title": "Apex Performance Running Shoes - Stealth Black (US 11)",
+      "category": "Footwear",
+      "brand": "Apex Athletics",
+      "barcode": "840123000004",
+      "price": 159.99,
+      "costPrice": 64.0,
+      "currentStock": 35,
+      "initialStock": 35,
+      "version": 1,
+      "reorderThreshold": 7,
+      "reorderQuantity": 70,
+      "weightGrams": 820,
+      "options": {
+        "variant": "Stealth Black",
+        "specification": "US 11"
+      }
+    },
+    {
+      "id": "prod_shoe_apx_blk_12",
+      "masterSku": "SHOE-APX-BLK-12",
+      "title": "Apex Performance Running Shoes - Stealth Black (US 12)",
+      "category": "Footwear",
+      "brand": "Apex Athletics",
+      "barcode": "840123000005",
+      "price": 159.99,
+      "costPrice": 64.0,
+      "currentStock": 15,
+      "initialStock": 15,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 30,
+      "weightGrams": 820,
+      "options": {
+        "variant": "Stealth Black",
+        "specification": "US 12"
+      }
+    },
+    {
+      "id": "prod_shoe_apx_wht_08",
+      "masterSku": "SHOE-APX-WHT-08",
+      "title": "Apex Performance Running Shoes - Alpine White (US 8)",
+      "category": "Footwear",
+      "brand": "Apex Athletics",
+      "barcode": "840123000006",
+      "price": 159.99,
+      "costPrice": 64.0,
+      "currentStock": 20,
+      "initialStock": 20,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 40,
+      "weightGrams": 820,
+      "options": {
+        "variant": "Alpine White",
+        "specification": "US 8"
+      }
+    },
+    {
+      "id": "prod_shoe_apx_wht_09",
+      "masterSku": "SHOE-APX-WHT-09",
+      "title": "Apex Performance Running Shoes - Alpine White (US 9)",
+      "category": "Footwear",
+      "brand": "Apex Athletics",
+      "barcode": "840123000007",
+      "price": 159.99,
+      "costPrice": 64.0,
+      "currentStock": 35,
+      "initialStock": 35,
+      "version": 1,
+      "reorderThreshold": 7,
+      "reorderQuantity": 70,
+      "weightGrams": 820,
+      "options": {
+        "variant": "Alpine White",
+        "specification": "US 9"
+      }
+    },
+    {
+      "id": "prod_shoe_apx_wht_10",
+      "masterSku": "SHOE-APX-WHT-10",
+      "title": "Apex Performance Running Shoes - Alpine White (US 10)",
+      "category": "Footwear",
+      "brand": "Apex Athletics",
+      "barcode": "840123000008",
+      "price": 159.99,
+      "costPrice": 64.0,
+      "currentStock": 45,
+      "initialStock": 45,
+      "version": 1,
+      "reorderThreshold": 9,
+      "reorderQuantity": 90,
+      "weightGrams": 820,
+      "options": {
+        "variant": "Alpine White",
+        "specification": "US 10"
+      }
+    },
+    {
+      "id": "prod_shoe_apx_neo_09",
+      "masterSku": "SHOE-APX-NEO-09",
+      "title": "Apex Performance Running Shoes - Neon Lime (Flash Limited) (US 9)",
+      "category": "Footwear",
+      "brand": "Apex Athletics",
+      "barcode": "840123000009",
+      "price": 159.99,
+      "costPrice": 64.0,
+      "currentStock": 8,
+      "initialStock": 8,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 20,
+      "weightGrams": 820,
+      "options": {
+        "variant": "Neon Lime (Flash Limited)",
+        "specification": "US 9"
+      }
+    },
+    {
+      "id": "prod_shoe_apx_neo_10",
+      "masterSku": "SHOE-APX-NEO-10",
+      "title": "Apex Performance Running Shoes - Neon Lime (Flash Limited) (US 10)",
+      "category": "Footwear",
+      "brand": "Apex Athletics",
+      "barcode": "840123000010",
+      "price": 159.99,
+      "costPrice": 64.0,
+      "currentStock": 5,
+      "initialStock": 5,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 20,
+      "weightGrams": 820,
+      "options": {
+        "variant": "Neon Lime (Flash Limited)",
+        "specification": "US 10"
+      }
+    },
+    {
+      "id": "prod_hlmt_aero_blk_s",
+      "masterSku": "HLMT-AERO-BLK-S",
+      "title": "AeroLite Carbon Road Helmet - Matte Carbon Black (Small (51-55cm))",
+      "category": "Cycling & Helmets",
+      "brand": "AeroDynamics Pro",
+      "barcode": "840123000011",
+      "price": 229.99,
+      "costPrice": 92.5,
+      "currentStock": 18,
+      "initialStock": 18,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 36,
+      "weightGrams": 240,
+      "options": {
+        "variant": "Matte Carbon Black",
+        "specification": "Small (51-55cm)"
+      }
+    },
+    {
+      "id": "prod_hlmt_aero_blk_m",
+      "masterSku": "HLMT-AERO-BLK-M",
+      "title": "AeroLite Carbon Road Helmet - Matte Carbon Black (Medium (55-59cm))",
+      "category": "Cycling & Helmets",
+      "brand": "AeroDynamics Pro",
+      "barcode": "840123000012",
+      "price": 229.99,
+      "costPrice": 92.5,
+      "currentStock": 32,
+      "initialStock": 32,
+      "version": 1,
+      "reorderThreshold": 6,
+      "reorderQuantity": 64,
+      "weightGrams": 240,
+      "options": {
+        "variant": "Matte Carbon Black",
+        "specification": "Medium (55-59cm)"
+      }
+    },
+    {
+      "id": "prod_hlmt_aero_blk_l",
+      "masterSku": "HLMT-AERO-BLK-L",
+      "title": "AeroLite Carbon Road Helmet - Matte Carbon Black (Large (59-63cm))",
+      "category": "Cycling & Helmets",
+      "brand": "AeroDynamics Pro",
+      "barcode": "840123000013",
+      "price": 229.99,
+      "costPrice": 92.5,
+      "currentStock": 24,
+      "initialStock": 24,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 48,
+      "weightGrams": 240,
+      "options": {
+        "variant": "Matte Carbon Black",
+        "specification": "Large (59-63cm)"
+      }
+    },
+    {
+      "id": "prod_hlmt_aero_wht_s",
+      "masterSku": "HLMT-AERO-WHT-S",
+      "title": "AeroLite Carbon Road Helmet - Gloss Pearl White (Small (51-55cm))",
+      "category": "Cycling & Helmets",
+      "brand": "AeroDynamics Pro",
+      "barcode": "840123000014",
+      "price": 229.99,
+      "costPrice": 92.5,
+      "currentStock": 15,
+      "initialStock": 15,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 30,
+      "weightGrams": 240,
+      "options": {
+        "variant": "Gloss Pearl White",
+        "specification": "Small (51-55cm)"
+      }
+    },
+    {
+      "id": "prod_hlmt_aero_wht_m",
+      "masterSku": "HLMT-AERO-WHT-M",
+      "title": "AeroLite Carbon Road Helmet - Gloss Pearl White (Medium (55-59cm))",
+      "category": "Cycling & Helmets",
+      "brand": "AeroDynamics Pro",
+      "barcode": "840123000015",
+      "price": 229.99,
+      "costPrice": 92.5,
+      "currentStock": 28,
+      "initialStock": 28,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 56,
+      "weightGrams": 240,
+      "options": {
+        "variant": "Gloss Pearl White",
+        "specification": "Medium (55-59cm)"
+      }
+    },
+    {
+      "id": "prod_hlmt_aero_wht_l",
+      "masterSku": "HLMT-AERO-WHT-L",
+      "title": "AeroLite Carbon Road Helmet - Gloss Pearl White (Large (59-63cm))",
+      "category": "Cycling & Helmets",
+      "brand": "AeroDynamics Pro",
+      "barcode": "840123000016",
+      "price": 229.99,
+      "costPrice": 92.5,
+      "currentStock": 20,
+      "initialStock": 20,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 40,
+      "weightGrams": 240,
+      "options": {
+        "variant": "Gloss Pearl White",
+        "specification": "Large (59-63cm)"
+      }
+    },
+    {
+      "id": "prod_hlmt_aero_yel_s",
+      "masterSku": "HLMT-AERO-YEL-S",
+      "title": "AeroLite Carbon Road Helmet - Hi-Vis Race Yellow (Small (51-55cm))",
+      "category": "Cycling & Helmets",
+      "brand": "AeroDynamics Pro",
+      "barcode": "840123000017",
+      "price": 229.99,
+      "costPrice": 92.5,
+      "currentStock": 10,
+      "initialStock": 10,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 20,
+      "weightGrams": 240,
+      "options": {
+        "variant": "Hi-Vis Race Yellow",
+        "specification": "Small (51-55cm)"
+      }
+    },
+    {
+      "id": "prod_hlmt_aero_yel_m",
+      "masterSku": "HLMT-AERO-YEL-M",
+      "title": "AeroLite Carbon Road Helmet - Hi-Vis Race Yellow (Medium (55-59cm))",
+      "category": "Cycling & Helmets",
+      "brand": "AeroDynamics Pro",
+      "barcode": "840123000018",
+      "price": 229.99,
+      "costPrice": 92.5,
+      "currentStock": 18,
+      "initialStock": 18,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 36,
+      "weightGrams": 240,
+      "options": {
+        "variant": "Hi-Vis Race Yellow",
+        "specification": "Medium (55-59cm)"
+      }
+    },
+    {
+      "id": "prod_hlmt_aero_crm_m",
+      "masterSku": "HLMT-AERO-CRM-M",
+      "title": "AeroLite Carbon Road Helmet - Crimson Carbon Edition (Medium (55-59cm))",
+      "category": "Cycling & Helmets",
+      "brand": "AeroDynamics Pro",
+      "barcode": "840123000019",
+      "price": 229.99,
+      "costPrice": 92.5,
+      "currentStock": 6,
+      "initialStock": 6,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 20,
+      "weightGrams": 240,
+      "options": {
+        "variant": "Crimson Carbon Edition",
+        "specification": "Medium (55-59cm)"
+      }
+    },
+    {
+      "id": "prod_hlmt_aero_crm_l",
+      "masterSku": "HLMT-AERO-CRM-L",
+      "title": "AeroLite Carbon Road Helmet - Crimson Carbon Edition (Large (59-63cm))",
+      "category": "Cycling & Helmets",
+      "brand": "AeroDynamics Pro",
+      "barcode": "840123000020",
+      "price": 229.99,
+      "costPrice": 92.5,
+      "currentStock": 4,
+      "initialStock": 4,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 20,
+      "weightGrams": 240,
+      "options": {
+        "variant": "Crimson Carbon Edition",
+        "specification": "Large (59-63cm)"
+      }
+    },
+    {
+      "id": "prod_aprl_mrn_chr_xs",
+      "masterSku": "APRL-MRN-CHR-XS",
+      "title": "Merino Wool 260 Thermal Layer - Charcoal Heather (XS)",
+      "category": "Apparel",
+      "brand": "Nordic Peak Gear",
+      "barcode": "840123000021",
+      "price": 98.0,
+      "costPrice": 38.0,
+      "currentStock": 15,
+      "initialStock": 15,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 30,
+      "weightGrams": 310,
+      "options": {
+        "variant": "Charcoal Heather",
+        "specification": "XS"
+      }
+    },
+    {
+      "id": "prod_aprl_mrn_chr_s",
+      "masterSku": "APRL-MRN-CHR-S",
+      "title": "Merino Wool 260 Thermal Layer - Charcoal Heather (S)",
+      "category": "Apparel",
+      "brand": "Nordic Peak Gear",
+      "barcode": "840123000022",
+      "price": 98.0,
+      "costPrice": 38.0,
+      "currentStock": 45,
+      "initialStock": 45,
+      "version": 1,
+      "reorderThreshold": 9,
+      "reorderQuantity": 90,
+      "weightGrams": 310,
+      "options": {
+        "variant": "Charcoal Heather",
+        "specification": "S"
+      }
+    },
+    {
+      "id": "prod_aprl_mrn_chr_m",
+      "masterSku": "APRL-MRN-CHR-M",
+      "title": "Merino Wool 260 Thermal Layer - Charcoal Heather (M)",
+      "category": "Apparel",
+      "brand": "Nordic Peak Gear",
+      "barcode": "840123000023",
+      "price": 98.0,
+      "costPrice": 38.0,
+      "currentStock": 60,
+      "initialStock": 60,
+      "version": 1,
+      "reorderThreshold": 12,
+      "reorderQuantity": 120,
+      "weightGrams": 310,
+      "options": {
+        "variant": "Charcoal Heather",
+        "specification": "M"
+      }
+    },
+    {
+      "id": "prod_aprl_mrn_chr_l",
+      "masterSku": "APRL-MRN-CHR-L",
+      "title": "Merino Wool 260 Thermal Layer - Charcoal Heather (L)",
+      "category": "Apparel",
+      "brand": "Nordic Peak Gear",
+      "barcode": "840123000024",
+      "price": 98.0,
+      "costPrice": 38.0,
+      "currentStock": 55,
+      "initialStock": 55,
+      "version": 1,
+      "reorderThreshold": 11,
+      "reorderQuantity": 110,
+      "weightGrams": 310,
+      "options": {
+        "variant": "Charcoal Heather",
+        "specification": "L"
+      }
+    },
+    {
+      "id": "prod_aprl_mrn_chr_xl",
+      "masterSku": "APRL-MRN-CHR-XL",
+      "title": "Merino Wool 260 Thermal Layer - Charcoal Heather (XL)",
+      "category": "Apparel",
+      "brand": "Nordic Peak Gear",
+      "barcode": "840123000025",
+      "price": 98.0,
+      "costPrice": 38.0,
+      "currentStock": 30,
+      "initialStock": 30,
+      "version": 1,
+      "reorderThreshold": 6,
+      "reorderQuantity": 60,
+      "weightGrams": 310,
+      "options": {
+        "variant": "Charcoal Heather",
+        "specification": "XL"
+      }
+    },
+    {
+      "id": "prod_aprl_mrn_nvy_s",
+      "masterSku": "APRL-MRN-NVY-S",
+      "title": "Merino Wool 260 Thermal Layer - Midnight Navy (S)",
+      "category": "Apparel",
+      "brand": "Nordic Peak Gear",
+      "barcode": "840123000026",
+      "price": 98.0,
+      "costPrice": 38.0,
+      "currentStock": 35,
+      "initialStock": 35,
+      "version": 1,
+      "reorderThreshold": 7,
+      "reorderQuantity": 70,
+      "weightGrams": 310,
+      "options": {
+        "variant": "Midnight Navy",
+        "specification": "S"
+      }
+    },
+    {
+      "id": "prod_aprl_mrn_nvy_m",
+      "masterSku": "APRL-MRN-NVY-M",
+      "title": "Merino Wool 260 Thermal Layer - Midnight Navy (M)",
+      "category": "Apparel",
+      "brand": "Nordic Peak Gear",
+      "barcode": "840123000027",
+      "price": 98.0,
+      "costPrice": 38.0,
+      "currentStock": 50,
+      "initialStock": 50,
+      "version": 1,
+      "reorderThreshold": 10,
+      "reorderQuantity": 100,
+      "weightGrams": 310,
+      "options": {
+        "variant": "Midnight Navy",
+        "specification": "M"
+      }
+    },
+    {
+      "id": "prod_aprl_mrn_nvy_l",
+      "masterSku": "APRL-MRN-NVY-L",
+      "title": "Merino Wool 260 Thermal Layer - Midnight Navy (L)",
+      "category": "Apparel",
+      "brand": "Nordic Peak Gear",
+      "barcode": "840123000028",
+      "price": 98.0,
+      "costPrice": 38.0,
+      "currentStock": 40,
+      "initialStock": 40,
+      "version": 1,
+      "reorderThreshold": 8,
+      "reorderQuantity": 80,
+      "weightGrams": 310,
+      "options": {
+        "variant": "Midnight Navy",
+        "specification": "L"
+      }
+    },
+    {
+      "id": "prod_aprl_mrn_nvy_xl",
+      "masterSku": "APRL-MRN-NVY-XL",
+      "title": "Merino Wool 260 Thermal Layer - Midnight Navy (XL)",
+      "category": "Apparel",
+      "brand": "Nordic Peak Gear",
+      "barcode": "840123000029",
+      "price": 98.0,
+      "costPrice": 38.0,
+      "currentStock": 25,
+      "initialStock": 25,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 50,
+      "weightGrams": 310,
+      "options": {
+        "variant": "Midnight Navy",
+        "specification": "XL"
+      }
+    },
+    {
+      "id": "prod_aprl_mrn_nvy_xxl",
+      "masterSku": "APRL-MRN-NVY-XXL",
+      "title": "Merino Wool 260 Thermal Layer - Midnight Navy (XXL)",
+      "category": "Apparel",
+      "brand": "Nordic Peak Gear",
+      "barcode": "840123000030",
+      "price": 98.0,
+      "costPrice": 38.0,
+      "currentStock": 12,
+      "initialStock": 12,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 24,
+      "weightGrams": 310,
+      "options": {
+        "variant": "Midnight Navy",
+        "specification": "XXL"
+      }
+    },
+    {
+      "id": "prod_outr_hyd_olv_s",
+      "masterSku": "OUTR-HYD-OLV-S",
+      "title": "HydroShield 3-Layer Shell Jacket - Ranger Olive (Small)",
+      "category": "Outerwear",
+      "brand": "Nordic Peak Gear",
+      "barcode": "840123000031",
+      "price": 349.0,
+      "costPrice": 140.0,
+      "currentStock": 14,
+      "initialStock": 14,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 28,
+      "weightGrams": 520,
+      "options": {
+        "variant": "Ranger Olive",
+        "specification": "Small"
+      }
+    },
+    {
+      "id": "prod_outr_hyd_olv_m",
+      "masterSku": "OUTR-HYD-OLV-M",
+      "title": "HydroShield 3-Layer Shell Jacket - Ranger Olive (Medium)",
+      "category": "Outerwear",
+      "brand": "Nordic Peak Gear",
+      "barcode": "840123000032",
+      "price": 349.0,
+      "costPrice": 140.0,
+      "currentStock": 28,
+      "initialStock": 28,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 56,
+      "weightGrams": 520,
+      "options": {
+        "variant": "Ranger Olive",
+        "specification": "Medium"
+      }
+    },
+    {
+      "id": "prod_outr_hyd_olv_l",
+      "masterSku": "OUTR-HYD-OLV-L",
+      "title": "HydroShield 3-Layer Shell Jacket - Ranger Olive (Large)",
+      "category": "Outerwear",
+      "brand": "Nordic Peak Gear",
+      "barcode": "840123000033",
+      "price": 349.0,
+      "costPrice": 140.0,
+      "currentStock": 25,
+      "initialStock": 25,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 50,
+      "weightGrams": 520,
+      "options": {
+        "variant": "Ranger Olive",
+        "specification": "Large"
+      }
+    },
+    {
+      "id": "prod_outr_hyd_olv_xl",
+      "masterSku": "OUTR-HYD-OLV-XL",
+      "title": "HydroShield 3-Layer Shell Jacket - Ranger Olive (XL)",
+      "category": "Outerwear",
+      "brand": "Nordic Peak Gear",
+      "barcode": "840123000034",
+      "price": 349.0,
+      "costPrice": 140.0,
+      "currentStock": 16,
+      "initialStock": 16,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 32,
+      "weightGrams": 520,
+      "options": {
+        "variant": "Ranger Olive",
+        "specification": "XL"
+      }
+    },
+    {
+      "id": "prod_outr_hyd_slt_s",
+      "masterSku": "OUTR-HYD-SLT-S",
+      "title": "HydroShield 3-Layer Shell Jacket - Slate Grey (Small)",
+      "category": "Outerwear",
+      "brand": "Nordic Peak Gear",
+      "barcode": "840123000035",
+      "price": 349.0,
+      "costPrice": 140.0,
+      "currentStock": 12,
+      "initialStock": 12,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 24,
+      "weightGrams": 520,
+      "options": {
+        "variant": "Slate Grey",
+        "specification": "Small"
+      }
+    },
+    {
+      "id": "prod_outr_hyd_slt_m",
+      "masterSku": "OUTR-HYD-SLT-M",
+      "title": "HydroShield 3-Layer Shell Jacket - Slate Grey (Medium)",
+      "category": "Outerwear",
+      "brand": "Nordic Peak Gear",
+      "barcode": "840123000036",
+      "price": 349.0,
+      "costPrice": 140.0,
+      "currentStock": 30,
+      "initialStock": 30,
+      "version": 1,
+      "reorderThreshold": 6,
+      "reorderQuantity": 60,
+      "weightGrams": 520,
+      "options": {
+        "variant": "Slate Grey",
+        "specification": "Medium"
+      }
+    },
+    {
+      "id": "prod_outr_hyd_slt_l",
+      "masterSku": "OUTR-HYD-SLT-L",
+      "title": "HydroShield 3-Layer Shell Jacket - Slate Grey (Large)",
+      "category": "Outerwear",
+      "brand": "Nordic Peak Gear",
+      "barcode": "840123000037",
+      "price": 349.0,
+      "costPrice": 140.0,
+      "currentStock": 26,
+      "initialStock": 26,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 52,
+      "weightGrams": 520,
+      "options": {
+        "variant": "Slate Grey",
+        "specification": "Large"
+      }
+    },
+    {
+      "id": "prod_outr_hyd_slt_xl",
+      "masterSku": "OUTR-HYD-SLT-XL",
+      "title": "HydroShield 3-Layer Shell Jacket - Slate Grey (XL)",
+      "category": "Outerwear",
+      "brand": "Nordic Peak Gear",
+      "barcode": "840123000038",
+      "price": 349.0,
+      "costPrice": 140.0,
+      "currentStock": 15,
+      "initialStock": 15,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 30,
+      "weightGrams": 520,
+      "options": {
+        "variant": "Slate Grey",
+        "specification": "XL"
+      }
+    },
+    {
+      "id": "prod_outr_hyd_blk_m",
+      "masterSku": "OUTR-HYD-BLK-M",
+      "title": "HydroShield 3-Layer Shell Jacket - Onyx Black (Medium)",
+      "category": "Outerwear",
+      "brand": "Nordic Peak Gear",
+      "barcode": "840123000039",
+      "price": 349.0,
+      "costPrice": 140.0,
+      "currentStock": 40,
+      "initialStock": 40,
+      "version": 1,
+      "reorderThreshold": 8,
+      "reorderQuantity": 80,
+      "weightGrams": 520,
+      "options": {
+        "variant": "Onyx Black",
+        "specification": "Medium"
+      }
+    },
+    {
+      "id": "prod_outr_hyd_blk_l",
+      "masterSku": "OUTR-HYD-BLK-L",
+      "title": "HydroShield 3-Layer Shell Jacket - Onyx Black (Large)",
+      "category": "Outerwear",
+      "brand": "Nordic Peak Gear",
+      "barcode": "840123000040",
+      "price": 349.0,
+      "costPrice": 140.0,
+      "currentStock": 35,
+      "initialStock": 35,
+      "version": 1,
+      "reorderThreshold": 7,
+      "reorderQuantity": 70,
+      "weightGrams": 520,
+      "options": {
+        "variant": "Onyx Black",
+        "specification": "Large"
+      }
+    },
+    {
+      "id": "prod_wtch_qtm_ttn_lth",
+      "masterSku": "WTCH-QTM-TTN-LTH",
+      "title": "Quantum Mechanix Chronograph - Grade 5 Titanium (Horween Calf Leather)",
+      "category": "Horology & Watches",
+      "brand": "Quantum Timepieces",
+      "barcode": "840123000041",
+      "price": 495.0,
+      "costPrice": 185.0,
+      "currentStock": 10,
+      "initialStock": 10,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 20,
+      "weightGrams": 160,
+      "options": {
+        "variant": "Grade 5 Titanium",
+        "specification": "Horween Calf Leather"
+      }
+    },
+    {
+      "id": "prod_wtch_qtm_ttn_stl",
+      "masterSku": "WTCH-QTM-TTN-STL",
+      "title": "Quantum Mechanix Chronograph - Grade 5 Titanium (Titanium Link Bracelet)",
+      "category": "Horology & Watches",
+      "brand": "Quantum Timepieces",
+      "barcode": "840123000042",
+      "price": 495.0,
+      "costPrice": 185.0,
+      "currentStock": 8,
+      "initialStock": 8,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 20,
+      "weightGrams": 160,
+      "options": {
+        "variant": "Grade 5 Titanium",
+        "specification": "Titanium Link Bracelet"
+      }
+    },
+    {
+      "id": "prod_wtch_qtm_rsg_lth",
+      "masterSku": "WTCH-QTM-RSG-LTH",
+      "title": "Quantum Mechanix Chronograph - 18k Rose Gold PVD (Alligator Grain Leather)",
+      "category": "Horology & Watches",
+      "brand": "Quantum Timepieces",
+      "barcode": "840123000043",
+      "price": 495.0,
+      "costPrice": 185.0,
+      "currentStock": 5,
+      "initialStock": 5,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 20,
+      "weightGrams": 160,
+      "options": {
+        "variant": "18k Rose Gold PVD",
+        "specification": "Alligator Grain Leather"
+      }
+    },
+    {
+      "id": "prod_wtch_qtm_rsg_stl",
+      "masterSku": "WTCH-QTM-RSG-STL",
+      "title": "Quantum Mechanix Chronograph - 18k Rose Gold PVD (Milanese Mesh Strap)",
+      "category": "Horology & Watches",
+      "brand": "Quantum Timepieces",
+      "barcode": "840123000044",
+      "price": 495.0,
+      "costPrice": 185.0,
+      "currentStock": 5,
+      "initialStock": 5,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 20,
+      "weightGrams": 160,
+      "options": {
+        "variant": "18k Rose Gold PVD",
+        "specification": "Milanese Mesh Strap"
+      }
+    },
+    {
+      "id": "prod_wtch_qtm_onyx_stl",
+      "masterSku": "WTCH-QTM-ONYX-STL",
+      "title": "Quantum Mechanix Chronograph - DLC Midnight Onyx (Black PVD Steel Strap)",
+      "category": "Horology & Watches",
+      "brand": "Quantum Timepieces",
+      "barcode": "840123000045",
+      "price": 495.0,
+      "costPrice": 185.0,
+      "currentStock": 12,
+      "initialStock": 12,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 24,
+      "weightGrams": 160,
+      "options": {
+        "variant": "DLC Midnight Onyx",
+        "specification": "Black PVD Steel Strap"
+      }
+    },
+    {
+      "id": "prod_wtch_qtm_onyx_rbr",
+      "masterSku": "WTCH-QTM-ONYX-RBR",
+      "title": "Quantum Mechanix Chronograph - DLC Midnight Onyx (FKM Fluoroelastomer Rubber)",
+      "category": "Horology & Watches",
+      "brand": "Quantum Timepieces",
+      "barcode": "840123000046",
+      "price": 495.0,
+      "costPrice": 185.0,
+      "currentStock": 15,
+      "initialStock": 15,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 30,
+      "weightGrams": 160,
+      "options": {
+        "variant": "DLC Midnight Onyx",
+        "specification": "FKM Fluoroelastomer Rubber"
+      }
+    },
+    {
+      "id": "prod_wtch_qtm_slv_lth",
+      "masterSku": "WTCH-QTM-SLV-LTH",
+      "title": "Quantum Mechanix Chronograph - Classic Silver Steel (Cognac Saddle Leather)",
+      "category": "Horology & Watches",
+      "brand": "Quantum Timepieces",
+      "barcode": "840123000047",
+      "price": 495.0,
+      "costPrice": 185.0,
+      "currentStock": 20,
+      "initialStock": 20,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 40,
+      "weightGrams": 160,
+      "options": {
+        "variant": "Classic Silver Steel",
+        "specification": "Cognac Saddle Leather"
+      }
+    },
+    {
+      "id": "prod_wtch_qtm_slv_stl",
+      "masterSku": "WTCH-QTM-SLV-STL",
+      "title": "Quantum Mechanix Chronograph - Classic Silver Steel (Oyster 3-Link Steel)",
+      "category": "Horology & Watches",
+      "brand": "Quantum Timepieces",
+      "barcode": "840123000048",
+      "price": 495.0,
+      "costPrice": 185.0,
+      "currentStock": 22,
+      "initialStock": 22,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 44,
+      "weightGrams": 160,
+      "options": {
+        "variant": "Classic Silver Steel",
+        "specification": "Oyster 3-Link Steel"
+      }
+    },
+    {
+      "id": "prod_wtch_qtm_ltd_mrn",
+      "masterSku": "WTCH-QTM-LTD-MRN",
+      "title": "Quantum Mechanix Chronograph - Deep Marine (Flash Sale Limited) (Navy Sailcloth)",
+      "category": "Horology & Watches",
+      "brand": "Quantum Timepieces",
+      "barcode": "840123000049",
+      "price": 495.0,
+      "costPrice": 185.0,
+      "currentStock": 3,
+      "initialStock": 3,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 20,
+      "weightGrams": 160,
+      "options": {
+        "variant": "Deep Marine (Flash Sale Limited)",
+        "specification": "Navy Sailcloth"
+      }
+    },
+    {
+      "id": "prod_wtch_qtm_ltd_gld",
+      "masterSku": "WTCH-QTM-LTD-GLD",
+      "title": "Quantum Mechanix Chronograph - Centennial Gold (Founders Edition) (Burgundy Leather)",
+      "category": "Horology & Watches",
+      "brand": "Quantum Timepieces",
+      "barcode": "840123000050",
+      "price": 495.0,
+      "costPrice": 185.0,
+      "currentStock": 2,
+      "initialStock": 2,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 20,
+      "weightGrams": 160,
+      "options": {
+        "variant": "Centennial Gold (Founders Edition)",
+        "specification": "Burgundy Leather"
+      }
+    },
+    {
+      "id": "prod_kb_ergo_red_ansi",
+      "masterSku": "KB-ERGO-RED-ANSI",
+      "title": "ErgoPro Wireless Mechanical Keyboard - Linear Red Switches (ANSI 75% Layout)",
+      "category": "Electronics & Peripherals",
+      "brand": "Syntax Hardware",
+      "barcode": "840123000051",
+      "price": 189.99,
+      "costPrice": 72.0,
+      "currentStock": 45,
+      "initialStock": 45,
+      "version": 1,
+      "reorderThreshold": 9,
+      "reorderQuantity": 90,
+      "weightGrams": 950,
+      "options": {
+        "variant": "Linear Red Switches",
+        "specification": "ANSI 75% Layout"
+      }
+    },
+    {
+      "id": "prod_kb_ergo_brn_ansi",
+      "masterSku": "KB-ERGO-BRN-ANSI",
+      "title": "ErgoPro Wireless Mechanical Keyboard - Tactile Brown Switches (ANSI 75% Layout)",
+      "category": "Electronics & Peripherals",
+      "brand": "Syntax Hardware",
+      "barcode": "840123000052",
+      "price": 189.99,
+      "costPrice": 72.0,
+      "currentStock": 60,
+      "initialStock": 60,
+      "version": 1,
+      "reorderThreshold": 12,
+      "reorderQuantity": 120,
+      "weightGrams": 950,
+      "options": {
+        "variant": "Tactile Brown Switches",
+        "specification": "ANSI 75% Layout"
+      }
+    },
+    {
+      "id": "prod_kb_ergo_blu_ansi",
+      "masterSku": "KB-ERGO-BLU-ANSI",
+      "title": "ErgoPro Wireless Mechanical Keyboard - Clicky Blue Switches (ANSI 75% Layout)",
+      "category": "Electronics & Peripherals",
+      "brand": "Syntax Hardware",
+      "barcode": "840123000053",
+      "price": 189.99,
+      "costPrice": 72.0,
+      "currentStock": 25,
+      "initialStock": 25,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 50,
+      "weightGrams": 950,
+      "options": {
+        "variant": "Clicky Blue Switches",
+        "specification": "ANSI 75% Layout"
+      }
+    },
+    {
+      "id": "prod_kb_ergo_slt_ansi",
+      "masterSku": "KB-ERGO-SLT-ANSI",
+      "title": "ErgoPro Wireless Mechanical Keyboard - Silent Black Switches (ANSI 75% Layout)",
+      "category": "Electronics & Peripherals",
+      "brand": "Syntax Hardware",
+      "barcode": "840123000054",
+      "price": 189.99,
+      "costPrice": 72.0,
+      "currentStock": 30,
+      "initialStock": 30,
+      "version": 1,
+      "reorderThreshold": 6,
+      "reorderQuantity": 60,
+      "weightGrams": 950,
+      "options": {
+        "variant": "Silent Black Switches",
+        "specification": "ANSI 75% Layout"
+      }
+    },
+    {
+      "id": "prod_kb_ergo_red_iso",
+      "masterSku": "KB-ERGO-RED-ISO",
+      "title": "ErgoPro Wireless Mechanical Keyboard - Linear Red Switches (ISO-UK Layout)",
+      "category": "Electronics & Peripherals",
+      "brand": "Syntax Hardware",
+      "barcode": "840123000055",
+      "price": 189.99,
+      "costPrice": 72.0,
+      "currentStock": 20,
+      "initialStock": 20,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 40,
+      "weightGrams": 950,
+      "options": {
+        "variant": "Linear Red Switches",
+        "specification": "ISO-UK Layout"
+      }
+    },
+    {
+      "id": "prod_kb_ergo_brn_iso",
+      "masterSku": "KB-ERGO-BRN-ISO",
+      "title": "ErgoPro Wireless Mechanical Keyboard - Tactile Brown Switches (ISO-UK Layout)",
+      "category": "Electronics & Peripherals",
+      "brand": "Syntax Hardware",
+      "barcode": "840123000056",
+      "price": 189.99,
+      "costPrice": 72.0,
+      "currentStock": 25,
+      "initialStock": 25,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 50,
+      "weightGrams": 950,
+      "options": {
+        "variant": "Tactile Brown Switches",
+        "specification": "ISO-UK Layout"
+      }
+    },
+    {
+      "id": "prod_kb_ergo_blu_iso",
+      "masterSku": "KB-ERGO-BLU-ISO",
+      "title": "ErgoPro Wireless Mechanical Keyboard - Clicky Blue Switches (ISO-UK Layout)",
+      "category": "Electronics & Peripherals",
+      "brand": "Syntax Hardware",
+      "barcode": "840123000057",
+      "price": 189.99,
+      "costPrice": 72.0,
+      "currentStock": 10,
+      "initialStock": 10,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 20,
+      "weightGrams": 950,
+      "options": {
+        "variant": "Clicky Blue Switches",
+        "specification": "ISO-UK Layout"
+      }
+    },
+    {
+      "id": "prod_kb_ergo_slt_iso",
+      "masterSku": "KB-ERGO-SLT-ISO",
+      "title": "ErgoPro Wireless Mechanical Keyboard - Silent Black Switches (ISO-UK Layout)",
+      "category": "Electronics & Peripherals",
+      "brand": "Syntax Hardware",
+      "barcode": "840123000058",
+      "price": 189.99,
+      "costPrice": 72.0,
+      "currentStock": 15,
+      "initialStock": 15,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 30,
+      "weightGrams": 950,
+      "options": {
+        "variant": "Silent Black Switches",
+        "specification": "ISO-UK Layout"
+      }
+    },
+    {
+      "id": "prod_kb_ergo_ltd_ret",
+      "masterSku": "KB-ERGO-LTD-RET",
+      "title": "ErgoPro Wireless Mechanical Keyboard - Retro 1984 Edition (Brown) (ANSI 75% Layout)",
+      "category": "Electronics & Peripherals",
+      "brand": "Syntax Hardware",
+      "barcode": "840123000059",
+      "price": 189.99,
+      "costPrice": 72.0,
+      "currentStock": 7,
+      "initialStock": 7,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 20,
+      "weightGrams": 950,
+      "options": {
+        "variant": "Retro 1984 Edition (Brown)",
+        "specification": "ANSI 75% Layout"
+      }
+    },
+    {
+      "id": "prod_kb_ergo_ltd_cyb",
+      "masterSku": "KB-ERGO-LTD-CYB",
+      "title": "ErgoPro Wireless Mechanical Keyboard - Cyberpunk Neon (Linear Red) (ANSI 75% Layout)",
+      "category": "Electronics & Peripherals",
+      "brand": "Syntax Hardware",
+      "barcode": "840123000060",
+      "price": 189.99,
+      "costPrice": 72.0,
+      "currentStock": 5,
+      "initialStock": 5,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 20,
+      "weightGrams": 950,
+      "options": {
+        "variant": "Cyberpunk Neon (Linear Red)",
+        "specification": "ANSI 75% Layout"
+      }
+    },
+    {
+      "id": "prod_aud_sg_gry_std",
+      "masterSku": "AUD-SG-GRY-STD",
+      "title": "StudioGrade ANC Wireless Headphones - Space Gray (Standard Edition)",
+      "category": "Audio & Acoustics",
+      "brand": "Acoustic Alchemy",
+      "barcode": "840123000061",
+      "price": 279.99,
+      "costPrice": 110.0,
+      "currentStock": 40,
+      "initialStock": 40,
+      "version": 1,
+      "reorderThreshold": 8,
+      "reorderQuantity": 80,
+      "weightGrams": 285,
+      "options": {
+        "variant": "Space Gray",
+        "specification": "Standard Edition"
+      }
+    },
+    {
+      "id": "prod_aud_sg_slv_std",
+      "masterSku": "AUD-SG-SLV-STD",
+      "title": "StudioGrade ANC Wireless Headphones - Pearl Silver (Standard Edition)",
+      "category": "Audio & Acoustics",
+      "brand": "Acoustic Alchemy",
+      "barcode": "840123000062",
+      "price": 279.99,
+      "costPrice": 110.0,
+      "currentStock": 35,
+      "initialStock": 35,
+      "version": 1,
+      "reorderThreshold": 7,
+      "reorderQuantity": 70,
+      "weightGrams": 285,
+      "options": {
+        "variant": "Pearl Silver",
+        "specification": "Standard Edition"
+      }
+    },
+    {
+      "id": "prod_aud_sg_blk_std",
+      "masterSku": "AUD-SG-BLK-STD",
+      "title": "StudioGrade ANC Wireless Headphones - Matte Carbon Black (Standard Edition)",
+      "category": "Audio & Acoustics",
+      "brand": "Acoustic Alchemy",
+      "barcode": "840123000063",
+      "price": 279.99,
+      "costPrice": 110.0,
+      "currentStock": 55,
+      "initialStock": 55,
+      "version": 1,
+      "reorderThreshold": 11,
+      "reorderQuantity": 110,
+      "weightGrams": 285,
+      "options": {
+        "variant": "Matte Carbon Black",
+        "specification": "Standard Edition"
+      }
+    },
+    {
+      "id": "prod_aud_sg_nvy_std",
+      "masterSku": "AUD-SG-NVY-STD",
+      "title": "StudioGrade ANC Wireless Headphones - Midnight Blue (Standard Edition)",
+      "category": "Audio & Acoustics",
+      "brand": "Acoustic Alchemy",
+      "barcode": "840123000064",
+      "price": 279.99,
+      "costPrice": 110.0,
+      "currentStock": 25,
+      "initialStock": 25,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 50,
+      "weightGrams": 285,
+      "options": {
+        "variant": "Midnight Blue",
+        "specification": "Standard Edition"
+      }
+    },
+    {
+      "id": "prod_aud_sg_brz_std",
+      "masterSku": "AUD-SG-BRZ-STD",
+      "title": "StudioGrade ANC Wireless Headphones - Brushed Bronze (Standard Edition)",
+      "category": "Audio & Acoustics",
+      "brand": "Acoustic Alchemy",
+      "barcode": "840123000065",
+      "price": 279.99,
+      "costPrice": 110.0,
+      "currentStock": 18,
+      "initialStock": 18,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 36,
+      "weightGrams": 285,
+      "options": {
+        "variant": "Brushed Bronze",
+        "specification": "Standard Edition"
+      }
+    },
+    {
+      "id": "prod_aud_sg_gry_pro",
+      "masterSku": "AUD-SG-GRY-PRO",
+      "title": "StudioGrade ANC Wireless Headphones - Space Gray (Audiophile Pro DAC Bundle)",
+      "category": "Audio & Acoustics",
+      "brand": "Acoustic Alchemy",
+      "barcode": "840123000066",
+      "price": 279.99,
+      "costPrice": 110.0,
+      "currentStock": 15,
+      "initialStock": 15,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 30,
+      "weightGrams": 285,
+      "options": {
+        "variant": "Space Gray",
+        "specification": "Audiophile Pro DAC Bundle"
+      }
+    },
+    {
+      "id": "prod_aud_sg_slv_pro",
+      "masterSku": "AUD-SG-SLV-PRO",
+      "title": "StudioGrade ANC Wireless Headphones - Pearl Silver (Audiophile Pro DAC Bundle)",
+      "category": "Audio & Acoustics",
+      "brand": "Acoustic Alchemy",
+      "barcode": "840123000067",
+      "price": 279.99,
+      "costPrice": 110.0,
+      "currentStock": 12,
+      "initialStock": 12,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 24,
+      "weightGrams": 285,
+      "options": {
+        "variant": "Pearl Silver",
+        "specification": "Audiophile Pro DAC Bundle"
+      }
+    },
+    {
+      "id": "prod_aud_sg_blk_pro",
+      "masterSku": "AUD-SG-BLK-PRO",
+      "title": "StudioGrade ANC Wireless Headphones - Matte Carbon Black (Audiophile Pro DAC Bundle)",
+      "category": "Audio & Acoustics",
+      "brand": "Acoustic Alchemy",
+      "barcode": "840123000068",
+      "price": 279.99,
+      "costPrice": 110.0,
+      "currentStock": 20,
+      "initialStock": 20,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 40,
+      "weightGrams": 285,
+      "options": {
+        "variant": "Matte Carbon Black",
+        "specification": "Audiophile Pro DAC Bundle"
+      }
+    },
+    {
+      "id": "prod_aud_sg_ltd_wht",
+      "masterSku": "AUD-SG-LTD-WHT",
+      "title": "StudioGrade ANC Wireless Headphones - Ceramic Pure White (Limited) (Standard Edition)",
+      "category": "Audio & Acoustics",
+      "brand": "Acoustic Alchemy",
+      "barcode": "840123000069",
+      "price": 279.99,
+      "costPrice": 110.0,
+      "currentStock": 6,
+      "initialStock": 6,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 20,
+      "weightGrams": 285,
+      "options": {
+        "variant": "Ceramic Pure White (Limited)",
+        "specification": "Standard Edition"
+      }
+    },
+    {
+      "id": "prod_aud_sg_ltd_gld",
+      "masterSku": "AUD-SG-LTD-GLD",
+      "title": "StudioGrade ANC Wireless Headphones - Imperial Gold Edition (Pro Edition)",
+      "category": "Audio & Acoustics",
+      "brand": "Acoustic Alchemy",
+      "barcode": "840123000070",
+      "price": 279.99,
+      "costPrice": 110.0,
+      "currentStock": 4,
+      "initialStock": 4,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 20,
+      "weightGrams": 285,
+      "options": {
+        "variant": "Imperial Gold Edition",
+        "specification": "Pro Edition"
+      }
+    },
+    {
+      "id": "prod_edc_knf_stn_cf",
+      "masterSku": "EDC-KNF-STN-CF",
+      "title": "Titanium EDC Precision Pocket Knife - Stonewash CPM-S35VN (Carbon Fiber Inlay)",
+      "category": "Everyday Carry",
+      "brand": "Vanguard Blades",
+      "barcode": "840123000071",
+      "price": 165.0,
+      "costPrice": 55.0,
+      "currentStock": 30,
+      "initialStock": 30,
+      "version": 1,
+      "reorderThreshold": 6,
+      "reorderQuantity": 60,
+      "weightGrams": 115,
+      "options": {
+        "variant": "Stonewash CPM-S35VN",
+        "specification": "Carbon Fiber Inlay"
+      }
+    },
+    {
+      "id": "prod_edc_knf_stn_mic",
+      "masterSku": "EDC-KNF-STN-MIC",
+      "title": "Titanium EDC Precision Pocket Knife - Stonewash CPM-S35VN (Canvas Micarta Inlay)",
+      "category": "Everyday Carry",
+      "brand": "Vanguard Blades",
+      "barcode": "840123000072",
+      "price": 165.0,
+      "costPrice": 55.0,
+      "currentStock": 25,
+      "initialStock": 25,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 50,
+      "weightGrams": 115,
+      "options": {
+        "variant": "Stonewash CPM-S35VN",
+        "specification": "Canvas Micarta Inlay"
+      }
+    },
+    {
+      "id": "prod_edc_knf_dlc_cf",
+      "masterSku": "EDC-KNF-DLC-CF",
+      "title": "Titanium EDC Precision Pocket Knife - DLC Blackout Blade (Carbon Fiber Inlay)",
+      "category": "Everyday Carry",
+      "brand": "Vanguard Blades",
+      "barcode": "840123000073",
+      "price": 165.0,
+      "costPrice": 55.0,
+      "currentStock": 28,
+      "initialStock": 28,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 56,
+      "weightGrams": 115,
+      "options": {
+        "variant": "DLC Blackout Blade",
+        "specification": "Carbon Fiber Inlay"
+      }
+    },
+    {
+      "id": "prod_edc_knf_dlc_mic",
+      "masterSku": "EDC-KNF-DLC-MIC",
+      "title": "Titanium EDC Precision Pocket Knife - DLC Blackout Blade (Canvas Micarta Inlay)",
+      "category": "Everyday Carry",
+      "brand": "Vanguard Blades",
+      "barcode": "840123000074",
+      "price": 165.0,
+      "costPrice": 55.0,
+      "currentStock": 22,
+      "initialStock": 22,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 44,
+      "weightGrams": 115,
+      "options": {
+        "variant": "DLC Blackout Blade",
+        "specification": "Canvas Micarta Inlay"
+      }
+    },
+    {
+      "id": "prod_edc_knf_sat_ttn",
+      "masterSku": "EDC-KNF-SAT-TTN",
+      "title": "Titanium EDC Precision Pocket Knife - Satin Hand-Ground (Full Titanium Scales)",
+      "category": "Everyday Carry",
+      "brand": "Vanguard Blades",
+      "barcode": "840123000075",
+      "price": 165.0,
+      "costPrice": 55.0,
+      "currentStock": 18,
+      "initialStock": 18,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 36,
+      "weightGrams": 115,
+      "options": {
+        "variant": "Satin Hand-Ground",
+        "specification": "Full Titanium Scales"
+      }
+    },
+    {
+      "id": "prod_edc_knf_dlc_ttn",
+      "masterSku": "EDC-KNF-DLC-TTN",
+      "title": "Titanium EDC Precision Pocket Knife - DLC Blackout Blade (Full Titanium Scales)",
+      "category": "Everyday Carry",
+      "brand": "Vanguard Blades",
+      "barcode": "840123000076",
+      "price": 165.0,
+      "costPrice": 55.0,
+      "currentStock": 15,
+      "initialStock": 15,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 30,
+      "weightGrams": 115,
+      "options": {
+        "variant": "DLC Blackout Blade",
+        "specification": "Full Titanium Scales"
+      }
+    },
+    {
+      "id": "prod_edc_knf_dam_cf",
+      "masterSku": "EDC-KNF-DAM-CF",
+      "title": "Titanium EDC Precision Pocket Knife - Damasteel Patterned (Carbon Fiber Inlay)",
+      "category": "Everyday Carry",
+      "brand": "Vanguard Blades",
+      "barcode": "840123000077",
+      "price": 165.0,
+      "costPrice": 55.0,
+      "currentStock": 8,
+      "initialStock": 8,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 20,
+      "weightGrams": 115,
+      "options": {
+        "variant": "Damasteel Patterned",
+        "specification": "Carbon Fiber Inlay"
+      }
+    },
+    {
+      "id": "prod_edc_knf_dam_ttn",
+      "masterSku": "EDC-KNF-DAM-TTN",
+      "title": "Titanium EDC Precision Pocket Knife - Damasteel Patterned (Titanium Blue Anodized)",
+      "category": "Everyday Carry",
+      "brand": "Vanguard Blades",
+      "barcode": "840123000078",
+      "price": 165.0,
+      "costPrice": 55.0,
+      "currentStock": 5,
+      "initialStock": 5,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 20,
+      "weightGrams": 115,
+      "options": {
+        "variant": "Damasteel Patterned",
+        "specification": "Titanium Blue Anodized"
+      }
+    },
+    {
+      "id": "prod_edc_knf_ltd_cop",
+      "masterSku": "EDC-KNF-LTD-COP",
+      "title": "Titanium EDC Precision Pocket Knife - Antiqued Copper Scale (CPM-20CV Blade)",
+      "category": "Everyday Carry",
+      "brand": "Vanguard Blades",
+      "barcode": "840123000079",
+      "price": 165.0,
+      "costPrice": 55.0,
+      "currentStock": 4,
+      "initialStock": 4,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 20,
+      "weightGrams": 115,
+      "options": {
+        "variant": "Antiqued Copper Scale",
+        "specification": "CPM-20CV Blade"
+      }
+    },
+    {
+      "id": "prod_edc_knf_ltd_brs",
+      "masterSku": "EDC-KNF-LTD-BRS",
+      "title": "Titanium EDC Precision Pocket Knife - Solid Brass Scale (CPM-20CV Blade)",
+      "category": "Everyday Carry",
+      "brand": "Vanguard Blades",
+      "barcode": "840123000080",
+      "price": 165.0,
+      "costPrice": 55.0,
+      "currentStock": 3,
+      "initialStock": 3,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 20,
+      "weightGrams": 115,
+      "options": {
+        "variant": "Solid Brass Scale",
+        "specification": "CPM-20CV Blade"
+      }
+    },
+    {
+      "id": "prod_bag_voy_crd_blk",
+      "masterSku": "BAG-VOY-CRD-BLK",
+      "title": "Voyager 40L Modular Travel Backpack - Cordura 500D Ballistic (Matte Stealth Black)",
+      "category": "Luggage & Packs",
+      "brand": "Nomad Transit Lab",
+      "barcode": "840123000081",
+      "price": 249.0,
+      "costPrice": 88.0,
+      "currentStock": 50,
+      "initialStock": 50,
+      "version": 1,
+      "reorderThreshold": 10,
+      "reorderQuantity": 100,
+      "weightGrams": 1450,
+      "options": {
+        "variant": "Cordura 500D Ballistic",
+        "specification": "Matte Stealth Black"
+      }
+    },
+    {
+      "id": "prod_bag_voy_crd_nvy",
+      "masterSku": "BAG-VOY-CRD-NVY",
+      "title": "Voyager 40L Modular Travel Backpack - Cordura 500D Ballistic (Deep Ocean Navy)",
+      "category": "Luggage & Packs",
+      "brand": "Nomad Transit Lab",
+      "barcode": "840123000082",
+      "price": 249.0,
+      "costPrice": 88.0,
+      "currentStock": 30,
+      "initialStock": 30,
+      "version": 1,
+      "reorderThreshold": 6,
+      "reorderQuantity": 60,
+      "weightGrams": 1450,
+      "options": {
+        "variant": "Cordura 500D Ballistic",
+        "specification": "Deep Ocean Navy"
+      }
+    },
+    {
+      "id": "prod_bag_voy_crd_coy",
+      "masterSku": "BAG-VOY-CRD-COY",
+      "title": "Voyager 40L Modular Travel Backpack - Cordura 500D Ballistic (Coyote Desert Tan)",
+      "category": "Luggage & Packs",
+      "brand": "Nomad Transit Lab",
+      "barcode": "840123000083",
+      "price": 249.0,
+      "costPrice": 88.0,
+      "currentStock": 25,
+      "initialStock": 25,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 50,
+      "weightGrams": 1450,
+      "options": {
+        "variant": "Cordura 500D Ballistic",
+        "specification": "Coyote Desert Tan"
+      }
+    },
+    {
+      "id": "prod_bag_voy_crd_rng",
+      "masterSku": "BAG-VOY-CRD-RNG",
+      "title": "Voyager 40L Modular Travel Backpack - Cordura 500D Ballistic (Ranger Moss Green)",
+      "category": "Luggage & Packs",
+      "brand": "Nomad Transit Lab",
+      "barcode": "840123000084",
+      "price": 249.0,
+      "costPrice": 88.0,
+      "currentStock": 22,
+      "initialStock": 22,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 44,
+      "weightGrams": 1450,
+      "options": {
+        "variant": "Cordura 500D Ballistic",
+        "specification": "Ranger Moss Green"
+      }
+    },
+    {
+      "id": "prod_bag_voy_xpac_blk",
+      "masterSku": "BAG-VOY-XPAC-BLK",
+      "title": "Voyager 40L Modular Travel Backpack - Dimension-Polyant X-Pac VX21 (Onyx Black)",
+      "category": "Luggage & Packs",
+      "brand": "Nomad Transit Lab",
+      "barcode": "840123000085",
+      "price": 249.0,
+      "costPrice": 88.0,
+      "currentStock": 35,
+      "initialStock": 35,
+      "version": 1,
+      "reorderThreshold": 7,
+      "reorderQuantity": 70,
+      "weightGrams": 1450,
+      "options": {
+        "variant": "Dimension-Polyant X-Pac VX21",
+        "specification": "Onyx Black"
+      }
+    },
+    {
+      "id": "prod_bag_voy_xpac_wht",
+      "masterSku": "BAG-VOY-XPAC-WHT",
+      "title": "Voyager 40L Modular Travel Backpack - Dimension-Polyant X-Pac VX21 (Alpine White)",
+      "category": "Luggage & Packs",
+      "brand": "Nomad Transit Lab",
+      "barcode": "840123000086",
+      "price": 249.0,
+      "costPrice": 88.0,
+      "currentStock": 15,
+      "initialStock": 15,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 30,
+      "weightGrams": 1450,
+      "options": {
+        "variant": "Dimension-Polyant X-Pac VX21",
+        "specification": "Alpine White"
+      }
+    },
+    {
+      "id": "prod_bag_voy_xpac_slt",
+      "masterSku": "BAG-VOY-XPAC-SLT",
+      "title": "Voyager 40L Modular Travel Backpack - Dimension-Polyant X-Pac VX21 (Storm Slate)",
+      "category": "Luggage & Packs",
+      "brand": "Nomad Transit Lab",
+      "barcode": "840123000087",
+      "price": 249.0,
+      "costPrice": 88.0,
+      "currentStock": 20,
+      "initialStock": 20,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 40,
+      "weightGrams": 1450,
+      "options": {
+        "variant": "Dimension-Polyant X-Pac VX21",
+        "specification": "Storm Slate"
+      }
+    },
+    {
+      "id": "prod_bag_voy_xpac_cam",
+      "masterSku": "BAG-VOY-XPAC-CAM",
+      "title": "Voyager 40L Modular Travel Backpack - Dimension-Polyant X-Pac VX21 (Multicam Black)",
+      "category": "Luggage & Packs",
+      "brand": "Nomad Transit Lab",
+      "barcode": "840123000088",
+      "price": 249.0,
+      "costPrice": 88.0,
+      "currentStock": 12,
+      "initialStock": 12,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 24,
+      "weightGrams": 1450,
+      "options": {
+        "variant": "Dimension-Polyant X-Pac VX21",
+        "specification": "Multicam Black"
+      }
+    },
+    {
+      "id": "prod_bag_voy_ltd_ultr",
+      "masterSku": "BAG-VOY-LTD-ULTR",
+      "title": "Voyager 40L Modular Travel Backpack - Ultra-PE 200 Dyneema Edition (Translucent Smoke)",
+      "category": "Luggage & Packs",
+      "brand": "Nomad Transit Lab",
+      "barcode": "840123000089",
+      "price": 249.0,
+      "costPrice": 88.0,
+      "currentStock": 5,
+      "initialStock": 5,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 20,
+      "weightGrams": 1450,
+      "options": {
+        "variant": "Ultra-PE 200 Dyneema Edition",
+        "specification": "Translucent Smoke"
+      }
+    },
+    {
+      "id": "prod_bag_voy_ltd_leth",
+      "masterSku": "BAG-VOY-LTD-LETH",
+      "title": "Voyager 40L Modular Travel Backpack - Foundry Edition Waxed Canvas & Leather (Cognac Brown)",
+      "category": "Luggage & Packs",
+      "brand": "Nomad Transit Lab",
+      "barcode": "840123000090",
+      "price": 249.0,
+      "costPrice": 88.0,
+      "currentStock": 4,
+      "initialStock": 4,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 20,
+      "weightGrams": 1450,
+      "options": {
+        "variant": "Foundry Edition Waxed Canvas & Leather",
+        "specification": "Cognac Brown"
+      }
+    },
+    {
+      "id": "prod_ktle_sbt_blk_us",
+      "masterSku": "KTLE-SBT-BLK-US",
+      "title": "SmartBrew Precision Pour-Over Kettle - Matte Black Gooseneck (120V US Plug / BLE)",
+      "category": "Home & Kitchen",
+      "brand": "Artisan Craft Labs",
+      "barcode": "840123000091",
+      "price": 175.0,
+      "costPrice": 68.0,
+      "currentStock": 40,
+      "initialStock": 40,
+      "version": 1,
+      "reorderThreshold": 8,
+      "reorderQuantity": 80,
+      "weightGrams": 1250,
+      "options": {
+        "variant": "Matte Black Gooseneck",
+        "specification": "120V US Plug / BLE"
+      }
+    },
+    {
+      "id": "prod_ktle_sbt_blk_eu",
+      "masterSku": "KTLE-SBT-BLK-EU",
+      "title": "SmartBrew Precision Pour-Over Kettle - Matte Black Gooseneck (230V EU Plug / BLE)",
+      "category": "Home & Kitchen",
+      "brand": "Artisan Craft Labs",
+      "barcode": "840123000092",
+      "price": 175.0,
+      "costPrice": 68.0,
+      "currentStock": 30,
+      "initialStock": 30,
+      "version": 1,
+      "reorderThreshold": 6,
+      "reorderQuantity": 60,
+      "weightGrams": 1250,
+      "options": {
+        "variant": "Matte Black Gooseneck",
+        "specification": "230V EU Plug / BLE"
+      }
+    },
+    {
+      "id": "prod_ktle_sbt_blk_uk",
+      "masterSku": "KTLE-SBT-BLK-UK",
+      "title": "SmartBrew Precision Pour-Over Kettle - Matte Black Gooseneck (240V UK Plug / BLE)",
+      "category": "Home & Kitchen",
+      "brand": "Artisan Craft Labs",
+      "barcode": "840123000093",
+      "price": 175.0,
+      "costPrice": 68.0,
+      "currentStock": 20,
+      "initialStock": 20,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 40,
+      "weightGrams": 1250,
+      "options": {
+        "variant": "Matte Black Gooseneck",
+        "specification": "240V UK Plug / BLE"
+      }
+    },
+    {
+      "id": "prod_ktle_sbt_sts_us",
+      "masterSku": "KTLE-SBT-STS-US",
+      "title": "SmartBrew Precision Pour-Over Kettle - Brushed Stainless Steel (120V US Plug / BLE)",
+      "category": "Home & Kitchen",
+      "brand": "Artisan Craft Labs",
+      "barcode": "840123000094",
+      "price": 175.0,
+      "costPrice": 68.0,
+      "currentStock": 35,
+      "initialStock": 35,
+      "version": 1,
+      "reorderThreshold": 7,
+      "reorderQuantity": 70,
+      "weightGrams": 1250,
+      "options": {
+        "variant": "Brushed Stainless Steel",
+        "specification": "120V US Plug / BLE"
+      }
+    },
+    {
+      "id": "prod_ktle_sbt_sts_eu",
+      "masterSku": "KTLE-SBT-STS-EU",
+      "title": "SmartBrew Precision Pour-Over Kettle - Brushed Stainless Steel (230V EU Plug / BLE)",
+      "category": "Home & Kitchen",
+      "brand": "Artisan Craft Labs",
+      "barcode": "840123000095",
+      "price": 175.0,
+      "costPrice": 68.0,
+      "currentStock": 25,
+      "initialStock": 25,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 50,
+      "weightGrams": 1250,
+      "options": {
+        "variant": "Brushed Stainless Steel",
+        "specification": "230V EU Plug / BLE"
+      }
+    },
+    {
+      "id": "prod_ktle_sbt_brs_us",
+      "masterSku": "KTLE-SBT-BRS-US",
+      "title": "SmartBrew Precision Pour-Over Kettle - Brushed Antique Brass (120V US Plug / BLE)",
+      "category": "Home & Kitchen",
+      "brand": "Artisan Craft Labs",
+      "barcode": "840123000096",
+      "price": 175.0,
+      "costPrice": 68.0,
+      "currentStock": 18,
+      "initialStock": 18,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 36,
+      "weightGrams": 1250,
+      "options": {
+        "variant": "Brushed Antique Brass",
+        "specification": "120V US Plug / BLE"
+      }
+    },
+    {
+      "id": "prod_ktle_sbt_brs_eu",
+      "masterSku": "KTLE-SBT-BRS-EU",
+      "title": "SmartBrew Precision Pour-Over Kettle - Brushed Antique Brass (230V EU Plug / BLE)",
+      "category": "Home & Kitchen",
+      "brand": "Artisan Craft Labs",
+      "barcode": "840123000097",
+      "price": 175.0,
+      "costPrice": 68.0,
+      "currentStock": 14,
+      "initialStock": 14,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 28,
+      "weightGrams": 1250,
+      "options": {
+        "variant": "Brushed Antique Brass",
+        "specification": "230V EU Plug / BLE"
+      }
+    },
+    {
+      "id": "prod_ktle_sbt_cpr_us",
+      "masterSku": "KTLE-SBT-CPR-US",
+      "title": "SmartBrew Precision Pour-Over Kettle - Smoked Copper Finish (120V US Plug / BLE)",
+      "category": "Home & Kitchen",
+      "brand": "Artisan Craft Labs",
+      "barcode": "840123000098",
+      "price": 175.0,
+      "costPrice": 68.0,
+      "currentStock": 12,
+      "initialStock": 12,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 24,
+      "weightGrams": 1250,
+      "options": {
+        "variant": "Smoked Copper Finish",
+        "specification": "120V US Plug / BLE"
+      }
+    },
+    {
+      "id": "prod_ktle_sbt_ltd_wod",
+      "masterSku": "KTLE-SBT-LTD-WOD",
+      "title": "SmartBrew Precision Pour-Over Kettle - Black Walnut Accent Handle (Limited) (120V US Plug / BLE)",
+      "category": "Home & Kitchen",
+      "brand": "Artisan Craft Labs",
+      "barcode": "840123000099",
+      "price": 175.0,
+      "costPrice": 68.0,
+      "currentStock": 6,
+      "initialStock": 6,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 20,
+      "weightGrams": 1250,
+      "options": {
+        "variant": "Black Walnut Accent Handle (Limited)",
+        "specification": "120V US Plug / BLE"
+      }
+    },
+    {
+      "id": "prod_ktle_sbt_ltd_oak",
+      "masterSku": "KTLE-SBT-LTD-OAK",
+      "title": "SmartBrew Precision Pour-Over Kettle - Scandi White & Blond Oak (Limited) (230V EU Plug / BLE)",
+      "category": "Home & Kitchen",
+      "brand": "Artisan Craft Labs",
+      "barcode": "840123000100",
+      "price": 175.0,
+      "costPrice": 68.0,
+      "currentStock": 5,
+      "initialStock": 5,
+      "version": 1,
+      "reorderThreshold": 5,
+      "reorderQuantity": 20,
+      "weightGrams": 1250,
+      "options": {
+        "variant": "Scandi White & Blond Oak (Limited)",
+        "specification": "230V EU Plug / BLE"
+      }
+    }
+  ],
+  "channelMappings": [
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "SHOE-APX-BLK-08",
+      "externalItemId": "sho_prod_shoe_apx_blk_08",
+      "externalSku": "SHOE-APX-BLK-08-SHO",
+      "externalPrice": 159.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "SHOE-APX-BLK-08",
+      "externalItemId": "sho_prod_shoe_apx_blk_08",
+      "externalSku": "SHOE-APX-BLK-08-SHO",
+      "externalPrice": 126.39,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "SHOE-APX-BLK-08",
+      "externalItemId": "woo_prod_shoe_apx_blk_08",
+      "externalSku": "SHOE-APX-BLK-08-WOO",
+      "externalPrice": 147.19,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "SHOE-APX-BLK-08",
+      "externalItemId": "woo_prod_shoe_apx_blk_08",
+      "externalSku": "SHOE-APX-BLK-08-WOO",
+      "externalPrice": 24398,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "SHOE-APX-BLK-09",
+      "externalItemId": "sho_prod_shoe_apx_blk_09",
+      "externalSku": "SHOE-APX-BLK-09-SHO",
+      "externalPrice": 159.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "SHOE-APX-BLK-09",
+      "externalItemId": "sho_prod_shoe_apx_blk_09",
+      "externalSku": "SHOE-APX-BLK-09-SHO",
+      "externalPrice": 126.39,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "SHOE-APX-BLK-09",
+      "externalItemId": "woo_prod_shoe_apx_blk_09",
+      "externalSku": "SHOE-APX-BLK-09-WOO",
+      "externalPrice": 147.19,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "SHOE-APX-BLK-09",
+      "externalItemId": "woo_prod_shoe_apx_blk_09",
+      "externalSku": "SHOE-APX-BLK-09-WOO",
+      "externalPrice": 24398,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "SHOE-APX-BLK-10",
+      "externalItemId": "sho_prod_shoe_apx_blk_10",
+      "externalSku": "SHOE-APX-BLK-10-SHO",
+      "externalPrice": 159.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "SHOE-APX-BLK-10",
+      "externalItemId": "sho_prod_shoe_apx_blk_10",
+      "externalSku": "SHOE-APX-BLK-10-SHO",
+      "externalPrice": 126.39,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "SHOE-APX-BLK-10",
+      "externalItemId": "woo_prod_shoe_apx_blk_10",
+      "externalSku": "SHOE-APX-BLK-10-WOO",
+      "externalPrice": 147.19,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "SHOE-APX-BLK-10",
+      "externalItemId": "woo_prod_shoe_apx_blk_10",
+      "externalSku": "SHOE-APX-BLK-10-WOO",
+      "externalPrice": 24398,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "SHOE-APX-BLK-11",
+      "externalItemId": "sho_prod_shoe_apx_blk_11",
+      "externalSku": "SHOE-APX-BLK-11-SHO",
+      "externalPrice": 159.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "SHOE-APX-BLK-11",
+      "externalItemId": "sho_prod_shoe_apx_blk_11",
+      "externalSku": "SHOE-APX-BLK-11-SHO",
+      "externalPrice": 126.39,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "SHOE-APX-BLK-11",
+      "externalItemId": "woo_prod_shoe_apx_blk_11",
+      "externalSku": "SHOE-APX-BLK-11-WOO",
+      "externalPrice": 147.19,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "SHOE-APX-BLK-11",
+      "externalItemId": "woo_prod_shoe_apx_blk_11",
+      "externalSku": "SHOE-APX-BLK-11-WOO",
+      "externalPrice": 24398,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "SHOE-APX-BLK-12",
+      "externalItemId": "sho_prod_shoe_apx_blk_12",
+      "externalSku": "SHOE-APX-BLK-12-SHO",
+      "externalPrice": 159.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "SHOE-APX-BLK-12",
+      "externalItemId": "sho_prod_shoe_apx_blk_12",
+      "externalSku": "SHOE-APX-BLK-12-SHO",
+      "externalPrice": 126.39,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "SHOE-APX-BLK-12",
+      "externalItemId": "woo_prod_shoe_apx_blk_12",
+      "externalSku": "SHOE-APX-BLK-12-WOO",
+      "externalPrice": 147.19,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "SHOE-APX-BLK-12",
+      "externalItemId": "woo_prod_shoe_apx_blk_12",
+      "externalSku": "SHOE-APX-BLK-12-WOO",
+      "externalPrice": 24398,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "SHOE-APX-WHT-08",
+      "externalItemId": "sho_prod_shoe_apx_wht_08",
+      "externalSku": "SHOE-APX-WHT-08-SHO",
+      "externalPrice": 159.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "SHOE-APX-WHT-08",
+      "externalItemId": "sho_prod_shoe_apx_wht_08",
+      "externalSku": "SHOE-APX-WHT-08-SHO",
+      "externalPrice": 126.39,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "SHOE-APX-WHT-08",
+      "externalItemId": "woo_prod_shoe_apx_wht_08",
+      "externalSku": "SHOE-APX-WHT-08-WOO",
+      "externalPrice": 147.19,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "SHOE-APX-WHT-08",
+      "externalItemId": "woo_prod_shoe_apx_wht_08",
+      "externalSku": "SHOE-APX-WHT-08-WOO",
+      "externalPrice": 24398,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "SHOE-APX-WHT-09",
+      "externalItemId": "sho_prod_shoe_apx_wht_09",
+      "externalSku": "SHOE-APX-WHT-09-SHO",
+      "externalPrice": 159.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "SHOE-APX-WHT-09",
+      "externalItemId": "sho_prod_shoe_apx_wht_09",
+      "externalSku": "SHOE-APX-WHT-09-SHO",
+      "externalPrice": 126.39,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "SHOE-APX-WHT-09",
+      "externalItemId": "woo_prod_shoe_apx_wht_09",
+      "externalSku": "SHOE-APX-WHT-09-WOO",
+      "externalPrice": 147.19,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "SHOE-APX-WHT-09",
+      "externalItemId": "woo_prod_shoe_apx_wht_09",
+      "externalSku": "SHOE-APX-WHT-09-WOO",
+      "externalPrice": 24398,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "SHOE-APX-WHT-10",
+      "externalItemId": "sho_prod_shoe_apx_wht_10",
+      "externalSku": "SHOE-APX-WHT-10-SHO",
+      "externalPrice": 159.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "SHOE-APX-WHT-10",
+      "externalItemId": "sho_prod_shoe_apx_wht_10",
+      "externalSku": "SHOE-APX-WHT-10-SHO",
+      "externalPrice": 126.39,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "SHOE-APX-WHT-10",
+      "externalItemId": "woo_prod_shoe_apx_wht_10",
+      "externalSku": "SHOE-APX-WHT-10-WOO",
+      "externalPrice": 147.19,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "SHOE-APX-WHT-10",
+      "externalItemId": "woo_prod_shoe_apx_wht_10",
+      "externalSku": "SHOE-APX-WHT-10-WOO",
+      "externalPrice": 24398,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "SHOE-APX-NEO-09",
+      "externalItemId": "sho_prod_shoe_apx_neo_09",
+      "externalSku": "SHOE-APX-NEO-09-SHO",
+      "externalPrice": 159.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "SHOE-APX-NEO-09",
+      "externalItemId": "sho_prod_shoe_apx_neo_09",
+      "externalSku": "SHOE-APX-NEO-09-SHO",
+      "externalPrice": 126.39,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "SHOE-APX-NEO-09",
+      "externalItemId": "woo_prod_shoe_apx_neo_09",
+      "externalSku": "SHOE-APX-NEO-09-WOO",
+      "externalPrice": 147.19,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "SHOE-APX-NEO-09",
+      "externalItemId": "woo_prod_shoe_apx_neo_09",
+      "externalSku": "SHOE-APX-NEO-09-WOO",
+      "externalPrice": 24398,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "SHOE-APX-NEO-10",
+      "externalItemId": "sho_prod_shoe_apx_neo_10",
+      "externalSku": "SHOE-APX-NEO-10-SHO",
+      "externalPrice": 159.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "SHOE-APX-NEO-10",
+      "externalItemId": "sho_prod_shoe_apx_neo_10",
+      "externalSku": "SHOE-APX-NEO-10-SHO",
+      "externalPrice": 126.39,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "SHOE-APX-NEO-10",
+      "externalItemId": "woo_prod_shoe_apx_neo_10",
+      "externalSku": "SHOE-APX-NEO-10-WOO",
+      "externalPrice": 147.19,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "SHOE-APX-NEO-10",
+      "externalItemId": "woo_prod_shoe_apx_neo_10",
+      "externalSku": "SHOE-APX-NEO-10-WOO",
+      "externalPrice": 24398,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "HLMT-AERO-BLK-S",
+      "externalItemId": "sho_prod_hlmt_aero_blk_s",
+      "externalSku": "HLMT-AERO-BLK-S-SHO",
+      "externalPrice": 229.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "HLMT-AERO-BLK-S",
+      "externalItemId": "sho_prod_hlmt_aero_blk_s",
+      "externalSku": "HLMT-AERO-BLK-S-SHO",
+      "externalPrice": 181.69,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "HLMT-AERO-BLK-S",
+      "externalItemId": "woo_prod_hlmt_aero_blk_s",
+      "externalSku": "HLMT-AERO-BLK-S-WOO",
+      "externalPrice": 211.59,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "HLMT-AERO-BLK-S",
+      "externalItemId": "woo_prod_hlmt_aero_blk_s",
+      "externalSku": "HLMT-AERO-BLK-S-WOO",
+      "externalPrice": 35073,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "HLMT-AERO-BLK-M",
+      "externalItemId": "sho_prod_hlmt_aero_blk_m",
+      "externalSku": "HLMT-AERO-BLK-M-SHO",
+      "externalPrice": 229.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "HLMT-AERO-BLK-M",
+      "externalItemId": "sho_prod_hlmt_aero_blk_m",
+      "externalSku": "HLMT-AERO-BLK-M-SHO",
+      "externalPrice": 181.69,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "HLMT-AERO-BLK-M",
+      "externalItemId": "woo_prod_hlmt_aero_blk_m",
+      "externalSku": "HLMT-AERO-BLK-M-WOO",
+      "externalPrice": 211.59,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "HLMT-AERO-BLK-M",
+      "externalItemId": "woo_prod_hlmt_aero_blk_m",
+      "externalSku": "HLMT-AERO-BLK-M-WOO",
+      "externalPrice": 35073,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "HLMT-AERO-BLK-L",
+      "externalItemId": "sho_prod_hlmt_aero_blk_l",
+      "externalSku": "HLMT-AERO-BLK-L-SHO",
+      "externalPrice": 229.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "HLMT-AERO-BLK-L",
+      "externalItemId": "sho_prod_hlmt_aero_blk_l",
+      "externalSku": "HLMT-AERO-BLK-L-SHO",
+      "externalPrice": 181.69,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "HLMT-AERO-BLK-L",
+      "externalItemId": "woo_prod_hlmt_aero_blk_l",
+      "externalSku": "HLMT-AERO-BLK-L-WOO",
+      "externalPrice": 211.59,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "HLMT-AERO-BLK-L",
+      "externalItemId": "woo_prod_hlmt_aero_blk_l",
+      "externalSku": "HLMT-AERO-BLK-L-WOO",
+      "externalPrice": 35073,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "HLMT-AERO-WHT-S",
+      "externalItemId": "sho_prod_hlmt_aero_wht_s",
+      "externalSku": "HLMT-AERO-WHT-S-SHO",
+      "externalPrice": 229.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "HLMT-AERO-WHT-S",
+      "externalItemId": "sho_prod_hlmt_aero_wht_s",
+      "externalSku": "HLMT-AERO-WHT-S-SHO",
+      "externalPrice": 181.69,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "HLMT-AERO-WHT-S",
+      "externalItemId": "woo_prod_hlmt_aero_wht_s",
+      "externalSku": "HLMT-AERO-WHT-S-WOO",
+      "externalPrice": 211.59,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "HLMT-AERO-WHT-S",
+      "externalItemId": "woo_prod_hlmt_aero_wht_s",
+      "externalSku": "HLMT-AERO-WHT-S-WOO",
+      "externalPrice": 35073,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "HLMT-AERO-WHT-M",
+      "externalItemId": "sho_prod_hlmt_aero_wht_m",
+      "externalSku": "HLMT-AERO-WHT-M-SHO",
+      "externalPrice": 229.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "HLMT-AERO-WHT-M",
+      "externalItemId": "sho_prod_hlmt_aero_wht_m",
+      "externalSku": "HLMT-AERO-WHT-M-SHO",
+      "externalPrice": 181.69,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "HLMT-AERO-WHT-M",
+      "externalItemId": "woo_prod_hlmt_aero_wht_m",
+      "externalSku": "HLMT-AERO-WHT-M-WOO",
+      "externalPrice": 211.59,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "HLMT-AERO-WHT-M",
+      "externalItemId": "woo_prod_hlmt_aero_wht_m",
+      "externalSku": "HLMT-AERO-WHT-M-WOO",
+      "externalPrice": 35073,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "HLMT-AERO-WHT-L",
+      "externalItemId": "sho_prod_hlmt_aero_wht_l",
+      "externalSku": "HLMT-AERO-WHT-L-SHO",
+      "externalPrice": 229.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "HLMT-AERO-WHT-L",
+      "externalItemId": "sho_prod_hlmt_aero_wht_l",
+      "externalSku": "HLMT-AERO-WHT-L-SHO",
+      "externalPrice": 181.69,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "HLMT-AERO-WHT-L",
+      "externalItemId": "woo_prod_hlmt_aero_wht_l",
+      "externalSku": "HLMT-AERO-WHT-L-WOO",
+      "externalPrice": 211.59,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "HLMT-AERO-WHT-L",
+      "externalItemId": "woo_prod_hlmt_aero_wht_l",
+      "externalSku": "HLMT-AERO-WHT-L-WOO",
+      "externalPrice": 35073,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "HLMT-AERO-YEL-S",
+      "externalItemId": "sho_prod_hlmt_aero_yel_s",
+      "externalSku": "HLMT-AERO-YEL-S-SHO",
+      "externalPrice": 229.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "HLMT-AERO-YEL-S",
+      "externalItemId": "sho_prod_hlmt_aero_yel_s",
+      "externalSku": "HLMT-AERO-YEL-S-SHO",
+      "externalPrice": 181.69,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "HLMT-AERO-YEL-S",
+      "externalItemId": "woo_prod_hlmt_aero_yel_s",
+      "externalSku": "HLMT-AERO-YEL-S-WOO",
+      "externalPrice": 211.59,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "HLMT-AERO-YEL-S",
+      "externalItemId": "woo_prod_hlmt_aero_yel_s",
+      "externalSku": "HLMT-AERO-YEL-S-WOO",
+      "externalPrice": 35073,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "HLMT-AERO-YEL-M",
+      "externalItemId": "sho_prod_hlmt_aero_yel_m",
+      "externalSku": "HLMT-AERO-YEL-M-SHO",
+      "externalPrice": 229.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "HLMT-AERO-YEL-M",
+      "externalItemId": "sho_prod_hlmt_aero_yel_m",
+      "externalSku": "HLMT-AERO-YEL-M-SHO",
+      "externalPrice": 181.69,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "HLMT-AERO-YEL-M",
+      "externalItemId": "woo_prod_hlmt_aero_yel_m",
+      "externalSku": "HLMT-AERO-YEL-M-WOO",
+      "externalPrice": 211.59,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "HLMT-AERO-YEL-M",
+      "externalItemId": "woo_prod_hlmt_aero_yel_m",
+      "externalSku": "HLMT-AERO-YEL-M-WOO",
+      "externalPrice": 35073,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "HLMT-AERO-CRM-M",
+      "externalItemId": "sho_prod_hlmt_aero_crm_m",
+      "externalSku": "HLMT-AERO-CRM-M-SHO",
+      "externalPrice": 229.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "HLMT-AERO-CRM-M",
+      "externalItemId": "sho_prod_hlmt_aero_crm_m",
+      "externalSku": "HLMT-AERO-CRM-M-SHO",
+      "externalPrice": 181.69,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "HLMT-AERO-CRM-M",
+      "externalItemId": "woo_prod_hlmt_aero_crm_m",
+      "externalSku": "HLMT-AERO-CRM-M-WOO",
+      "externalPrice": 211.59,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "HLMT-AERO-CRM-M",
+      "externalItemId": "woo_prod_hlmt_aero_crm_m",
+      "externalSku": "HLMT-AERO-CRM-M-WOO",
+      "externalPrice": 35073,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "HLMT-AERO-CRM-L",
+      "externalItemId": "sho_prod_hlmt_aero_crm_l",
+      "externalSku": "HLMT-AERO-CRM-L-SHO",
+      "externalPrice": 229.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "HLMT-AERO-CRM-L",
+      "externalItemId": "sho_prod_hlmt_aero_crm_l",
+      "externalSku": "HLMT-AERO-CRM-L-SHO",
+      "externalPrice": 181.69,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "HLMT-AERO-CRM-L",
+      "externalItemId": "woo_prod_hlmt_aero_crm_l",
+      "externalSku": "HLMT-AERO-CRM-L-WOO",
+      "externalPrice": 211.59,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "HLMT-AERO-CRM-L",
+      "externalItemId": "woo_prod_hlmt_aero_crm_l",
+      "externalSku": "HLMT-AERO-CRM-L-WOO",
+      "externalPrice": 35073,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "APRL-MRN-CHR-XS",
+      "externalItemId": "sho_prod_aprl_mrn_chr_xs",
+      "externalSku": "APRL-MRN-CHR-XS-SHO",
+      "externalPrice": 98.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "APRL-MRN-CHR-XS",
+      "externalItemId": "sho_prod_aprl_mrn_chr_xs",
+      "externalSku": "APRL-MRN-CHR-XS-SHO",
+      "externalPrice": 77.42,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "APRL-MRN-CHR-XS",
+      "externalItemId": "woo_prod_aprl_mrn_chr_xs",
+      "externalSku": "APRL-MRN-CHR-XS-WOO",
+      "externalPrice": 90.16,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "APRL-MRN-CHR-XS",
+      "externalItemId": "woo_prod_aprl_mrn_chr_xs",
+      "externalSku": "APRL-MRN-CHR-XS-WOO",
+      "externalPrice": 14945,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "APRL-MRN-CHR-S",
+      "externalItemId": "sho_prod_aprl_mrn_chr_s",
+      "externalSku": "APRL-MRN-CHR-S-SHO",
+      "externalPrice": 98.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "APRL-MRN-CHR-S",
+      "externalItemId": "sho_prod_aprl_mrn_chr_s",
+      "externalSku": "APRL-MRN-CHR-S-SHO",
+      "externalPrice": 77.42,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "APRL-MRN-CHR-S",
+      "externalItemId": "woo_prod_aprl_mrn_chr_s",
+      "externalSku": "APRL-MRN-CHR-S-WOO",
+      "externalPrice": 90.16,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "APRL-MRN-CHR-S",
+      "externalItemId": "woo_prod_aprl_mrn_chr_s",
+      "externalSku": "APRL-MRN-CHR-S-WOO",
+      "externalPrice": 14945,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "APRL-MRN-CHR-M",
+      "externalItemId": "sho_prod_aprl_mrn_chr_m",
+      "externalSku": "APRL-MRN-CHR-M-SHO",
+      "externalPrice": 98.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "APRL-MRN-CHR-M",
+      "externalItemId": "sho_prod_aprl_mrn_chr_m",
+      "externalSku": "APRL-MRN-CHR-M-SHO",
+      "externalPrice": 77.42,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "APRL-MRN-CHR-M",
+      "externalItemId": "woo_prod_aprl_mrn_chr_m",
+      "externalSku": "APRL-MRN-CHR-M-WOO",
+      "externalPrice": 90.16,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "APRL-MRN-CHR-M",
+      "externalItemId": "woo_prod_aprl_mrn_chr_m",
+      "externalSku": "APRL-MRN-CHR-M-WOO",
+      "externalPrice": 14945,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "APRL-MRN-CHR-L",
+      "externalItemId": "sho_prod_aprl_mrn_chr_l",
+      "externalSku": "APRL-MRN-CHR-L-SHO",
+      "externalPrice": 98.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "APRL-MRN-CHR-L",
+      "externalItemId": "sho_prod_aprl_mrn_chr_l",
+      "externalSku": "APRL-MRN-CHR-L-SHO",
+      "externalPrice": 77.42,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "APRL-MRN-CHR-L",
+      "externalItemId": "woo_prod_aprl_mrn_chr_l",
+      "externalSku": "APRL-MRN-CHR-L-WOO",
+      "externalPrice": 90.16,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "APRL-MRN-CHR-L",
+      "externalItemId": "woo_prod_aprl_mrn_chr_l",
+      "externalSku": "APRL-MRN-CHR-L-WOO",
+      "externalPrice": 14945,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "APRL-MRN-CHR-XL",
+      "externalItemId": "sho_prod_aprl_mrn_chr_xl",
+      "externalSku": "APRL-MRN-CHR-XL-SHO",
+      "externalPrice": 98.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "APRL-MRN-CHR-XL",
+      "externalItemId": "sho_prod_aprl_mrn_chr_xl",
+      "externalSku": "APRL-MRN-CHR-XL-SHO",
+      "externalPrice": 77.42,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "APRL-MRN-CHR-XL",
+      "externalItemId": "woo_prod_aprl_mrn_chr_xl",
+      "externalSku": "APRL-MRN-CHR-XL-WOO",
+      "externalPrice": 90.16,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "APRL-MRN-CHR-XL",
+      "externalItemId": "woo_prod_aprl_mrn_chr_xl",
+      "externalSku": "APRL-MRN-CHR-XL-WOO",
+      "externalPrice": 14945,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "APRL-MRN-NVY-S",
+      "externalItemId": "sho_prod_aprl_mrn_nvy_s",
+      "externalSku": "APRL-MRN-NVY-S-SHO",
+      "externalPrice": 98.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "APRL-MRN-NVY-S",
+      "externalItemId": "sho_prod_aprl_mrn_nvy_s",
+      "externalSku": "APRL-MRN-NVY-S-SHO",
+      "externalPrice": 77.42,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "APRL-MRN-NVY-S",
+      "externalItemId": "woo_prod_aprl_mrn_nvy_s",
+      "externalSku": "APRL-MRN-NVY-S-WOO",
+      "externalPrice": 90.16,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "APRL-MRN-NVY-S",
+      "externalItemId": "woo_prod_aprl_mrn_nvy_s",
+      "externalSku": "APRL-MRN-NVY-S-WOO",
+      "externalPrice": 14945,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "APRL-MRN-NVY-M",
+      "externalItemId": "sho_prod_aprl_mrn_nvy_m",
+      "externalSku": "APRL-MRN-NVY-M-SHO",
+      "externalPrice": 98.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "APRL-MRN-NVY-M",
+      "externalItemId": "sho_prod_aprl_mrn_nvy_m",
+      "externalSku": "APRL-MRN-NVY-M-SHO",
+      "externalPrice": 77.42,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "APRL-MRN-NVY-M",
+      "externalItemId": "woo_prod_aprl_mrn_nvy_m",
+      "externalSku": "APRL-MRN-NVY-M-WOO",
+      "externalPrice": 90.16,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "APRL-MRN-NVY-M",
+      "externalItemId": "woo_prod_aprl_mrn_nvy_m",
+      "externalSku": "APRL-MRN-NVY-M-WOO",
+      "externalPrice": 14945,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "APRL-MRN-NVY-L",
+      "externalItemId": "sho_prod_aprl_mrn_nvy_l",
+      "externalSku": "APRL-MRN-NVY-L-SHO",
+      "externalPrice": 98.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "APRL-MRN-NVY-L",
+      "externalItemId": "sho_prod_aprl_mrn_nvy_l",
+      "externalSku": "APRL-MRN-NVY-L-SHO",
+      "externalPrice": 77.42,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "APRL-MRN-NVY-L",
+      "externalItemId": "woo_prod_aprl_mrn_nvy_l",
+      "externalSku": "APRL-MRN-NVY-L-WOO",
+      "externalPrice": 90.16,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "APRL-MRN-NVY-L",
+      "externalItemId": "woo_prod_aprl_mrn_nvy_l",
+      "externalSku": "APRL-MRN-NVY-L-WOO",
+      "externalPrice": 14945,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "APRL-MRN-NVY-XL",
+      "externalItemId": "sho_prod_aprl_mrn_nvy_xl",
+      "externalSku": "APRL-MRN-NVY-XL-SHO",
+      "externalPrice": 98.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "APRL-MRN-NVY-XL",
+      "externalItemId": "sho_prod_aprl_mrn_nvy_xl",
+      "externalSku": "APRL-MRN-NVY-XL-SHO",
+      "externalPrice": 77.42,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "APRL-MRN-NVY-XL",
+      "externalItemId": "woo_prod_aprl_mrn_nvy_xl",
+      "externalSku": "APRL-MRN-NVY-XL-WOO",
+      "externalPrice": 90.16,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "APRL-MRN-NVY-XL",
+      "externalItemId": "woo_prod_aprl_mrn_nvy_xl",
+      "externalSku": "APRL-MRN-NVY-XL-WOO",
+      "externalPrice": 14945,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "APRL-MRN-NVY-XXL",
+      "externalItemId": "sho_prod_aprl_mrn_nvy_xxl",
+      "externalSku": "APRL-MRN-NVY-XXL-SHO",
+      "externalPrice": 98.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "APRL-MRN-NVY-XXL",
+      "externalItemId": "sho_prod_aprl_mrn_nvy_xxl",
+      "externalSku": "APRL-MRN-NVY-XXL-SHO",
+      "externalPrice": 77.42,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "APRL-MRN-NVY-XXL",
+      "externalItemId": "woo_prod_aprl_mrn_nvy_xxl",
+      "externalSku": "APRL-MRN-NVY-XXL-WOO",
+      "externalPrice": 90.16,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "APRL-MRN-NVY-XXL",
+      "externalItemId": "woo_prod_aprl_mrn_nvy_xxl",
+      "externalSku": "APRL-MRN-NVY-XXL-WOO",
+      "externalPrice": 14945,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "OUTR-HYD-OLV-S",
+      "externalItemId": "sho_prod_outr_hyd_olv_s",
+      "externalSku": "OUTR-HYD-OLV-S-SHO",
+      "externalPrice": 349.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "OUTR-HYD-OLV-S",
+      "externalItemId": "sho_prod_outr_hyd_olv_s",
+      "externalSku": "OUTR-HYD-OLV-S-SHO",
+      "externalPrice": 275.71,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "OUTR-HYD-OLV-S",
+      "externalItemId": "woo_prod_outr_hyd_olv_s",
+      "externalSku": "OUTR-HYD-OLV-S-WOO",
+      "externalPrice": 321.08,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "OUTR-HYD-OLV-S",
+      "externalItemId": "woo_prod_outr_hyd_olv_s",
+      "externalSku": "OUTR-HYD-OLV-S-WOO",
+      "externalPrice": 53222,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "OUTR-HYD-OLV-M",
+      "externalItemId": "sho_prod_outr_hyd_olv_m",
+      "externalSku": "OUTR-HYD-OLV-M-SHO",
+      "externalPrice": 349.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "OUTR-HYD-OLV-M",
+      "externalItemId": "sho_prod_outr_hyd_olv_m",
+      "externalSku": "OUTR-HYD-OLV-M-SHO",
+      "externalPrice": 275.71,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "OUTR-HYD-OLV-M",
+      "externalItemId": "woo_prod_outr_hyd_olv_m",
+      "externalSku": "OUTR-HYD-OLV-M-WOO",
+      "externalPrice": 321.08,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "OUTR-HYD-OLV-M",
+      "externalItemId": "woo_prod_outr_hyd_olv_m",
+      "externalSku": "OUTR-HYD-OLV-M-WOO",
+      "externalPrice": 53222,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "OUTR-HYD-OLV-L",
+      "externalItemId": "sho_prod_outr_hyd_olv_l",
+      "externalSku": "OUTR-HYD-OLV-L-SHO",
+      "externalPrice": 349.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "OUTR-HYD-OLV-L",
+      "externalItemId": "sho_prod_outr_hyd_olv_l",
+      "externalSku": "OUTR-HYD-OLV-L-SHO",
+      "externalPrice": 275.71,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "OUTR-HYD-OLV-L",
+      "externalItemId": "woo_prod_outr_hyd_olv_l",
+      "externalSku": "OUTR-HYD-OLV-L-WOO",
+      "externalPrice": 321.08,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "OUTR-HYD-OLV-L",
+      "externalItemId": "woo_prod_outr_hyd_olv_l",
+      "externalSku": "OUTR-HYD-OLV-L-WOO",
+      "externalPrice": 53222,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "OUTR-HYD-OLV-XL",
+      "externalItemId": "sho_prod_outr_hyd_olv_xl",
+      "externalSku": "OUTR-HYD-OLV-XL-SHO",
+      "externalPrice": 349.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "OUTR-HYD-OLV-XL",
+      "externalItemId": "sho_prod_outr_hyd_olv_xl",
+      "externalSku": "OUTR-HYD-OLV-XL-SHO",
+      "externalPrice": 275.71,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "OUTR-HYD-OLV-XL",
+      "externalItemId": "woo_prod_outr_hyd_olv_xl",
+      "externalSku": "OUTR-HYD-OLV-XL-WOO",
+      "externalPrice": 321.08,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "OUTR-HYD-OLV-XL",
+      "externalItemId": "woo_prod_outr_hyd_olv_xl",
+      "externalSku": "OUTR-HYD-OLV-XL-WOO",
+      "externalPrice": 53222,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "OUTR-HYD-SLT-S",
+      "externalItemId": "sho_prod_outr_hyd_slt_s",
+      "externalSku": "OUTR-HYD-SLT-S-SHO",
+      "externalPrice": 349.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "OUTR-HYD-SLT-S",
+      "externalItemId": "sho_prod_outr_hyd_slt_s",
+      "externalSku": "OUTR-HYD-SLT-S-SHO",
+      "externalPrice": 275.71,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "OUTR-HYD-SLT-S",
+      "externalItemId": "woo_prod_outr_hyd_slt_s",
+      "externalSku": "OUTR-HYD-SLT-S-WOO",
+      "externalPrice": 321.08,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "OUTR-HYD-SLT-S",
+      "externalItemId": "woo_prod_outr_hyd_slt_s",
+      "externalSku": "OUTR-HYD-SLT-S-WOO",
+      "externalPrice": 53222,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "OUTR-HYD-SLT-M",
+      "externalItemId": "sho_prod_outr_hyd_slt_m",
+      "externalSku": "OUTR-HYD-SLT-M-SHO",
+      "externalPrice": 349.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "OUTR-HYD-SLT-M",
+      "externalItemId": "sho_prod_outr_hyd_slt_m",
+      "externalSku": "OUTR-HYD-SLT-M-SHO",
+      "externalPrice": 275.71,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "OUTR-HYD-SLT-M",
+      "externalItemId": "woo_prod_outr_hyd_slt_m",
+      "externalSku": "OUTR-HYD-SLT-M-WOO",
+      "externalPrice": 321.08,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "OUTR-HYD-SLT-M",
+      "externalItemId": "woo_prod_outr_hyd_slt_m",
+      "externalSku": "OUTR-HYD-SLT-M-WOO",
+      "externalPrice": 53222,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "OUTR-HYD-SLT-L",
+      "externalItemId": "sho_prod_outr_hyd_slt_l",
+      "externalSku": "OUTR-HYD-SLT-L-SHO",
+      "externalPrice": 349.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "OUTR-HYD-SLT-L",
+      "externalItemId": "sho_prod_outr_hyd_slt_l",
+      "externalSku": "OUTR-HYD-SLT-L-SHO",
+      "externalPrice": 275.71,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "OUTR-HYD-SLT-L",
+      "externalItemId": "woo_prod_outr_hyd_slt_l",
+      "externalSku": "OUTR-HYD-SLT-L-WOO",
+      "externalPrice": 321.08,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "OUTR-HYD-SLT-L",
+      "externalItemId": "woo_prod_outr_hyd_slt_l",
+      "externalSku": "OUTR-HYD-SLT-L-WOO",
+      "externalPrice": 53222,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "OUTR-HYD-SLT-XL",
+      "externalItemId": "sho_prod_outr_hyd_slt_xl",
+      "externalSku": "OUTR-HYD-SLT-XL-SHO",
+      "externalPrice": 349.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "OUTR-HYD-SLT-XL",
+      "externalItemId": "sho_prod_outr_hyd_slt_xl",
+      "externalSku": "OUTR-HYD-SLT-XL-SHO",
+      "externalPrice": 275.71,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "OUTR-HYD-SLT-XL",
+      "externalItemId": "woo_prod_outr_hyd_slt_xl",
+      "externalSku": "OUTR-HYD-SLT-XL-WOO",
+      "externalPrice": 321.08,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "OUTR-HYD-SLT-XL",
+      "externalItemId": "woo_prod_outr_hyd_slt_xl",
+      "externalSku": "OUTR-HYD-SLT-XL-WOO",
+      "externalPrice": 53222,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "OUTR-HYD-BLK-M",
+      "externalItemId": "sho_prod_outr_hyd_blk_m",
+      "externalSku": "OUTR-HYD-BLK-M-SHO",
+      "externalPrice": 349.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "OUTR-HYD-BLK-M",
+      "externalItemId": "sho_prod_outr_hyd_blk_m",
+      "externalSku": "OUTR-HYD-BLK-M-SHO",
+      "externalPrice": 275.71,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "OUTR-HYD-BLK-M",
+      "externalItemId": "woo_prod_outr_hyd_blk_m",
+      "externalSku": "OUTR-HYD-BLK-M-WOO",
+      "externalPrice": 321.08,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "OUTR-HYD-BLK-M",
+      "externalItemId": "woo_prod_outr_hyd_blk_m",
+      "externalSku": "OUTR-HYD-BLK-M-WOO",
+      "externalPrice": 53222,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "OUTR-HYD-BLK-L",
+      "externalItemId": "sho_prod_outr_hyd_blk_l",
+      "externalSku": "OUTR-HYD-BLK-L-SHO",
+      "externalPrice": 349.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "OUTR-HYD-BLK-L",
+      "externalItemId": "sho_prod_outr_hyd_blk_l",
+      "externalSku": "OUTR-HYD-BLK-L-SHO",
+      "externalPrice": 275.71,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "OUTR-HYD-BLK-L",
+      "externalItemId": "woo_prod_outr_hyd_blk_l",
+      "externalSku": "OUTR-HYD-BLK-L-WOO",
+      "externalPrice": 321.08,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "OUTR-HYD-BLK-L",
+      "externalItemId": "woo_prod_outr_hyd_blk_l",
+      "externalSku": "OUTR-HYD-BLK-L-WOO",
+      "externalPrice": 53222,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "WTCH-QTM-TTN-LTH",
+      "externalItemId": "sho_prod_wtch_qtm_ttn_lth",
+      "externalSku": "WTCH-QTM-TTN-LTH-SHO",
+      "externalPrice": 495.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "WTCH-QTM-TTN-LTH",
+      "externalItemId": "sho_prod_wtch_qtm_ttn_lth",
+      "externalSku": "WTCH-QTM-TTN-LTH-SHO",
+      "externalPrice": 391.05,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "WTCH-QTM-TTN-LTH",
+      "externalItemId": "woo_prod_wtch_qtm_ttn_lth",
+      "externalSku": "WTCH-QTM-TTN-LTH-WOO",
+      "externalPrice": 455.4,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "WTCH-QTM-TTN-LTH",
+      "externalItemId": "woo_prod_wtch_qtm_ttn_lth",
+      "externalSku": "WTCH-QTM-TTN-LTH-WOO",
+      "externalPrice": 75488,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "WTCH-QTM-TTN-STL",
+      "externalItemId": "sho_prod_wtch_qtm_ttn_stl",
+      "externalSku": "WTCH-QTM-TTN-STL-SHO",
+      "externalPrice": 495.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "WTCH-QTM-TTN-STL",
+      "externalItemId": "sho_prod_wtch_qtm_ttn_stl",
+      "externalSku": "WTCH-QTM-TTN-STL-SHO",
+      "externalPrice": 391.05,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "WTCH-QTM-TTN-STL",
+      "externalItemId": "woo_prod_wtch_qtm_ttn_stl",
+      "externalSku": "WTCH-QTM-TTN-STL-WOO",
+      "externalPrice": 455.4,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "WTCH-QTM-TTN-STL",
+      "externalItemId": "woo_prod_wtch_qtm_ttn_stl",
+      "externalSku": "WTCH-QTM-TTN-STL-WOO",
+      "externalPrice": 75488,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "WTCH-QTM-RSG-LTH",
+      "externalItemId": "sho_prod_wtch_qtm_rsg_lth",
+      "externalSku": "WTCH-QTM-RSG-LTH-SHO",
+      "externalPrice": 495.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "WTCH-QTM-RSG-LTH",
+      "externalItemId": "sho_prod_wtch_qtm_rsg_lth",
+      "externalSku": "WTCH-QTM-RSG-LTH-SHO",
+      "externalPrice": 391.05,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "WTCH-QTM-RSG-LTH",
+      "externalItemId": "woo_prod_wtch_qtm_rsg_lth",
+      "externalSku": "WTCH-QTM-RSG-LTH-WOO",
+      "externalPrice": 455.4,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "WTCH-QTM-RSG-LTH",
+      "externalItemId": "woo_prod_wtch_qtm_rsg_lth",
+      "externalSku": "WTCH-QTM-RSG-LTH-WOO",
+      "externalPrice": 75488,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "WTCH-QTM-RSG-STL",
+      "externalItemId": "sho_prod_wtch_qtm_rsg_stl",
+      "externalSku": "WTCH-QTM-RSG-STL-SHO",
+      "externalPrice": 495.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "WTCH-QTM-RSG-STL",
+      "externalItemId": "sho_prod_wtch_qtm_rsg_stl",
+      "externalSku": "WTCH-QTM-RSG-STL-SHO",
+      "externalPrice": 391.05,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "WTCH-QTM-RSG-STL",
+      "externalItemId": "woo_prod_wtch_qtm_rsg_stl",
+      "externalSku": "WTCH-QTM-RSG-STL-WOO",
+      "externalPrice": 455.4,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "WTCH-QTM-RSG-STL",
+      "externalItemId": "woo_prod_wtch_qtm_rsg_stl",
+      "externalSku": "WTCH-QTM-RSG-STL-WOO",
+      "externalPrice": 75488,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "WTCH-QTM-ONYX-STL",
+      "externalItemId": "sho_prod_wtch_qtm_onyx_stl",
+      "externalSku": "WTCH-QTM-ONYX-STL-SHO",
+      "externalPrice": 495.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "WTCH-QTM-ONYX-STL",
+      "externalItemId": "sho_prod_wtch_qtm_onyx_stl",
+      "externalSku": "WTCH-QTM-ONYX-STL-SHO",
+      "externalPrice": 391.05,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "WTCH-QTM-ONYX-STL",
+      "externalItemId": "woo_prod_wtch_qtm_onyx_stl",
+      "externalSku": "WTCH-QTM-ONYX-STL-WOO",
+      "externalPrice": 455.4,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "WTCH-QTM-ONYX-STL",
+      "externalItemId": "woo_prod_wtch_qtm_onyx_stl",
+      "externalSku": "WTCH-QTM-ONYX-STL-WOO",
+      "externalPrice": 75488,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "WTCH-QTM-ONYX-RBR",
+      "externalItemId": "sho_prod_wtch_qtm_onyx_rbr",
+      "externalSku": "WTCH-QTM-ONYX-RBR-SHO",
+      "externalPrice": 495.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "WTCH-QTM-ONYX-RBR",
+      "externalItemId": "sho_prod_wtch_qtm_onyx_rbr",
+      "externalSku": "WTCH-QTM-ONYX-RBR-SHO",
+      "externalPrice": 391.05,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "WTCH-QTM-ONYX-RBR",
+      "externalItemId": "woo_prod_wtch_qtm_onyx_rbr",
+      "externalSku": "WTCH-QTM-ONYX-RBR-WOO",
+      "externalPrice": 455.4,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "WTCH-QTM-ONYX-RBR",
+      "externalItemId": "woo_prod_wtch_qtm_onyx_rbr",
+      "externalSku": "WTCH-QTM-ONYX-RBR-WOO",
+      "externalPrice": 75488,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "WTCH-QTM-SLV-LTH",
+      "externalItemId": "sho_prod_wtch_qtm_slv_lth",
+      "externalSku": "WTCH-QTM-SLV-LTH-SHO",
+      "externalPrice": 495.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "WTCH-QTM-SLV-LTH",
+      "externalItemId": "sho_prod_wtch_qtm_slv_lth",
+      "externalSku": "WTCH-QTM-SLV-LTH-SHO",
+      "externalPrice": 391.05,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "WTCH-QTM-SLV-LTH",
+      "externalItemId": "woo_prod_wtch_qtm_slv_lth",
+      "externalSku": "WTCH-QTM-SLV-LTH-WOO",
+      "externalPrice": 455.4,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "WTCH-QTM-SLV-LTH",
+      "externalItemId": "woo_prod_wtch_qtm_slv_lth",
+      "externalSku": "WTCH-QTM-SLV-LTH-WOO",
+      "externalPrice": 75488,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "WTCH-QTM-SLV-STL",
+      "externalItemId": "sho_prod_wtch_qtm_slv_stl",
+      "externalSku": "WTCH-QTM-SLV-STL-SHO",
+      "externalPrice": 495.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "WTCH-QTM-SLV-STL",
+      "externalItemId": "sho_prod_wtch_qtm_slv_stl",
+      "externalSku": "WTCH-QTM-SLV-STL-SHO",
+      "externalPrice": 391.05,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "WTCH-QTM-SLV-STL",
+      "externalItemId": "woo_prod_wtch_qtm_slv_stl",
+      "externalSku": "WTCH-QTM-SLV-STL-WOO",
+      "externalPrice": 455.4,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "WTCH-QTM-SLV-STL",
+      "externalItemId": "woo_prod_wtch_qtm_slv_stl",
+      "externalSku": "WTCH-QTM-SLV-STL-WOO",
+      "externalPrice": 75488,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "WTCH-QTM-LTD-MRN",
+      "externalItemId": "sho_prod_wtch_qtm_ltd_mrn",
+      "externalSku": "WTCH-QTM-LTD-MRN-SHO",
+      "externalPrice": 495.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "WTCH-QTM-LTD-MRN",
+      "externalItemId": "sho_prod_wtch_qtm_ltd_mrn",
+      "externalSku": "WTCH-QTM-LTD-MRN-SHO",
+      "externalPrice": 391.05,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "WTCH-QTM-LTD-MRN",
+      "externalItemId": "woo_prod_wtch_qtm_ltd_mrn",
+      "externalSku": "WTCH-QTM-LTD-MRN-WOO",
+      "externalPrice": 455.4,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "WTCH-QTM-LTD-MRN",
+      "externalItemId": "woo_prod_wtch_qtm_ltd_mrn",
+      "externalSku": "WTCH-QTM-LTD-MRN-WOO",
+      "externalPrice": 75488,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "WTCH-QTM-LTD-GLD",
+      "externalItemId": "sho_prod_wtch_qtm_ltd_gld",
+      "externalSku": "WTCH-QTM-LTD-GLD-SHO",
+      "externalPrice": 495.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "WTCH-QTM-LTD-GLD",
+      "externalItemId": "sho_prod_wtch_qtm_ltd_gld",
+      "externalSku": "WTCH-QTM-LTD-GLD-SHO",
+      "externalPrice": 391.05,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "WTCH-QTM-LTD-GLD",
+      "externalItemId": "woo_prod_wtch_qtm_ltd_gld",
+      "externalSku": "WTCH-QTM-LTD-GLD-WOO",
+      "externalPrice": 455.4,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "WTCH-QTM-LTD-GLD",
+      "externalItemId": "woo_prod_wtch_qtm_ltd_gld",
+      "externalSku": "WTCH-QTM-LTD-GLD-WOO",
+      "externalPrice": 75488,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "KB-ERGO-RED-ANSI",
+      "externalItemId": "sho_prod_kb_ergo_red_ansi",
+      "externalSku": "KB-ERGO-RED-ANSI-SHO",
+      "externalPrice": 189.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "KB-ERGO-RED-ANSI",
+      "externalItemId": "sho_prod_kb_ergo_red_ansi",
+      "externalSku": "KB-ERGO-RED-ANSI-SHO",
+      "externalPrice": 150.09,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KB-ERGO-RED-ANSI",
+      "externalItemId": "woo_prod_kb_ergo_red_ansi",
+      "externalSku": "KB-ERGO-RED-ANSI-WOO",
+      "externalPrice": 174.79,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KB-ERGO-RED-ANSI",
+      "externalItemId": "woo_prod_kb_ergo_red_ansi",
+      "externalSku": "KB-ERGO-RED-ANSI-WOO",
+      "externalPrice": 28973,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "KB-ERGO-BRN-ANSI",
+      "externalItemId": "sho_prod_kb_ergo_brn_ansi",
+      "externalSku": "KB-ERGO-BRN-ANSI-SHO",
+      "externalPrice": 189.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "KB-ERGO-BRN-ANSI",
+      "externalItemId": "sho_prod_kb_ergo_brn_ansi",
+      "externalSku": "KB-ERGO-BRN-ANSI-SHO",
+      "externalPrice": 150.09,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KB-ERGO-BRN-ANSI",
+      "externalItemId": "woo_prod_kb_ergo_brn_ansi",
+      "externalSku": "KB-ERGO-BRN-ANSI-WOO",
+      "externalPrice": 174.79,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KB-ERGO-BRN-ANSI",
+      "externalItemId": "woo_prod_kb_ergo_brn_ansi",
+      "externalSku": "KB-ERGO-BRN-ANSI-WOO",
+      "externalPrice": 28973,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "KB-ERGO-BLU-ANSI",
+      "externalItemId": "sho_prod_kb_ergo_blu_ansi",
+      "externalSku": "KB-ERGO-BLU-ANSI-SHO",
+      "externalPrice": 189.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "KB-ERGO-BLU-ANSI",
+      "externalItemId": "sho_prod_kb_ergo_blu_ansi",
+      "externalSku": "KB-ERGO-BLU-ANSI-SHO",
+      "externalPrice": 150.09,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KB-ERGO-BLU-ANSI",
+      "externalItemId": "woo_prod_kb_ergo_blu_ansi",
+      "externalSku": "KB-ERGO-BLU-ANSI-WOO",
+      "externalPrice": 174.79,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KB-ERGO-BLU-ANSI",
+      "externalItemId": "woo_prod_kb_ergo_blu_ansi",
+      "externalSku": "KB-ERGO-BLU-ANSI-WOO",
+      "externalPrice": 28973,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "KB-ERGO-SLT-ANSI",
+      "externalItemId": "sho_prod_kb_ergo_slt_ansi",
+      "externalSku": "KB-ERGO-SLT-ANSI-SHO",
+      "externalPrice": 189.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "KB-ERGO-SLT-ANSI",
+      "externalItemId": "sho_prod_kb_ergo_slt_ansi",
+      "externalSku": "KB-ERGO-SLT-ANSI-SHO",
+      "externalPrice": 150.09,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KB-ERGO-SLT-ANSI",
+      "externalItemId": "woo_prod_kb_ergo_slt_ansi",
+      "externalSku": "KB-ERGO-SLT-ANSI-WOO",
+      "externalPrice": 174.79,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KB-ERGO-SLT-ANSI",
+      "externalItemId": "woo_prod_kb_ergo_slt_ansi",
+      "externalSku": "KB-ERGO-SLT-ANSI-WOO",
+      "externalPrice": 28973,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "KB-ERGO-RED-ISO",
+      "externalItemId": "sho_prod_kb_ergo_red_iso",
+      "externalSku": "KB-ERGO-RED-ISO-SHO",
+      "externalPrice": 189.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "KB-ERGO-RED-ISO",
+      "externalItemId": "sho_prod_kb_ergo_red_iso",
+      "externalSku": "KB-ERGO-RED-ISO-SHO",
+      "externalPrice": 150.09,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KB-ERGO-RED-ISO",
+      "externalItemId": "woo_prod_kb_ergo_red_iso",
+      "externalSku": "KB-ERGO-RED-ISO-WOO",
+      "externalPrice": 174.79,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KB-ERGO-RED-ISO",
+      "externalItemId": "woo_prod_kb_ergo_red_iso",
+      "externalSku": "KB-ERGO-RED-ISO-WOO",
+      "externalPrice": 28973,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "KB-ERGO-BRN-ISO",
+      "externalItemId": "sho_prod_kb_ergo_brn_iso",
+      "externalSku": "KB-ERGO-BRN-ISO-SHO",
+      "externalPrice": 189.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "KB-ERGO-BRN-ISO",
+      "externalItemId": "sho_prod_kb_ergo_brn_iso",
+      "externalSku": "KB-ERGO-BRN-ISO-SHO",
+      "externalPrice": 150.09,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KB-ERGO-BRN-ISO",
+      "externalItemId": "woo_prod_kb_ergo_brn_iso",
+      "externalSku": "KB-ERGO-BRN-ISO-WOO",
+      "externalPrice": 174.79,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KB-ERGO-BRN-ISO",
+      "externalItemId": "woo_prod_kb_ergo_brn_iso",
+      "externalSku": "KB-ERGO-BRN-ISO-WOO",
+      "externalPrice": 28973,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "KB-ERGO-BLU-ISO",
+      "externalItemId": "sho_prod_kb_ergo_blu_iso",
+      "externalSku": "KB-ERGO-BLU-ISO-SHO",
+      "externalPrice": 189.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "KB-ERGO-BLU-ISO",
+      "externalItemId": "sho_prod_kb_ergo_blu_iso",
+      "externalSku": "KB-ERGO-BLU-ISO-SHO",
+      "externalPrice": 150.09,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KB-ERGO-BLU-ISO",
+      "externalItemId": "woo_prod_kb_ergo_blu_iso",
+      "externalSku": "KB-ERGO-BLU-ISO-WOO",
+      "externalPrice": 174.79,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KB-ERGO-BLU-ISO",
+      "externalItemId": "woo_prod_kb_ergo_blu_iso",
+      "externalSku": "KB-ERGO-BLU-ISO-WOO",
+      "externalPrice": 28973,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "KB-ERGO-SLT-ISO",
+      "externalItemId": "sho_prod_kb_ergo_slt_iso",
+      "externalSku": "KB-ERGO-SLT-ISO-SHO",
+      "externalPrice": 189.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "KB-ERGO-SLT-ISO",
+      "externalItemId": "sho_prod_kb_ergo_slt_iso",
+      "externalSku": "KB-ERGO-SLT-ISO-SHO",
+      "externalPrice": 150.09,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KB-ERGO-SLT-ISO",
+      "externalItemId": "woo_prod_kb_ergo_slt_iso",
+      "externalSku": "KB-ERGO-SLT-ISO-WOO",
+      "externalPrice": 174.79,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KB-ERGO-SLT-ISO",
+      "externalItemId": "woo_prod_kb_ergo_slt_iso",
+      "externalSku": "KB-ERGO-SLT-ISO-WOO",
+      "externalPrice": 28973,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "KB-ERGO-LTD-RET",
+      "externalItemId": "sho_prod_kb_ergo_ltd_ret",
+      "externalSku": "KB-ERGO-LTD-RET-SHO",
+      "externalPrice": 189.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "KB-ERGO-LTD-RET",
+      "externalItemId": "sho_prod_kb_ergo_ltd_ret",
+      "externalSku": "KB-ERGO-LTD-RET-SHO",
+      "externalPrice": 150.09,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KB-ERGO-LTD-RET",
+      "externalItemId": "woo_prod_kb_ergo_ltd_ret",
+      "externalSku": "KB-ERGO-LTD-RET-WOO",
+      "externalPrice": 174.79,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KB-ERGO-LTD-RET",
+      "externalItemId": "woo_prod_kb_ergo_ltd_ret",
+      "externalSku": "KB-ERGO-LTD-RET-WOO",
+      "externalPrice": 28973,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "KB-ERGO-LTD-CYB",
+      "externalItemId": "sho_prod_kb_ergo_ltd_cyb",
+      "externalSku": "KB-ERGO-LTD-CYB-SHO",
+      "externalPrice": 189.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "KB-ERGO-LTD-CYB",
+      "externalItemId": "sho_prod_kb_ergo_ltd_cyb",
+      "externalSku": "KB-ERGO-LTD-CYB-SHO",
+      "externalPrice": 150.09,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KB-ERGO-LTD-CYB",
+      "externalItemId": "woo_prod_kb_ergo_ltd_cyb",
+      "externalSku": "KB-ERGO-LTD-CYB-WOO",
+      "externalPrice": 174.79,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KB-ERGO-LTD-CYB",
+      "externalItemId": "woo_prod_kb_ergo_ltd_cyb",
+      "externalSku": "KB-ERGO-LTD-CYB-WOO",
+      "externalPrice": 28973,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "AUD-SG-GRY-STD",
+      "externalItemId": "sho_prod_aud_sg_gry_std",
+      "externalSku": "AUD-SG-GRY-STD-SHO",
+      "externalPrice": 279.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "AUD-SG-GRY-STD",
+      "externalItemId": "sho_prod_aud_sg_gry_std",
+      "externalSku": "AUD-SG-GRY-STD-SHO",
+      "externalPrice": 221.19,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "AUD-SG-GRY-STD",
+      "externalItemId": "woo_prod_aud_sg_gry_std",
+      "externalSku": "AUD-SG-GRY-STD-WOO",
+      "externalPrice": 257.59,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "AUD-SG-GRY-STD",
+      "externalItemId": "woo_prod_aud_sg_gry_std",
+      "externalSku": "AUD-SG-GRY-STD-WOO",
+      "externalPrice": 42698,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "AUD-SG-SLV-STD",
+      "externalItemId": "sho_prod_aud_sg_slv_std",
+      "externalSku": "AUD-SG-SLV-STD-SHO",
+      "externalPrice": 279.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "AUD-SG-SLV-STD",
+      "externalItemId": "sho_prod_aud_sg_slv_std",
+      "externalSku": "AUD-SG-SLV-STD-SHO",
+      "externalPrice": 221.19,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "AUD-SG-SLV-STD",
+      "externalItemId": "woo_prod_aud_sg_slv_std",
+      "externalSku": "AUD-SG-SLV-STD-WOO",
+      "externalPrice": 257.59,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "AUD-SG-SLV-STD",
+      "externalItemId": "woo_prod_aud_sg_slv_std",
+      "externalSku": "AUD-SG-SLV-STD-WOO",
+      "externalPrice": 42698,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "AUD-SG-BLK-STD",
+      "externalItemId": "sho_prod_aud_sg_blk_std",
+      "externalSku": "AUD-SG-BLK-STD-SHO",
+      "externalPrice": 279.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "AUD-SG-BLK-STD",
+      "externalItemId": "sho_prod_aud_sg_blk_std",
+      "externalSku": "AUD-SG-BLK-STD-SHO",
+      "externalPrice": 221.19,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "AUD-SG-BLK-STD",
+      "externalItemId": "woo_prod_aud_sg_blk_std",
+      "externalSku": "AUD-SG-BLK-STD-WOO",
+      "externalPrice": 257.59,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "AUD-SG-BLK-STD",
+      "externalItemId": "woo_prod_aud_sg_blk_std",
+      "externalSku": "AUD-SG-BLK-STD-WOO",
+      "externalPrice": 42698,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "AUD-SG-NVY-STD",
+      "externalItemId": "sho_prod_aud_sg_nvy_std",
+      "externalSku": "AUD-SG-NVY-STD-SHO",
+      "externalPrice": 279.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "AUD-SG-NVY-STD",
+      "externalItemId": "sho_prod_aud_sg_nvy_std",
+      "externalSku": "AUD-SG-NVY-STD-SHO",
+      "externalPrice": 221.19,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "AUD-SG-NVY-STD",
+      "externalItemId": "woo_prod_aud_sg_nvy_std",
+      "externalSku": "AUD-SG-NVY-STD-WOO",
+      "externalPrice": 257.59,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "AUD-SG-NVY-STD",
+      "externalItemId": "woo_prod_aud_sg_nvy_std",
+      "externalSku": "AUD-SG-NVY-STD-WOO",
+      "externalPrice": 42698,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "AUD-SG-BRZ-STD",
+      "externalItemId": "sho_prod_aud_sg_brz_std",
+      "externalSku": "AUD-SG-BRZ-STD-SHO",
+      "externalPrice": 279.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "AUD-SG-BRZ-STD",
+      "externalItemId": "sho_prod_aud_sg_brz_std",
+      "externalSku": "AUD-SG-BRZ-STD-SHO",
+      "externalPrice": 221.19,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "AUD-SG-BRZ-STD",
+      "externalItemId": "woo_prod_aud_sg_brz_std",
+      "externalSku": "AUD-SG-BRZ-STD-WOO",
+      "externalPrice": 257.59,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "AUD-SG-BRZ-STD",
+      "externalItemId": "woo_prod_aud_sg_brz_std",
+      "externalSku": "AUD-SG-BRZ-STD-WOO",
+      "externalPrice": 42698,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "AUD-SG-GRY-PRO",
+      "externalItemId": "sho_prod_aud_sg_gry_pro",
+      "externalSku": "AUD-SG-GRY-PRO-SHO",
+      "externalPrice": 279.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "AUD-SG-GRY-PRO",
+      "externalItemId": "sho_prod_aud_sg_gry_pro",
+      "externalSku": "AUD-SG-GRY-PRO-SHO",
+      "externalPrice": 221.19,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "AUD-SG-GRY-PRO",
+      "externalItemId": "woo_prod_aud_sg_gry_pro",
+      "externalSku": "AUD-SG-GRY-PRO-WOO",
+      "externalPrice": 257.59,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "AUD-SG-GRY-PRO",
+      "externalItemId": "woo_prod_aud_sg_gry_pro",
+      "externalSku": "AUD-SG-GRY-PRO-WOO",
+      "externalPrice": 42698,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "AUD-SG-SLV-PRO",
+      "externalItemId": "sho_prod_aud_sg_slv_pro",
+      "externalSku": "AUD-SG-SLV-PRO-SHO",
+      "externalPrice": 279.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "AUD-SG-SLV-PRO",
+      "externalItemId": "sho_prod_aud_sg_slv_pro",
+      "externalSku": "AUD-SG-SLV-PRO-SHO",
+      "externalPrice": 221.19,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "AUD-SG-SLV-PRO",
+      "externalItemId": "woo_prod_aud_sg_slv_pro",
+      "externalSku": "AUD-SG-SLV-PRO-WOO",
+      "externalPrice": 257.59,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "AUD-SG-SLV-PRO",
+      "externalItemId": "woo_prod_aud_sg_slv_pro",
+      "externalSku": "AUD-SG-SLV-PRO-WOO",
+      "externalPrice": 42698,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "AUD-SG-BLK-PRO",
+      "externalItemId": "sho_prod_aud_sg_blk_pro",
+      "externalSku": "AUD-SG-BLK-PRO-SHO",
+      "externalPrice": 279.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "AUD-SG-BLK-PRO",
+      "externalItemId": "sho_prod_aud_sg_blk_pro",
+      "externalSku": "AUD-SG-BLK-PRO-SHO",
+      "externalPrice": 221.19,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "AUD-SG-BLK-PRO",
+      "externalItemId": "woo_prod_aud_sg_blk_pro",
+      "externalSku": "AUD-SG-BLK-PRO-WOO",
+      "externalPrice": 257.59,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "AUD-SG-BLK-PRO",
+      "externalItemId": "woo_prod_aud_sg_blk_pro",
+      "externalSku": "AUD-SG-BLK-PRO-WOO",
+      "externalPrice": 42698,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "AUD-SG-LTD-WHT",
+      "externalItemId": "sho_prod_aud_sg_ltd_wht",
+      "externalSku": "AUD-SG-LTD-WHT-SHO",
+      "externalPrice": 279.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "AUD-SG-LTD-WHT",
+      "externalItemId": "sho_prod_aud_sg_ltd_wht",
+      "externalSku": "AUD-SG-LTD-WHT-SHO",
+      "externalPrice": 221.19,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "AUD-SG-LTD-WHT",
+      "externalItemId": "woo_prod_aud_sg_ltd_wht",
+      "externalSku": "AUD-SG-LTD-WHT-WOO",
+      "externalPrice": 257.59,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "AUD-SG-LTD-WHT",
+      "externalItemId": "woo_prod_aud_sg_ltd_wht",
+      "externalSku": "AUD-SG-LTD-WHT-WOO",
+      "externalPrice": 42698,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "AUD-SG-LTD-GLD",
+      "externalItemId": "sho_prod_aud_sg_ltd_gld",
+      "externalSku": "AUD-SG-LTD-GLD-SHO",
+      "externalPrice": 279.99,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "AUD-SG-LTD-GLD",
+      "externalItemId": "sho_prod_aud_sg_ltd_gld",
+      "externalSku": "AUD-SG-LTD-GLD-SHO",
+      "externalPrice": 221.19,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "AUD-SG-LTD-GLD",
+      "externalItemId": "woo_prod_aud_sg_ltd_gld",
+      "externalSku": "AUD-SG-LTD-GLD-WOO",
+      "externalPrice": 257.59,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "AUD-SG-LTD-GLD",
+      "externalItemId": "woo_prod_aud_sg_ltd_gld",
+      "externalSku": "AUD-SG-LTD-GLD-WOO",
+      "externalPrice": 42698,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "EDC-KNF-STN-CF",
+      "externalItemId": "sho_prod_edc_knf_stn_cf",
+      "externalSku": "EDC-KNF-STN-CF-SHO",
+      "externalPrice": 165.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "EDC-KNF-STN-CF",
+      "externalItemId": "sho_prod_edc_knf_stn_cf",
+      "externalSku": "EDC-KNF-STN-CF-SHO",
+      "externalPrice": 130.35,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "EDC-KNF-STN-CF",
+      "externalItemId": "woo_prod_edc_knf_stn_cf",
+      "externalSku": "EDC-KNF-STN-CF-WOO",
+      "externalPrice": 151.8,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "EDC-KNF-STN-CF",
+      "externalItemId": "woo_prod_edc_knf_stn_cf",
+      "externalSku": "EDC-KNF-STN-CF-WOO",
+      "externalPrice": 25162,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "EDC-KNF-STN-MIC",
+      "externalItemId": "sho_prod_edc_knf_stn_mic",
+      "externalSku": "EDC-KNF-STN-MIC-SHO",
+      "externalPrice": 165.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "EDC-KNF-STN-MIC",
+      "externalItemId": "sho_prod_edc_knf_stn_mic",
+      "externalSku": "EDC-KNF-STN-MIC-SHO",
+      "externalPrice": 130.35,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "EDC-KNF-STN-MIC",
+      "externalItemId": "woo_prod_edc_knf_stn_mic",
+      "externalSku": "EDC-KNF-STN-MIC-WOO",
+      "externalPrice": 151.8,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "EDC-KNF-STN-MIC",
+      "externalItemId": "woo_prod_edc_knf_stn_mic",
+      "externalSku": "EDC-KNF-STN-MIC-WOO",
+      "externalPrice": 25162,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "EDC-KNF-DLC-CF",
+      "externalItemId": "sho_prod_edc_knf_dlc_cf",
+      "externalSku": "EDC-KNF-DLC-CF-SHO",
+      "externalPrice": 165.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "EDC-KNF-DLC-CF",
+      "externalItemId": "sho_prod_edc_knf_dlc_cf",
+      "externalSku": "EDC-KNF-DLC-CF-SHO",
+      "externalPrice": 130.35,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "EDC-KNF-DLC-CF",
+      "externalItemId": "woo_prod_edc_knf_dlc_cf",
+      "externalSku": "EDC-KNF-DLC-CF-WOO",
+      "externalPrice": 151.8,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "EDC-KNF-DLC-CF",
+      "externalItemId": "woo_prod_edc_knf_dlc_cf",
+      "externalSku": "EDC-KNF-DLC-CF-WOO",
+      "externalPrice": 25162,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "EDC-KNF-DLC-MIC",
+      "externalItemId": "sho_prod_edc_knf_dlc_mic",
+      "externalSku": "EDC-KNF-DLC-MIC-SHO",
+      "externalPrice": 165.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "EDC-KNF-DLC-MIC",
+      "externalItemId": "sho_prod_edc_knf_dlc_mic",
+      "externalSku": "EDC-KNF-DLC-MIC-SHO",
+      "externalPrice": 130.35,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "EDC-KNF-DLC-MIC",
+      "externalItemId": "woo_prod_edc_knf_dlc_mic",
+      "externalSku": "EDC-KNF-DLC-MIC-WOO",
+      "externalPrice": 151.8,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "EDC-KNF-DLC-MIC",
+      "externalItemId": "woo_prod_edc_knf_dlc_mic",
+      "externalSku": "EDC-KNF-DLC-MIC-WOO",
+      "externalPrice": 25162,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "EDC-KNF-SAT-TTN",
+      "externalItemId": "sho_prod_edc_knf_sat_ttn",
+      "externalSku": "EDC-KNF-SAT-TTN-SHO",
+      "externalPrice": 165.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "EDC-KNF-SAT-TTN",
+      "externalItemId": "sho_prod_edc_knf_sat_ttn",
+      "externalSku": "EDC-KNF-SAT-TTN-SHO",
+      "externalPrice": 130.35,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "EDC-KNF-SAT-TTN",
+      "externalItemId": "woo_prod_edc_knf_sat_ttn",
+      "externalSku": "EDC-KNF-SAT-TTN-WOO",
+      "externalPrice": 151.8,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "EDC-KNF-SAT-TTN",
+      "externalItemId": "woo_prod_edc_knf_sat_ttn",
+      "externalSku": "EDC-KNF-SAT-TTN-WOO",
+      "externalPrice": 25162,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "EDC-KNF-DLC-TTN",
+      "externalItemId": "sho_prod_edc_knf_dlc_ttn",
+      "externalSku": "EDC-KNF-DLC-TTN-SHO",
+      "externalPrice": 165.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "EDC-KNF-DLC-TTN",
+      "externalItemId": "sho_prod_edc_knf_dlc_ttn",
+      "externalSku": "EDC-KNF-DLC-TTN-SHO",
+      "externalPrice": 130.35,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "EDC-KNF-DLC-TTN",
+      "externalItemId": "woo_prod_edc_knf_dlc_ttn",
+      "externalSku": "EDC-KNF-DLC-TTN-WOO",
+      "externalPrice": 151.8,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "EDC-KNF-DLC-TTN",
+      "externalItemId": "woo_prod_edc_knf_dlc_ttn",
+      "externalSku": "EDC-KNF-DLC-TTN-WOO",
+      "externalPrice": 25162,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "EDC-KNF-DAM-CF",
+      "externalItemId": "sho_prod_edc_knf_dam_cf",
+      "externalSku": "EDC-KNF-DAM-CF-SHO",
+      "externalPrice": 165.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "EDC-KNF-DAM-CF",
+      "externalItemId": "sho_prod_edc_knf_dam_cf",
+      "externalSku": "EDC-KNF-DAM-CF-SHO",
+      "externalPrice": 130.35,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "EDC-KNF-DAM-CF",
+      "externalItemId": "woo_prod_edc_knf_dam_cf",
+      "externalSku": "EDC-KNF-DAM-CF-WOO",
+      "externalPrice": 151.8,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "EDC-KNF-DAM-CF",
+      "externalItemId": "woo_prod_edc_knf_dam_cf",
+      "externalSku": "EDC-KNF-DAM-CF-WOO",
+      "externalPrice": 25162,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "EDC-KNF-DAM-TTN",
+      "externalItemId": "sho_prod_edc_knf_dam_ttn",
+      "externalSku": "EDC-KNF-DAM-TTN-SHO",
+      "externalPrice": 165.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "EDC-KNF-DAM-TTN",
+      "externalItemId": "sho_prod_edc_knf_dam_ttn",
+      "externalSku": "EDC-KNF-DAM-TTN-SHO",
+      "externalPrice": 130.35,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "EDC-KNF-DAM-TTN",
+      "externalItemId": "woo_prod_edc_knf_dam_ttn",
+      "externalSku": "EDC-KNF-DAM-TTN-WOO",
+      "externalPrice": 151.8,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "EDC-KNF-DAM-TTN",
+      "externalItemId": "woo_prod_edc_knf_dam_ttn",
+      "externalSku": "EDC-KNF-DAM-TTN-WOO",
+      "externalPrice": 25162,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "EDC-KNF-LTD-COP",
+      "externalItemId": "sho_prod_edc_knf_ltd_cop",
+      "externalSku": "EDC-KNF-LTD-COP-SHO",
+      "externalPrice": 165.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "EDC-KNF-LTD-COP",
+      "externalItemId": "sho_prod_edc_knf_ltd_cop",
+      "externalSku": "EDC-KNF-LTD-COP-SHO",
+      "externalPrice": 130.35,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "EDC-KNF-LTD-COP",
+      "externalItemId": "woo_prod_edc_knf_ltd_cop",
+      "externalSku": "EDC-KNF-LTD-COP-WOO",
+      "externalPrice": 151.8,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "EDC-KNF-LTD-COP",
+      "externalItemId": "woo_prod_edc_knf_ltd_cop",
+      "externalSku": "EDC-KNF-LTD-COP-WOO",
+      "externalPrice": 25162,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "EDC-KNF-LTD-BRS",
+      "externalItemId": "sho_prod_edc_knf_ltd_brs",
+      "externalSku": "EDC-KNF-LTD-BRS-SHO",
+      "externalPrice": 165.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "EDC-KNF-LTD-BRS",
+      "externalItemId": "sho_prod_edc_knf_ltd_brs",
+      "externalSku": "EDC-KNF-LTD-BRS-SHO",
+      "externalPrice": 130.35,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "EDC-KNF-LTD-BRS",
+      "externalItemId": "woo_prod_edc_knf_ltd_brs",
+      "externalSku": "EDC-KNF-LTD-BRS-WOO",
+      "externalPrice": 151.8,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "EDC-KNF-LTD-BRS",
+      "externalItemId": "woo_prod_edc_knf_ltd_brs",
+      "externalSku": "EDC-KNF-LTD-BRS-WOO",
+      "externalPrice": 25162,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "BAG-VOY-CRD-BLK",
+      "externalItemId": "sho_prod_bag_voy_crd_blk",
+      "externalSku": "BAG-VOY-CRD-BLK-SHO",
+      "externalPrice": 249.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "BAG-VOY-CRD-BLK",
+      "externalItemId": "sho_prod_bag_voy_crd_blk",
+      "externalSku": "BAG-VOY-CRD-BLK-SHO",
+      "externalPrice": 196.71,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "BAG-VOY-CRD-BLK",
+      "externalItemId": "woo_prod_bag_voy_crd_blk",
+      "externalSku": "BAG-VOY-CRD-BLK-WOO",
+      "externalPrice": 229.08,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "BAG-VOY-CRD-BLK",
+      "externalItemId": "woo_prod_bag_voy_crd_blk",
+      "externalSku": "BAG-VOY-CRD-BLK-WOO",
+      "externalPrice": 37972,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "BAG-VOY-CRD-NVY",
+      "externalItemId": "sho_prod_bag_voy_crd_nvy",
+      "externalSku": "BAG-VOY-CRD-NVY-SHO",
+      "externalPrice": 249.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "BAG-VOY-CRD-NVY",
+      "externalItemId": "sho_prod_bag_voy_crd_nvy",
+      "externalSku": "BAG-VOY-CRD-NVY-SHO",
+      "externalPrice": 196.71,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "BAG-VOY-CRD-NVY",
+      "externalItemId": "woo_prod_bag_voy_crd_nvy",
+      "externalSku": "BAG-VOY-CRD-NVY-WOO",
+      "externalPrice": 229.08,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "BAG-VOY-CRD-NVY",
+      "externalItemId": "woo_prod_bag_voy_crd_nvy",
+      "externalSku": "BAG-VOY-CRD-NVY-WOO",
+      "externalPrice": 37972,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "BAG-VOY-CRD-COY",
+      "externalItemId": "sho_prod_bag_voy_crd_coy",
+      "externalSku": "BAG-VOY-CRD-COY-SHO",
+      "externalPrice": 249.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "BAG-VOY-CRD-COY",
+      "externalItemId": "sho_prod_bag_voy_crd_coy",
+      "externalSku": "BAG-VOY-CRD-COY-SHO",
+      "externalPrice": 196.71,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "BAG-VOY-CRD-COY",
+      "externalItemId": "woo_prod_bag_voy_crd_coy",
+      "externalSku": "BAG-VOY-CRD-COY-WOO",
+      "externalPrice": 229.08,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "BAG-VOY-CRD-COY",
+      "externalItemId": "woo_prod_bag_voy_crd_coy",
+      "externalSku": "BAG-VOY-CRD-COY-WOO",
+      "externalPrice": 37972,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "BAG-VOY-CRD-RNG",
+      "externalItemId": "sho_prod_bag_voy_crd_rng",
+      "externalSku": "BAG-VOY-CRD-RNG-SHO",
+      "externalPrice": 249.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "BAG-VOY-CRD-RNG",
+      "externalItemId": "sho_prod_bag_voy_crd_rng",
+      "externalSku": "BAG-VOY-CRD-RNG-SHO",
+      "externalPrice": 196.71,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "BAG-VOY-CRD-RNG",
+      "externalItemId": "woo_prod_bag_voy_crd_rng",
+      "externalSku": "BAG-VOY-CRD-RNG-WOO",
+      "externalPrice": 229.08,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "BAG-VOY-CRD-RNG",
+      "externalItemId": "woo_prod_bag_voy_crd_rng",
+      "externalSku": "BAG-VOY-CRD-RNG-WOO",
+      "externalPrice": 37972,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "BAG-VOY-XPAC-BLK",
+      "externalItemId": "sho_prod_bag_voy_xpac_blk",
+      "externalSku": "BAG-VOY-XPAC-BLK-SHO",
+      "externalPrice": 249.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "BAG-VOY-XPAC-BLK",
+      "externalItemId": "sho_prod_bag_voy_xpac_blk",
+      "externalSku": "BAG-VOY-XPAC-BLK-SHO",
+      "externalPrice": 196.71,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "BAG-VOY-XPAC-BLK",
+      "externalItemId": "woo_prod_bag_voy_xpac_blk",
+      "externalSku": "BAG-VOY-XPAC-BLK-WOO",
+      "externalPrice": 229.08,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "BAG-VOY-XPAC-BLK",
+      "externalItemId": "woo_prod_bag_voy_xpac_blk",
+      "externalSku": "BAG-VOY-XPAC-BLK-WOO",
+      "externalPrice": 37972,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "BAG-VOY-XPAC-WHT",
+      "externalItemId": "sho_prod_bag_voy_xpac_wht",
+      "externalSku": "BAG-VOY-XPAC-WHT-SHO",
+      "externalPrice": 249.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "BAG-VOY-XPAC-WHT",
+      "externalItemId": "sho_prod_bag_voy_xpac_wht",
+      "externalSku": "BAG-VOY-XPAC-WHT-SHO",
+      "externalPrice": 196.71,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "BAG-VOY-XPAC-WHT",
+      "externalItemId": "woo_prod_bag_voy_xpac_wht",
+      "externalSku": "BAG-VOY-XPAC-WHT-WOO",
+      "externalPrice": 229.08,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "BAG-VOY-XPAC-WHT",
+      "externalItemId": "woo_prod_bag_voy_xpac_wht",
+      "externalSku": "BAG-VOY-XPAC-WHT-WOO",
+      "externalPrice": 37972,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "BAG-VOY-XPAC-SLT",
+      "externalItemId": "sho_prod_bag_voy_xpac_slt",
+      "externalSku": "BAG-VOY-XPAC-SLT-SHO",
+      "externalPrice": 249.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "BAG-VOY-XPAC-SLT",
+      "externalItemId": "sho_prod_bag_voy_xpac_slt",
+      "externalSku": "BAG-VOY-XPAC-SLT-SHO",
+      "externalPrice": 196.71,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "BAG-VOY-XPAC-SLT",
+      "externalItemId": "woo_prod_bag_voy_xpac_slt",
+      "externalSku": "BAG-VOY-XPAC-SLT-WOO",
+      "externalPrice": 229.08,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "BAG-VOY-XPAC-SLT",
+      "externalItemId": "woo_prod_bag_voy_xpac_slt",
+      "externalSku": "BAG-VOY-XPAC-SLT-WOO",
+      "externalPrice": 37972,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "BAG-VOY-XPAC-CAM",
+      "externalItemId": "sho_prod_bag_voy_xpac_cam",
+      "externalSku": "BAG-VOY-XPAC-CAM-SHO",
+      "externalPrice": 249.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "BAG-VOY-XPAC-CAM",
+      "externalItemId": "sho_prod_bag_voy_xpac_cam",
+      "externalSku": "BAG-VOY-XPAC-CAM-SHO",
+      "externalPrice": 196.71,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "BAG-VOY-XPAC-CAM",
+      "externalItemId": "woo_prod_bag_voy_xpac_cam",
+      "externalSku": "BAG-VOY-XPAC-CAM-WOO",
+      "externalPrice": 229.08,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "BAG-VOY-XPAC-CAM",
+      "externalItemId": "woo_prod_bag_voy_xpac_cam",
+      "externalSku": "BAG-VOY-XPAC-CAM-WOO",
+      "externalPrice": 37972,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "BAG-VOY-LTD-ULTR",
+      "externalItemId": "sho_prod_bag_voy_ltd_ultr",
+      "externalSku": "BAG-VOY-LTD-ULTR-SHO",
+      "externalPrice": 249.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "BAG-VOY-LTD-ULTR",
+      "externalItemId": "sho_prod_bag_voy_ltd_ultr",
+      "externalSku": "BAG-VOY-LTD-ULTR-SHO",
+      "externalPrice": 196.71,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "BAG-VOY-LTD-ULTR",
+      "externalItemId": "woo_prod_bag_voy_ltd_ultr",
+      "externalSku": "BAG-VOY-LTD-ULTR-WOO",
+      "externalPrice": 229.08,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "BAG-VOY-LTD-ULTR",
+      "externalItemId": "woo_prod_bag_voy_ltd_ultr",
+      "externalSku": "BAG-VOY-LTD-ULTR-WOO",
+      "externalPrice": 37972,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "BAG-VOY-LTD-LETH",
+      "externalItemId": "sho_prod_bag_voy_ltd_leth",
+      "externalSku": "BAG-VOY-LTD-LETH-SHO",
+      "externalPrice": 249.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "BAG-VOY-LTD-LETH",
+      "externalItemId": "sho_prod_bag_voy_ltd_leth",
+      "externalSku": "BAG-VOY-LTD-LETH-SHO",
+      "externalPrice": 196.71,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "BAG-VOY-LTD-LETH",
+      "externalItemId": "woo_prod_bag_voy_ltd_leth",
+      "externalSku": "BAG-VOY-LTD-LETH-WOO",
+      "externalPrice": 229.08,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "BAG-VOY-LTD-LETH",
+      "externalItemId": "woo_prod_bag_voy_ltd_leth",
+      "externalSku": "BAG-VOY-LTD-LETH-WOO",
+      "externalPrice": 37972,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "KTLE-SBT-BLK-US",
+      "externalItemId": "sho_prod_ktle_sbt_blk_us",
+      "externalSku": "KTLE-SBT-BLK-US-SHO",
+      "externalPrice": 175.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "KTLE-SBT-BLK-US",
+      "externalItemId": "sho_prod_ktle_sbt_blk_us",
+      "externalSku": "KTLE-SBT-BLK-US-SHO",
+      "externalPrice": 138.25,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KTLE-SBT-BLK-US",
+      "externalItemId": "woo_prod_ktle_sbt_blk_us",
+      "externalSku": "KTLE-SBT-BLK-US-WOO",
+      "externalPrice": 161.0,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KTLE-SBT-BLK-US",
+      "externalItemId": "woo_prod_ktle_sbt_blk_us",
+      "externalSku": "KTLE-SBT-BLK-US-WOO",
+      "externalPrice": 26688,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "KTLE-SBT-BLK-EU",
+      "externalItemId": "sho_prod_ktle_sbt_blk_eu",
+      "externalSku": "KTLE-SBT-BLK-EU-SHO",
+      "externalPrice": 175.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "KTLE-SBT-BLK-EU",
+      "externalItemId": "sho_prod_ktle_sbt_blk_eu",
+      "externalSku": "KTLE-SBT-BLK-EU-SHO",
+      "externalPrice": 138.25,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KTLE-SBT-BLK-EU",
+      "externalItemId": "woo_prod_ktle_sbt_blk_eu",
+      "externalSku": "KTLE-SBT-BLK-EU-WOO",
+      "externalPrice": 161.0,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KTLE-SBT-BLK-EU",
+      "externalItemId": "woo_prod_ktle_sbt_blk_eu",
+      "externalSku": "KTLE-SBT-BLK-EU-WOO",
+      "externalPrice": 26688,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "KTLE-SBT-BLK-UK",
+      "externalItemId": "sho_prod_ktle_sbt_blk_uk",
+      "externalSku": "KTLE-SBT-BLK-UK-SHO",
+      "externalPrice": 175.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "KTLE-SBT-BLK-UK",
+      "externalItemId": "sho_prod_ktle_sbt_blk_uk",
+      "externalSku": "KTLE-SBT-BLK-UK-SHO",
+      "externalPrice": 138.25,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KTLE-SBT-BLK-UK",
+      "externalItemId": "woo_prod_ktle_sbt_blk_uk",
+      "externalSku": "KTLE-SBT-BLK-UK-WOO",
+      "externalPrice": 161.0,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KTLE-SBT-BLK-UK",
+      "externalItemId": "woo_prod_ktle_sbt_blk_uk",
+      "externalSku": "KTLE-SBT-BLK-UK-WOO",
+      "externalPrice": 26688,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "KTLE-SBT-STS-US",
+      "externalItemId": "sho_prod_ktle_sbt_sts_us",
+      "externalSku": "KTLE-SBT-STS-US-SHO",
+      "externalPrice": 175.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "KTLE-SBT-STS-US",
+      "externalItemId": "sho_prod_ktle_sbt_sts_us",
+      "externalSku": "KTLE-SBT-STS-US-SHO",
+      "externalPrice": 138.25,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KTLE-SBT-STS-US",
+      "externalItemId": "woo_prod_ktle_sbt_sts_us",
+      "externalSku": "KTLE-SBT-STS-US-WOO",
+      "externalPrice": 161.0,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KTLE-SBT-STS-US",
+      "externalItemId": "woo_prod_ktle_sbt_sts_us",
+      "externalSku": "KTLE-SBT-STS-US-WOO",
+      "externalPrice": 26688,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "KTLE-SBT-STS-EU",
+      "externalItemId": "sho_prod_ktle_sbt_sts_eu",
+      "externalSku": "KTLE-SBT-STS-EU-SHO",
+      "externalPrice": 175.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "KTLE-SBT-STS-EU",
+      "externalItemId": "sho_prod_ktle_sbt_sts_eu",
+      "externalSku": "KTLE-SBT-STS-EU-SHO",
+      "externalPrice": 138.25,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KTLE-SBT-STS-EU",
+      "externalItemId": "woo_prod_ktle_sbt_sts_eu",
+      "externalSku": "KTLE-SBT-STS-EU-WOO",
+      "externalPrice": 161.0,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KTLE-SBT-STS-EU",
+      "externalItemId": "woo_prod_ktle_sbt_sts_eu",
+      "externalSku": "KTLE-SBT-STS-EU-WOO",
+      "externalPrice": 26688,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "KTLE-SBT-BRS-US",
+      "externalItemId": "sho_prod_ktle_sbt_brs_us",
+      "externalSku": "KTLE-SBT-BRS-US-SHO",
+      "externalPrice": 175.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "KTLE-SBT-BRS-US",
+      "externalItemId": "sho_prod_ktle_sbt_brs_us",
+      "externalSku": "KTLE-SBT-BRS-US-SHO",
+      "externalPrice": 138.25,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KTLE-SBT-BRS-US",
+      "externalItemId": "woo_prod_ktle_sbt_brs_us",
+      "externalSku": "KTLE-SBT-BRS-US-WOO",
+      "externalPrice": 161.0,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KTLE-SBT-BRS-US",
+      "externalItemId": "woo_prod_ktle_sbt_brs_us",
+      "externalSku": "KTLE-SBT-BRS-US-WOO",
+      "externalPrice": 26688,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "KTLE-SBT-BRS-EU",
+      "externalItemId": "sho_prod_ktle_sbt_brs_eu",
+      "externalSku": "KTLE-SBT-BRS-EU-SHO",
+      "externalPrice": 175.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "KTLE-SBT-BRS-EU",
+      "externalItemId": "sho_prod_ktle_sbt_brs_eu",
+      "externalSku": "KTLE-SBT-BRS-EU-SHO",
+      "externalPrice": 138.25,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KTLE-SBT-BRS-EU",
+      "externalItemId": "woo_prod_ktle_sbt_brs_eu",
+      "externalSku": "KTLE-SBT-BRS-EU-WOO",
+      "externalPrice": 161.0,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KTLE-SBT-BRS-EU",
+      "externalItemId": "woo_prod_ktle_sbt_brs_eu",
+      "externalSku": "KTLE-SBT-BRS-EU-WOO",
+      "externalPrice": 26688,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "KTLE-SBT-CPR-US",
+      "externalItemId": "sho_prod_ktle_sbt_cpr_us",
+      "externalSku": "KTLE-SBT-CPR-US-SHO",
+      "externalPrice": 175.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "KTLE-SBT-CPR-US",
+      "externalItemId": "sho_prod_ktle_sbt_cpr_us",
+      "externalSku": "KTLE-SBT-CPR-US-SHO",
+      "externalPrice": 138.25,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KTLE-SBT-CPR-US",
+      "externalItemId": "woo_prod_ktle_sbt_cpr_us",
+      "externalSku": "KTLE-SBT-CPR-US-WOO",
+      "externalPrice": 161.0,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KTLE-SBT-CPR-US",
+      "externalItemId": "woo_prod_ktle_sbt_cpr_us",
+      "externalSku": "KTLE-SBT-CPR-US-WOO",
+      "externalPrice": 26688,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "KTLE-SBT-LTD-WOD",
+      "externalItemId": "sho_prod_ktle_sbt_ltd_wod",
+      "externalSku": "KTLE-SBT-LTD-WOD-SHO",
+      "externalPrice": 175.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "KTLE-SBT-LTD-WOD",
+      "externalItemId": "sho_prod_ktle_sbt_ltd_wod",
+      "externalSku": "KTLE-SBT-LTD-WOD-SHO",
+      "externalPrice": 138.25,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KTLE-SBT-LTD-WOD",
+      "externalItemId": "woo_prod_ktle_sbt_ltd_wod",
+      "externalSku": "KTLE-SBT-LTD-WOD-WOO",
+      "externalPrice": 161.0,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KTLE-SBT-LTD-WOD",
+      "externalItemId": "woo_prod_ktle_sbt_ltd_wod",
+      "externalSku": "KTLE-SBT-LTD-WOD-WOO",
+      "externalPrice": 26688,
+      "currency": "JPY",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_us",
+      "platform": "SHOPIFY",
+      "masterSku": "KTLE-SBT-LTD-OAK",
+      "externalItemId": "sho_prod_ktle_sbt_ltd_oak",
+      "externalSku": "KTLE-SBT-LTD-OAK-SHO",
+      "externalPrice": 175.0,
+      "currency": "USD",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_shopify_uk",
+      "platform": "SHOPIFY",
+      "masterSku": "KTLE-SBT-LTD-OAK",
+      "externalItemId": "sho_prod_ktle_sbt_ltd_oak",
+      "externalSku": "KTLE-SBT-LTD-OAK-SHO",
+      "externalPrice": 138.25,
+      "currency": "GBP",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_eu",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KTLE-SBT-LTD-OAK",
+      "externalItemId": "woo_prod_ktle_sbt_ltd_oak",
+      "externalSku": "KTLE-SBT-LTD-OAK-WOO",
+      "externalPrice": 161.0,
+      "currency": "EUR",
+      "syncEnabled": true
+    },
+    {
+      "storeId": "store_woo_asia",
+      "platform": "WOOCOMMERCE",
+      "masterSku": "KTLE-SBT-LTD-OAK",
+      "externalItemId": "woo_prod_ktle_sbt_ltd_oak",
+      "externalSku": "KTLE-SBT-LTD-OAK-WOO",
+      "externalPrice": 26688,
+      "currency": "JPY",
+      "syncEnabled": true
+    }
+  ]
+}
