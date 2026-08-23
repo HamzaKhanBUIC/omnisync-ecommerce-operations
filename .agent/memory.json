@@ -1,0 +1,52 @@
+{
+  "project_dna": {
+    "core_mission": "Sub-second multi-channel inventory reconciliation and idempotent order routing for Shopify and WooCommerce.",
+    "single_source_of_truth": "PostgreSQL Master Inventory Ledger (append-only delta transactions).",
+    "key_invariants": [
+      "No absolute overwrites from external storefront webhooks.",
+      "Constant-time HMAC validation before processing any payload.",
+      "Strict token bucket rate limiting to prevent HTTP 429 errors.",
+      "Automated 15-minute continuous drift reconciliation loop."
+    ]
+  },
+  "decisions_log": [
+    {
+      "id": "DEC-001",
+      "topic": "Delta Ledger",
+      "decision": "Use quantityDelta (-N/+N) instead of absolute stock sets."
+    },
+    {
+      "id": "DEC-002",
+      "topic": "HMAC Verification",
+      "decision": "Enforce crypto.timingSafeEqual on all webhook signatures."
+    },
+    {
+      "id": "DEC-003",
+      "topic": "Node.js ESM & TS",
+      "decision": "Node.js 24 native ES module execution with zero-transpiler latency."
+    }
+  ],
+  "workspace_taxonomy": {
+    "agentic_framework": {
+      "control_plane": ".agent/",
+      "specialist_roles": ".agents/",
+      "reusable_skills": ".skills/"
+    },
+    "session_knowledge_and_evidence": [
+      "research/",
+      "product/",
+      "design/",
+      "architecture/",
+      "testing/"
+    ],
+    "product_implementation": [
+      "src/",
+      "tests/",
+      "scripts/"
+    ],
+    "governance_and_runbooks": [
+      "HANDOFF.md",
+      "docs/"
+    ]
+  }
+}

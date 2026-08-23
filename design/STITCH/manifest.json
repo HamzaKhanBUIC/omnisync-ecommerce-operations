@@ -1,0 +1,38 @@
+{
+  "project_name": "Ecommerce Operations Platform",
+  "version": "1.0.0",
+  "design_system": {
+    "theme": "dark-operations",
+    "grid_rhythm_px": 4,
+    "colors": {
+      "bg_primary": "#0F172A",
+      "bg_secondary": "#1E293B",
+      "text_primary": "#F8FAFC",
+      "status_emerald": "#10B981",
+      "status_amber": "#F59E0B",
+      "status_rose": "#EF4444"
+    },
+    "components": [
+      {
+        "id": "comp_metric_card",
+        "name": "MetricCard",
+        "description": "High-impact KPI summary card with trend indicator"
+      },
+      {
+        "id": "comp_status_pill",
+        "name": "StatusPill",
+        "description": "Color-coded status badge with pulse indicator"
+      },
+      {
+        "id": "comp_ledger_grid",
+        "name": "VirtualizedLedgerTable",
+        "description": "High-density data grid supporting 10k+ SKU rows"
+      },
+      {
+        "id": "comp_drift_modal",
+        "name": "DiscrepancyResolutionModal",
+        "description": "Side-by-side store stock comparison and 1-click self-healing modal"
+      }
+    ]
+  }
+}
