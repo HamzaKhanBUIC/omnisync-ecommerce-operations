@@ -1,0 +1,30 @@
+{
+  "name": "ecommerce-operations",
+  "version": "1.0.0",
+  "description": "Multi-Channel Ecommerce Operations & Inventory Reconciliation Platform",
+  "main": "dist/src/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test tests/unit/*.test.ts tests/integration/*.test.ts tests/security/*.test.ts tests/simulations/*.test.ts",
+    "test:security": "node --test tests/security/security.test.ts",
+    "test:simulations": "node --test tests/simulations/burstTraffic.test.ts tests/simulations/concurrency.test.ts",
+    "test:unit": "node --test tests/unit/*.test.ts",
+    "test:integration": "node --test tests/integration/*.test.ts",
+    "start": "node src/index.ts"
+  },
+  "keywords": [
+    "ecommerce",
+    "shopify",
+    "woocommerce",
+    "inventory-sync",
+    "reconciliation",
+    "rate-limiting"
+  ],
+  "author": "AI Empire Lead Architect",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "typescript": "^7.0.2"
+  }
+}
