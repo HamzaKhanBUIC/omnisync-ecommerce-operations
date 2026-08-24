@@ -134,7 +134,16 @@ export class EcommerceApiServer {
         return;
       }
 
-      // 5. Manual Inventory Adjustment
+      // 5. Immutable Audit Trail Log
+      if (pathname === '/api/v1/audit' && method === 'GET') {
+        const sku = parsedUrl.searchParams.get('sku') || undefined;
+        const trail = this.orchestrator.ledger.getAuditTrail(sku);
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ total: trail.length, auditTrail: trail }));
+        return;
+      }
+
+      // 6. Manual Inventory Adjustment
       if (pathname === '/api/v1/inventory/adjust' && method === 'POST') {
         const body = await parseJsonBody(req);
         const { masterSku, quantityDelta, reason, referenceId, preferredLocation } = body;
@@ -173,7 +182,7 @@ export class EcommerceApiServer {
         return;
       }
 
-      // 6. Warehouse Location Stock Transfer
+      // 7. Warehouse Location Stock Transfer
       if (pathname === '/api/v1/inventory/transfer' && method === 'POST') {
         const body = await parseJsonBody(req);
         const { masterSku, fromLocation, toLocation, quantity } = body;
@@ -202,7 +211,7 @@ export class EcommerceApiServer {
         return;
       }
 
-      // 7. Drift Reconciliation Trigger
+      // 8. Drift Reconciliation Trigger
       if (pathname === '/api/v1/reconciliation/trigger' && method === 'POST') {
         const auditResult = await this.orchestrator.runDriftAudit();
         res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -210,7 +219,7 @@ export class EcommerceApiServer {
         return;
       }
 
-      // 8. Circuit Breakers Status
+      // 9. Circuit Breakers Status
       if (pathname === '/api/v1/circuit-breakers' && method === 'GET') {
         const breakerStatuses: Record<string, string> = {};
         for (const [storeId, breaker] of this.orchestrator.circuitBreakers.entries()) {
@@ -221,7 +230,7 @@ export class EcommerceApiServer {
         return;
       }
 
-      // 9. Shopify Webhook Ingest
+      // 10. Shopify Webhook Ingest
       if (pathname.startsWith('/api/v1/webhooks/shopify') && method === 'POST') {
         const rawBody = await readRawBody(req);
         const sig = (req.headers['x-shopify-hmac-sha256'] as string) || '';
@@ -248,7 +257,7 @@ export class EcommerceApiServer {
         return;
       }
 
-      // 10. WooCommerce Webhook Ingest
+      // 11. WooCommerce Webhook Ingest
       if (pathname.startsWith('/api/v1/webhooks/woocommerce') && method === 'POST') {
         const rawBody = await readRawBody(req);
         const sig = (req.headers['x-wc-webhook-signature'] as string) || '';
@@ -275,7 +284,7 @@ export class EcommerceApiServer {
         return;
       }
 
-      // 11. Static File Serving
+      // 12. Static File Serving
       if (method === 'GET' || method === 'HEAD') {
         let filePath = path.join(this.frontendDir, pathname === '/' ? 'index.html' : pathname);
         filePath = path.normalize(filePath);

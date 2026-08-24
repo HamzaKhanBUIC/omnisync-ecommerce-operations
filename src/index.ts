@@ -2,15 +2,55 @@ import { MasterLedgerEngine } from './backend/ledgerEngine.ts';
 import { EcommerceOperationsOrchestrator } from './workflows/orchestrator.ts';
 import { MockShopifyAdapter, MockWooCommerceAdapter } from './integrations/channelAdapter.ts';
 import { EcommerceApiServer, createEcommerceServer } from './backend/server.ts';
-import type { Store } from './shared/types.ts';
+import type { Store, NormalizedOrder } from './shared/types.ts';
 
 export function initializePlatform() {
-  // 1. Initialize Master Ledger Authority
+  // 1. Initialize Master Ledger Authority with realistic catalog fixtures
   const ledger = new MasterLedgerEngine();
-  ledger.registerProduct('SHIRT-BLK-M', 'Classic Black Cotton T-Shirt (M)', 100);
-  ledger.registerProduct('HOODIE-GRY-L', 'Heavyweight Fleece Hoodie (L)', 50);
-  ledger.registerProduct('WATCH-GLD', 'Minimalist Gold Quartz Watch', 25);
-  ledger.registerProduct('CAP-NVY', 'Embroidered Navy Dad Cap', 75);
+  ledger.registerProduct('SHIRT-BLK-M', 'Classic Black Cotton T-Shirt (M)', 100, {
+    category: 'Apparel',
+    price: 29.99,
+    barcode: 'UPC-680150366794',
+    safetyStock: 15,
+    locations: { MAIN_US_3PL: 50, WEST_US_HUB: 20, EU_CENTRAL: 20, UK_FULFILLMENT: 10 }
+  });
+
+  ledger.registerProduct('HOODIE-GRY-L', 'Heavyweight Fleece Hoodie (L)', 50, {
+    category: 'Outerwear',
+    price: 79.99,
+    barcode: 'UPC-545815414826',
+    safetyStock: 10,
+    locations: { MAIN_US_3PL: 25, WEST_US_HUB: 10, EU_CENTRAL: 10, UK_FULFILLMENT: 5 }
+  });
+
+  ledger.registerProduct('WATCH-GLD', 'Minimalist Gold Quartz Watch', 25, {
+    category: 'Horology',
+    price: 199.99,
+    barcode: 'UPC-613548273329',
+    safetyStock: 5,
+    locations: { MAIN_US_3PL: 15, WEST_US_HUB: 5, EU_CENTRAL: 5, UK_FULFILLMENT: 0 }
+  });
+
+  ledger.registerProduct('CAP-NVY', 'Embroidered Navy Dad Cap', 75, {
+    category: 'Accessories',
+    price: 24.99,
+    barcode: 'UPC-497517412603',
+    safetyStock: 10,
+    locations: { MAIN_US_3PL: 40, WEST_US_HUB: 15, EU_CENTRAL: 15, UK_FULFILLMENT: 5 }
+  });
+
+  ledger.registerProduct('SUMMER-COMBO-01', 'Ultimate Summer Combo Bundle (T-Shirt + Cap)', 75, {
+    category: 'Bundles',
+    price: 49.99,
+    barcode: 'UPC-882910471920',
+    safetyStock: 10,
+    isBundle: true,
+    bundleRecipe: [
+      { componentSku: 'SHIRT-BLK-M', quantityRequired: 1 },
+      { componentSku: 'CAP-NVY', quantityRequired: 1 }
+    ],
+    locations: { MAIN_US_3PL: 40, WEST_US_HUB: 15, EU_CENTRAL: 15, UK_FULFILLMENT: 5 }
+  });
 
   // 2. Initialize Operations Orchestrator
   const orchestrator = new EcommerceOperationsOrchestrator(ledger);
@@ -40,25 +80,22 @@ export function initializePlatform() {
   orchestrator.registerStore(wooStoreMeta);
 
   // 4. Initialize Channel Adapters with Initial Stock
-  const shopifyAdapter = new MockShopifyAdapter('store_shopify_us', {
+  const initialStock = {
     'SHIRT-BLK-M': 100,
     'HOODIE-GRY-L': 50,
     'WATCH-GLD': 25,
-    'CAP-NVY': 75
-  });
+    'CAP-NVY': 75,
+    'SUMMER-COMBO-01': 75
+  };
 
-  const wooAdapter = new MockWooCommerceAdapter('store_woo_eu', {
-    'SHIRT-BLK-M': 100,
-    'HOODIE-GRY-L': 50,
-    'WATCH-GLD': 25,
-    'CAP-NVY': 75
-  });
+  const shopifyAdapter = new MockShopifyAdapter('store_shopify_us', { ...initialStock });
+  const wooAdapter = new MockWooCommerceAdapter('store_woo_eu', { ...initialStock });
 
   orchestrator.registerAdapter(shopifyAdapter);
   orchestrator.registerAdapter(wooAdapter);
 
   // 5. Establish Channel SKU Mappings with IN_SYNC status
-  const skus = ['SHIRT-BLK-M', 'HOODIE-GRY-L', 'WATCH-GLD', 'CAP-NVY'];
+  const skus = ['SHIRT-BLK-M', 'HOODIE-GRY-L', 'WATCH-GLD', 'CAP-NVY', 'SUMMER-COMBO-01'];
   for (const sku of skus) {
     orchestrator.addMapping({
       storeId: 'store_shopify_us',
@@ -79,6 +116,53 @@ export function initializePlatform() {
       channelStock: ledger.getProduct(sku)?.currentStock ?? 100,
       status: 'IN_SYNC'
     });
+  }
+
+  // 6. Seed Initial Normalized Orders for Operations Console
+  const sampleOrders: NormalizedOrder[] = [
+    {
+      orderId: 'ord_10042',
+      storeId: 'store_shopify_us',
+      orderNumber: 'SHP-1042',
+      customerName: 'Marcus Vance',
+      customerEmail: 'm.vance@example.com',
+      shippingCountry: 'US',
+      items: [{ sku: 'SHIRT-BLK-M', quantity: 2, price: 29.99, title: 'Classic Black Cotton T-Shirt (M)' }],
+      totalPrice: 59.98,
+      currency: 'USD',
+      status: 'SYNCED',
+      createdAt: new Date(Date.now() - 1000 * 60 * 3).toISOString()
+    },
+    {
+      orderId: 'ord_10041',
+      storeId: 'store_woo_eu',
+      orderNumber: 'WC-2089',
+      customerName: 'Elena Rostova',
+      customerEmail: 'elena.r@berlin.de',
+      shippingCountry: 'DE',
+      items: [{ sku: 'HOODIE-GRY-L', quantity: 1, price: 79.99, title: 'Heavyweight Fleece Hoodie (L)' }],
+      totalPrice: 79.99,
+      currency: 'EUR',
+      status: 'SYNCED',
+      createdAt: new Date(Date.now() - 1000 * 60 * 11).toISOString()
+    },
+    {
+      orderId: 'ord_10040',
+      storeId: 'store_shopify_us',
+      orderNumber: 'SHP-1041',
+      customerName: 'Liam Harrison',
+      customerEmail: 'liam.h@london.uk',
+      shippingCountry: 'GB',
+      items: [{ sku: 'WATCH-GLD', quantity: 1, price: 199.99, title: 'Minimalist Gold Quartz Watch' }],
+      totalPrice: 199.99,
+      currency: 'GBP',
+      status: 'SPLIT_ROUTED',
+      createdAt: new Date(Date.now() - 1000 * 60 * 25).toISOString()
+    }
+  ];
+
+  for (const ord of sampleOrders) {
+    orchestrator.orders.push(ord);
   }
 
   return { ledger, orchestrator, shopifyAdapter, wooAdapter };
