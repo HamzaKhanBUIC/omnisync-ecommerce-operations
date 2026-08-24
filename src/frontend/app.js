@@ -6,6 +6,15 @@ const API_BASE = window.location.origin.includes('localhost') || window.location
   ? window.location.origin
   : 'http://localhost:3000';
 
+// Pre-seeded natural wave data for chart
+function generateInitialWave(base, amp) {
+  const arr = [];
+  for (let i = 0; i < 30; i++) {
+    arr.push(base + Math.sin(i * 0.45) * amp + (Math.random() * 3 - 1.5));
+  }
+  return arr;
+}
+
 // Global Reactive State
 const state = {
   activeView: 'overview',
@@ -20,8 +29,8 @@ const state = {
     woo: { current: 25, max: 25 }
   },
   chartData: {
-    inbound: Array(30).fill(12),
-    outbound: Array(30).fill(10)
+    inbound: generateInitialWave(16, 7),
+    outbound: generateInitialWave(14, 6)
   }
 };
 
@@ -119,9 +128,21 @@ async function loadInitialData() {
       state.orders = data.orders || [];
       renderOrdersGrid();
       renderOverviewOrders();
+      updateKpiCards();
     }
   } catch (e) {
     generateMockOrders();
+  }
+
+  try {
+    const auditRes = await fetch(`${API_BASE}/api/v1/audit`);
+    if (auditRes.ok) {
+      const data = await auditRes.json();
+      state.auditTrail = data.auditTrail || [];
+      renderAuditGrid();
+    }
+  } catch (e) {
+    console.log('Using local audit trail.');
   }
 }
 
@@ -192,7 +213,7 @@ function generateMockOrders() {
       customerName: 'Marcus Vance',
       customerEmail: 'm.vance@example.com',
       shippingCountry: 'US',
-      items: [{ sku: 'SHIRT-BLK-M', quantity: 2, price: 29.99, title: 'Black T-Shirt' }],
+      items: [{ sku: 'SHIRT-BLK-M', quantity: 2, price: 29.99, title: 'Classic Black Cotton T-Shirt (M)' }],
       totalPrice: 59.98,
       currency: 'USD',
       status: 'SYNCED',
@@ -205,7 +226,7 @@ function generateMockOrders() {
       customerName: 'Elena Rostova',
       customerEmail: 'elena.r@berlin.de',
       shippingCountry: 'DE',
-      items: [{ sku: 'HOODIE-GRY-L', quantity: 1, price: 79.99, title: 'Fleece Hoodie' }],
+      items: [{ sku: 'HOODIE-GRY-L', quantity: 1, price: 79.99, title: 'Heavyweight Fleece Hoodie (L)' }],
       totalPrice: 79.99,
       currency: 'EUR',
       status: 'SYNCED',
@@ -218,7 +239,7 @@ function generateMockOrders() {
       customerName: 'Liam Harrison',
       customerEmail: 'liam.h@london.uk',
       shippingCountry: 'GB',
-      items: [{ sku: 'WATCH-GLD', quantity: 1, price: 199.99, title: 'Gold Watch' }],
+      items: [{ sku: 'WATCH-GLD', quantity: 1, price: 199.99, title: 'Minimalist Gold Quartz Watch' }],
       totalPrice: 199.99,
       currency: 'GBP',
       status: 'SPLIT_ROUTED',
@@ -268,6 +289,21 @@ function updateKpiCards() {
 
   const ordCount = document.getElementById('navOrdersCount');
   if (ordCount) ordCount.textContent = state.orders.length;
+
+  const ovOrders = document.getElementById('overviewKpiOrders');
+  if (ovOrders) ovOrders.textContent = (state.orders.length || 3).toLocaleString();
+}
+
+function getCategoryBadge(cat) {
+  const catMap = {
+    Apparel: 'tag-indigo',
+    Outerwear: 'tag-cyan',
+    Horology: 'tag-amber',
+    Accessories: 'tag-green',
+    Bundles: 'tag-rose'
+  };
+  const tagClass = catMap[cat] || 'tag-cyan';
+  return `<span class="badge-tag ${tagClass}" style="white-space: nowrap;">${cat || 'General'}</span>`;
 }
 
 function renderInventoryGrid() {
@@ -276,11 +312,16 @@ function renderInventoryGrid() {
 
   const query = (document.getElementById('invSearchInput')?.value || '').toLowerCase();
   const cat = document.getElementById('invCatSelect')?.value || 'ALL';
+  const stockLvl = document.getElementById('invStockSelect')?.value || 'ALL';
 
   const filtered = state.inventory.filter(item => {
     const matchQ = !query || item.masterSku.toLowerCase().includes(query) || item.title.toLowerCase().includes(query);
     const matchCat = cat === 'ALL' || item.category === cat || (cat === 'Bundles' && item.isBundle);
-    return matchQ && matchCat;
+    const matchStock = stockLvl === 'ALL'
+      || (stockLvl === 'HEALTHY' && item.currentStock > item.safetyStockThreshold)
+      || (stockLvl === 'LOW' && item.currentStock <= item.safetyStockThreshold && item.currentStock > 0)
+      || (stockLvl === 'DEPLETED' && item.currentStock === 0);
+    return matchQ && matchCat && matchStock;
   });
 
   tbody.innerHTML = filtered.map(item => {
@@ -289,24 +330,25 @@ function renderInventoryGrid() {
       : 'text-emerald';
 
     const locs = item.locations || { MAIN_US_3PL: item.currentStock };
-    const locPills = Object.entries(locs).map(([k, v]) => `
-      <span class="hub-tag">${k.replace('_', ' ')}: <b>${v}</b></span>
-    `).join('');
+    const locPills = Object.entries(locs).map(([k, v]) => {
+      const label = k.replace('MAIN_', '').replace('_FULFILLMENT', '').replace('_HUB', '').replace('_', ' ');
+      return `<span class="hub-tag" title="${k}">${label}: <b>${v}</b></span>`;
+    }).join('');
 
     return `
       <tr>
         <td class="font-mono">
-          <span style="font-weight: 700; color: var(--text-primary); cursor: pointer;" onclick="inspectSku('${item.masterSku}')">
+          <span style="font-weight: 700; color: var(--text-primary); cursor: pointer;" onclick="inspectSku('${item.masterSku}')" title="Inspect Master SKU Details">
             ${item.masterSku}
           </span>
         </td>
         <td>
-          <div style="font-weight: 600; color: var(--text-primary);">${item.title}</div>
-          <div style="font-size: 10px; color: var(--text-muted); font-family: var(--font-mono);">${item.barcode || 'UPC-STANDARD-99'}</div>
+          <div style="font-weight: 600; color: var(--text-primary); cursor: pointer;" onclick="inspectSku('${item.masterSku}')">${item.title}</div>
+          <div style="font-size: 10.5px; color: var(--text-muted); font-family: var(--font-mono);">${item.barcode || 'UPC-94827103'}</div>
         </td>
-        <td><span class="badge-tag tag-cyan">${item.category || 'General'}</span></td>
-        <td class="font-mono" style="text-align: right;">$${Number(item.price || 0).toFixed(2)}</td>
-        <td class="font-mono ${stockClass}" style="text-align: right; font-size: 14px; font-weight: 800;">
+        <td>${getCategoryBadge(item.category)}</td>
+        <td class="font-mono" style="text-align: right; font-weight: 600;">$${Number(item.price || 0).toFixed(2)}</td>
+        <td class="font-mono ${stockClass}" style="text-align: right; font-size: 15px; font-weight: 800;">
           ${item.currentStock}
         </td>
         <td>
@@ -316,7 +358,7 @@ function renderInventoryGrid() {
           <span class="status-pill pill-emerald">2 STORES IN SYNC</span>
         </td>
         <td style="text-align: center;">
-          <button class="action-btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="openAdjustModalForSku('${item.masterSku}')">
+          <button class="action-btn btn-secondary" style="padding: 5px 12px; font-size: 11.5px;" onclick="openAdjustModalForSku('${item.masterSku}')">
             Adjust
           </button>
         </td>
@@ -329,22 +371,39 @@ function renderOrdersGrid() {
   const tbody = document.getElementById('ordersGridBody');
   if (!tbody) return;
 
-  tbody.innerHTML = state.orders.map(o => `
+  const query = (document.getElementById('orderSearchInput')?.value || '').toLowerCase();
+  const statusFilter = document.getElementById('orderStatusSelect')?.value || 'ALL';
+
+  const filtered = state.orders.filter(o => {
+    const matchQ = !query
+      || (o.orderNumber && o.orderNumber.toLowerCase().includes(query))
+      || (o.orderId && o.orderId.toLowerCase().includes(query))
+      || (o.customerName && o.customerName.toLowerCase().includes(query))
+      || (o.customerEmail && o.customerEmail.toLowerCase().includes(query));
+    const matchStatus = statusFilter === 'ALL' || o.status === statusFilter;
+    return matchQ && matchStatus;
+  });
+
+  tbody.innerHTML = filtered.map(o => `
     <tr>
-      <td class="font-mono"><b>${o.orderNumber || o.orderId}</b></td>
+      <td class="font-mono">
+        <span style="font-weight: 700; color: var(--text-primary); cursor: pointer;" onclick="inspectOrderDetails('${o.orderId}')">
+          ${o.orderNumber || o.orderId}
+        </span>
+      </td>
       <td>
         <span class="store-badge-mini ${o.storeId.includes('woo') ? 'badge-woo' : 'badge-shopify'}">
           ${o.storeId.includes('woo') ? 'WOOCOMMERCE' : 'SHOPIFY'}
         </span>
       </td>
       <td>
-        <div style="font-weight: 600;">${o.customerName || 'Customer'}</div>
-        <div style="font-size: 10px; color: var(--text-muted);">${o.customerEmail || 'n/a'}</div>
+        <div style="font-weight: 600; color: var(--text-primary);">${o.customerName || 'Direct Customer'}</div>
+        <div style="font-size: 10.5px; color: var(--text-muted); font-family: var(--font-mono);">${o.customerEmail || 'n/a'}</div>
       </td>
       <td>
-        ${(o.items || []).map(i => `<span class="font-mono">${i.quantity}x ${i.sku}</span>`).join(', ')}
+        ${(o.items || []).map(i => `<span class="font-mono" style="font-size: 12px; background: var(--bg-well); padding: 2px 6px; border-radius: 4px; border: 1px solid var(--border-subtle);">${i.quantity}x ${i.sku}</span>`).join(' ')}
       </td>
-      <td class="font-mono" style="text-align: right;">$${Number(o.totalPrice || 0).toFixed(2)}</td>
+      <td class="font-mono" style="text-align: right; font-weight: 700; color: var(--text-primary);">$${Number(o.totalPrice || 0).toFixed(2)}</td>
       <td><span class="hub-tag">${o.shippingCountry || 'US'} HUB</span></td>
       <td style="text-align: center;">
         <span class="status-pill ${o.status === 'FAILED_DLQ' ? 'pill-rose' : 'pill-emerald'}">
@@ -352,7 +411,7 @@ function renderOrdersGrid() {
         </span>
       </td>
       <td style="text-align: center;">
-        <button class="action-btn btn-ghost" onclick="inspectOrderDetails('${o.orderId}')">Inspect</button>
+        <button class="action-btn btn-ghost" style="padding: 4px 8px; font-size: 11.5px;" onclick="inspectOrderDetails('${o.orderId}')">Inspect</button>
       </td>
     </tr>
   `).join('');
@@ -364,15 +423,23 @@ function renderOverviewOrders() {
 
   tbody.innerHTML = state.orders.slice(0, 5).map(o => `
     <tr>
-      <td class="font-mono"><b>${o.orderNumber || o.orderId}</b></td>
+      <td class="font-mono">
+        <span style="font-weight: 700; color: var(--text-primary); cursor: pointer;" onclick="inspectOrderDetails('${o.orderId}')">
+          ${o.orderNumber || o.orderId}
+        </span>
+      </td>
       <td>
         <span class="store-badge-mini ${o.storeId.includes('woo') ? 'badge-woo' : 'badge-shopify'}">
           ${o.storeId.includes('woo') ? 'WOOCOMMERCE' : 'SHOPIFY'}
         </span>
       </td>
-      <td>${o.customerName || 'Customer'}</td>
-      <td>${(o.items || []).map(i => `${i.quantity}x ${i.sku}`).join(', ')}</td>
-      <td class="font-mono" style="text-align: right;">$${Number(o.totalPrice || 0).toFixed(2)}</td>
+      <td>
+        <div style="font-weight: 600;">${o.customerName || 'Customer'}</div>
+      </td>
+      <td>
+        ${(o.items || []).map(i => `<span class="font-mono">${i.quantity}x ${i.sku}</span>`).join(', ')}
+      </td>
+      <td class="font-mono" style="text-align: right; font-weight: 700;">$${Number(o.totalPrice || 0).toFixed(2)}</td>
       <td style="text-align: center;"><span class="status-pill pill-emerald">${o.status}</span></td>
     </tr>
   `).join('');
@@ -382,16 +449,27 @@ function renderAuditGrid() {
   const tbody = document.getElementById('auditGridBody');
   if (!tbody) return;
 
+  if (!state.auditTrail || state.auditTrail.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="7" style="text-align: center; color: var(--text-muted); padding: 30px 0;">
+          No mutation records yet. All storefronts in 100% verified parity.
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
   tbody.innerHTML = state.auditTrail.map(a => `
     <tr>
       <td class="font-mono" style="color: var(--text-muted); font-size: 11px;">${a.timestamp.substring(11, 19)}</td>
       <td class="font-mono"><b>${a.masterSku}</b></td>
       <td><span class="badge-tag tag-cyan">${a.reason}</span></td>
       <td>${a.originStoreId || 'LOCAL_ENGINE'}</td>
-      <td class="font-mono ${a.quantityDelta >= 0 ? 'text-emerald' : 'text-rose'}" style="text-align: right;">
+      <td class="font-mono ${a.quantityDelta >= 0 ? 'text-emerald' : 'text-rose'}" style="text-align: right; font-weight: 700;">
         ${a.quantityDelta > 0 ? '+' : ''}${a.quantityDelta}
       </td>
-      <td class="font-mono" style="text-align: right;"><b>${a.resultingStock}</b></td>
+      <td class="font-mono" style="text-align: right; font-weight: 700; color: var(--text-primary);">${a.resultingStock}</td>
       <td class="font-mono" style="color: var(--text-muted); font-size: 11px;">${a.referenceId || 'N/A'}</td>
     </tr>
   `).join('');
@@ -413,18 +491,24 @@ function initCanvasChart() {
     // Draw grid lines
     ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
     ctx.lineWidth = 1;
-    for (let y = 40; y < h; y += 40) {
+    for (let y = 35; y < h; y += 35) {
       ctx.beginPath();
       ctx.moveTo(0, y);
       ctx.lineTo(w, y);
       ctx.stroke();
     }
 
-    // Inbound curve (Emerald)
-    drawCurve(ctx, state.chartData.inbound, '#10B981', 'rgba(16, 185, 129, 0.12)', w, h);
+    // Inbound curve (Emerald with subtle gradient fill)
+    const emGrad = ctx.createLinearGradient(0, 0, 0, h);
+    emGrad.addColorStop(0, 'rgba(16, 185, 129, 0.22)');
+    emGrad.addColorStop(1, 'rgba(16, 185, 129, 0.00)');
+    drawCurve(ctx, state.chartData.inbound, '#10B981', emGrad, w, h);
     
-    // Outbound curve (Cyan)
-    drawCurve(ctx, state.chartData.outbound, '#06B6D4', 'rgba(6, 182, 212, 0.08)', w, h);
+    // Outbound curve (Cyan with subtle gradient fill)
+    const cyGrad = ctx.createLinearGradient(0, 0, 0, h);
+    cyGrad.addColorStop(0, 'rgba(56, 189, 248, 0.16)');
+    cyGrad.addColorStop(1, 'rgba(56, 189, 248, 0.00)');
+    drawCurve(ctx, state.chartData.outbound, '#38BDF8', cyGrad, w, h);
 
     requestAnimationFrame(draw);
   }
@@ -461,10 +545,10 @@ function initCanvasChart() {
 function tickEngine() {
   // Slide chart data
   state.chartData.inbound.shift();
-  state.chartData.inbound.push(10 + Math.floor(Math.random() * 14));
+  state.chartData.inbound.push(11 + Math.floor(Math.random() * 13));
 
   state.chartData.outbound.shift();
-  state.chartData.outbound.push(8 + Math.floor(Math.random() * 12));
+  state.chartData.outbound.push(9 + Math.floor(Math.random() * 11));
 
   // Refill tokens
   state.rateLimits.shopify.current = Math.min(40, state.rateLimits.shopify.current + 2);
@@ -531,6 +615,7 @@ function initModalsAndDrawers() {
         handleIncomingStockDelta({ masterSku: sku, resultingStock: data.newStock, quantityDelta: delta });
         document.getElementById('adjustModal').classList.add('hidden');
         showToast(`Stock updated for ${sku}: ${delta > 0 ? '+' : ''}${delta}`, 'success');
+        loadInitialData();
       }
     } catch (e) {
       const p = state.inventory.find(i => i.masterSku === sku);
@@ -546,9 +631,13 @@ function initModalsAndDrawers() {
   document.getElementById('autoHealAllBtn')?.addEventListener('click', triggerReconciliation);
   document.getElementById('triggerAuditScanBtn')?.addEventListener('click', triggerReconciliation);
 
-  // Search Listeners
+  // Search & Filter Listeners
   document.getElementById('invSearchInput')?.addEventListener('input', renderInventoryGrid);
   document.getElementById('invCatSelect')?.addEventListener('change', renderInventoryGrid);
+  document.getElementById('invStockSelect')?.addEventListener('change', renderInventoryGrid);
+
+  document.getElementById('orderSearchInput')?.addEventListener('input', renderOrdersGrid);
+  document.getElementById('orderStatusSelect')?.addEventListener('change', renderOrdersGrid);
 
   // Chaos Buttons
   document.getElementById('launchFlashSaleBtn')?.addEventListener('click', runFlashSaleSim);
@@ -578,15 +667,18 @@ window.inspectSku = function(sku) {
   content.innerHTML = `
     <div class="spec-grid">
       <div class="spec-item"><span class="spec-label">Master Physical Stock</span><span class="spec-val font-mono text-emerald" style="font-size: 16px;">${item.currentStock} units</span></div>
-      <div class="spec-item"><span class="spec-label">Unit Price</span><span class="spec-val font-mono">$${item.price}</span></div>
+      <div class="spec-item"><span class="spec-label">Unit Price</span><span class="spec-val font-mono">$${Number(item.price).toFixed(2)}</span></div>
       <div class="spec-item"><span class="spec-label">Safety Stock Limit</span><span class="spec-val font-mono">${item.safetyStockThreshold}</span></div>
       <div class="spec-item"><span class="spec-label">Category</span><span class="spec-val">${item.category}</span></div>
     </div>
-    <div style="font-weight: 700; margin-top: 10px;">Warehouse Hub Allocations</div>
+    <div style="font-weight: 700; margin-top: 10px; font-family: var(--font-display);">Warehouse Hub Allocations</div>
     <div class="spec-grid">
       ${Object.entries(item.locations || {}).map(([k, v]) => `
         <div class="spec-item"><span class="spec-label">${k}</span><span class="spec-val font-mono">${v} units</span></div>
       `).join('')}
+    </div>
+    <div style="display: flex; gap: 10px; margin-top: 12px;">
+      <button class="action-btn btn-primary" onclick="openAdjustModalForSku('${item.masterSku}'); document.getElementById('slideOverBackdrop').classList.add('hidden');">Adjust Stock</button>
     </div>
   `;
 
@@ -605,14 +697,14 @@ window.inspectOrderDetails = function(orderId) {
     <div class="spec-grid">
       <div class="spec-item"><span class="spec-label">Customer Name</span><span class="spec-val">${ord.customerName || 'Direct'}</span></div>
       <div class="spec-item"><span class="spec-label">Customer Email</span><span class="spec-val">${ord.customerEmail || 'n/a'}</span></div>
-      <div class="spec-item"><span class="spec-label">Total Settled</span><span class="spec-val font-mono text-emerald">$${ord.totalPrice} ${ord.currency}</span></div>
+      <div class="spec-item"><span class="spec-label">Total Settled</span><span class="spec-val font-mono text-emerald">$${Number(ord.totalPrice).toFixed(2)} ${ord.currency}</span></div>
       <div class="spec-item"><span class="spec-label">Status</span><span class="spec-val font-mono text-emerald">${ord.status}</span></div>
     </div>
-    <div style="font-weight: 700; margin-top: 10px;">Line Items</div>
+    <div style="font-weight: 700; margin-top: 10px; font-family: var(--font-display);">Purchased Items</div>
     ${(ord.items || []).map(i => `
-      <div style="background: var(--bg-input); padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); display: flex; justify-content: space-between;">
+      <div style="background: var(--bg-well); padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
         <span><b>${i.quantity}x</b> ${i.title || i.sku}</span>
-        <span class="font-mono">$${(i.price * i.quantity).toFixed(2)}</span>
+        <span class="font-mono font-bold">$${(i.price * i.quantity).toFixed(2)}</span>
       </div>
     `).join('')}
   `;
@@ -631,6 +723,7 @@ async function triggerReconciliation() {
       } else {
         showToast('All channel stores in 100% parity with Master Ledger.', 'success');
       }
+      loadInitialData();
     }
   } catch (e) {
     showToast('Audit complete. Store parity verified.', 'success');
@@ -642,7 +735,7 @@ async function triggerReconciliation() {
 // ==========================================================================
 function runFlashSaleSim() {
   const box = document.getElementById('chaosOutputConsole');
-  box.innerHTML = `<div style="color: var(--cyan);">[CHAOS] Inundating engine with 100 concurrent order checkouts...</div>`;
+  box.innerHTML = `<div style="color: var(--cyan); font-weight: 700;">[CHAOS] Inundating engine with 100 concurrent order checkout webhooks...</div>`;
 
   let fulfilled = 0;
   for (let i = 1; i <= 100; i++) {
@@ -655,14 +748,14 @@ function runFlashSaleSim() {
         box.innerHTML += `<div style="color: var(--text-muted);">[REJECT 409] Order #${2000 + i} from ${store} -> Insufficient stock (Zero Oversell Invariant Enforced)</div>`;
       }
       box.scrollTop = box.scrollHeight;
-    }, i * 25);
+    }, i * 20);
   }
 }
 
 function runTamperSim() {
   const box = document.getElementById('chaosOutputConsole');
   box.innerHTML = `
-    <div style="color: var(--rose);">[SECURITY] Injecting forged webhook payload with tampered HMAC signature...</div>
+    <div style="color: var(--rose); font-weight: 700;">[SECURITY] Injecting forged webhook payload with tampered HMAC signature...</div>
     <div style="color: var(--emerald); margin-top: 6px;">[DEFENSE] crypto.timingSafeEqual rejected payload in constant time (HTTP 401 Unauthorized).</div>
   `;
 }
@@ -670,7 +763,7 @@ function runTamperSim() {
 function runReplaySim() {
   const box = document.getElementById('chaosOutputConsole');
   box.innerHTML = `
-    <div style="color: var(--cyan);">[SECURITY] Replaying identical webhook 50 times in 1 second...</div>
+    <div style="color: var(--cyan); font-weight: 700;">[SECURITY] Replaying identical webhook 50 times in 1 second...</div>
     <div>Request #1 -> PROCESSED (Ledger decremented).</div>
     <div>Requests #2..#50 -> DEDUPLICATED by IdempotencyGuard (0 duplicate stock deductions).</div>
     <div style="color: var(--emerald); margin-top: 6px;">[OK] 100% Idempotent Replay Resistance Verified.</div>
@@ -680,7 +773,7 @@ function runReplaySim() {
 function runDriftSim() {
   const box = document.getElementById('chaosOutputConsole');
   box.innerHTML = `
-    <div style="color: var(--amber);">[DRIFT] Injected manual stock drift on WooCommerce (-7 on HOODIE-GRY-L)...</div>
+    <div style="color: var(--amber); font-weight: 700;">[DRIFT] Injected manual stock drift on WooCommerce (-7 on HOODIE-GRY-L)...</div>
     <div>Auditor detected discrepancy. Auto-healing triggered...</div>
     <div style="color: var(--emerald);">[OK] Ledger stock 50 broadcast to WooCommerce. Status restored to IN_SYNC.</div>
   `;
