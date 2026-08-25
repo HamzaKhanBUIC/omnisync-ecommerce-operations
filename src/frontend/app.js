@@ -6,7 +6,6 @@ const API_BASE = window.location.origin.includes('localhost') || window.location
   ? window.location.origin
   : 'http://localhost:3000';
 
-// Pre-seeded natural wave data for chart
 function generateInitialWave(base, amp) {
   const arr = [];
   for (let i = 0; i < 30; i++) {
@@ -43,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCommandPalette();
   initCanvasChart();
   initModalsAndDrawers();
+  initHotkeys();
   
   loadInitialData();
   initSSE();
@@ -69,8 +69,32 @@ function initSidebar() {
     btn.addEventListener('click', () => {
       const view = btn.getAttribute('data-view');
       switchView(view);
+      closeMobileSidebar();
     });
   });
+
+  // Mobile menu handlers
+  const menuBtn = document.getElementById('mobileMenuBtn');
+  const sidebar = document.getElementById('sidebar');
+  const backdrop = document.getElementById('sidebarBackdrop');
+
+  menuBtn?.addEventListener('click', () => {
+    sidebar.classList.toggle('mobile-open');
+    backdrop.classList.toggle('active');
+    backdrop.classList.toggle('hidden');
+  });
+
+  backdrop?.addEventListener('click', closeMobileSidebar);
+}
+
+function closeMobileSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const backdrop = document.getElementById('sidebarBackdrop');
+  if (sidebar) sidebar.classList.remove('mobile-open');
+  if (backdrop) {
+    backdrop.classList.remove('active');
+    backdrop.classList.add('hidden');
+  }
 }
 
 window.switchView = function(viewId) {
@@ -324,6 +348,17 @@ function renderInventoryGrid() {
     return matchQ && matchCat && matchStock;
   });
 
+  if (filtered.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="8" style="text-align: center; color: var(--text-muted); padding: 40px 0;">
+          No catalog items match your search criteria. <button class="action-btn btn-ghost" onclick="document.getElementById('invSearchInput').value=''; renderInventoryGrid();">Clear Filter</button>
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
   tbody.innerHTML = filtered.map(item => {
     const stockClass = item.currentStock <= item.safetyStockThreshold
       ? (item.currentStock === 0 ? 'text-rose' : 'text-amber')
@@ -338,8 +373,8 @@ function renderInventoryGrid() {
     return `
       <tr>
         <td class="font-mono">
-          <span style="font-weight: 700; color: var(--text-primary); cursor: pointer;" onclick="inspectSku('${item.masterSku}')" title="Inspect Master SKU Details">
-            ${item.masterSku}
+          <span style="font-weight: 700; color: var(--text-primary); cursor: pointer;" onclick="copyToClipboard('${item.masterSku}', 'SKU')" title="Click to copy SKU">
+            ${item.masterSku} 📋
           </span>
         </td>
         <td>
@@ -387,8 +422,8 @@ function renderOrdersGrid() {
   tbody.innerHTML = filtered.map(o => `
     <tr>
       <td class="font-mono">
-        <span style="font-weight: 700; color: var(--text-primary); cursor: pointer;" onclick="inspectOrderDetails('${o.orderId}')">
-          ${o.orderNumber || o.orderId}
+        <span style="font-weight: 700; color: var(--text-primary); cursor: pointer;" onclick="copyToClipboard('${o.orderNumber || o.orderId}', 'Order #')">
+          ${o.orderNumber || o.orderId} 📋
         </span>
       </td>
       <td>
@@ -498,13 +533,13 @@ function initCanvasChart() {
       ctx.stroke();
     }
 
-    // Inbound curve (Emerald with subtle gradient fill)
+    // Inbound curve (Emerald with gradient fill)
     const emGrad = ctx.createLinearGradient(0, 0, 0, h);
     emGrad.addColorStop(0, 'rgba(16, 185, 129, 0.22)');
     emGrad.addColorStop(1, 'rgba(16, 185, 129, 0.00)');
     drawCurve(ctx, state.chartData.inbound, '#10B981', emGrad, w, h);
     
-    // Outbound curve (Cyan with subtle gradient fill)
+    // Outbound curve (Cyan with gradient fill)
     const cyGrad = ctx.createLinearGradient(0, 0, 0, h);
     cyGrad.addColorStop(0, 'rgba(56, 189, 248, 0.16)');
     cyGrad.addColorStop(1, 'rgba(56, 189, 248, 0.00)');
@@ -656,6 +691,14 @@ window.setDeltaStep = function(val) {
   document.getElementById('modalAdjustDelta').value = val;
 };
 
+window.copyToClipboard = function(text, label = 'Copied') {
+  navigator.clipboard?.writeText(text).then(() => {
+    showToast(`${label} copied to clipboard: ${text}`, 'success');
+  }).catch(() => {
+    showToast(`Copied: ${text}`, 'success');
+  });
+};
+
 window.inspectSku = function(sku) {
   const item = state.inventory.find(i => i.masterSku === sku);
   if (!item) return;
@@ -679,6 +722,7 @@ window.inspectSku = function(sku) {
     </div>
     <div style="display: flex; gap: 10px; margin-top: 12px;">
       <button class="action-btn btn-primary" onclick="openAdjustModalForSku('${item.masterSku}'); document.getElementById('slideOverBackdrop').classList.add('hidden');">Adjust Stock</button>
+      <button class="action-btn btn-secondary" onclick="copyToClipboard('${item.masterSku}', 'SKU')">Copy Master SKU</button>
     </div>
   `;
 
@@ -710,6 +754,33 @@ window.inspectOrderDetails = function(orderId) {
   `;
 
   document.getElementById('slideOverBackdrop').classList.remove('hidden');
+};
+
+window.simulatePing = function(platform) {
+  showToast(`Ping sent to ${platform.toUpperCase()} webhook gateway. 200 OK.`, 'success');
+  appendTerminalLog(`com.ecom.webhook.ping.${platform}`, {
+    platform,
+    status: 'healthy',
+    latency: '18ms',
+    timestamp: new Date().toISOString()
+  });
+};
+
+window.triggerDriftTest = function(storeId) {
+  showToast(`Simulated drift on ${storeId}. Auditor will auto-repair.`, 'info');
+  const target = state.inventory[0];
+  if (target) {
+    appendTerminalLog('com.ecom.drift.detected', {
+      storeId,
+      masterSku: target.masterSku,
+      channelStock: target.currentStock - 5,
+      ledgerTruthStock: target.currentStock,
+      resolution: 'BROADCAST_FORCE_SYNC'
+    });
+    setTimeout(() => {
+      showToast(`Auto-healed ${target.masterSku} back to Master Ledger (${target.currentStock} units)`, 'success');
+    }, 800);
+  }
 };
 
 async function triggerReconciliation() {
@@ -801,7 +872,7 @@ function appendTerminalLog(type, data) {
 }
 
 // ==========================================================================
-// COMMAND PALETTE
+// COMMAND PALETTE & HOTKEYS
 // ==========================================================================
 function initCommandPalette() {
   const input = document.getElementById('cmdInput');
@@ -844,22 +915,54 @@ function initCommandPalette() {
     document.getElementById('cmdPalette').classList.remove('hidden');
     input?.focus();
   });
+}
+
+function initHotkeys() {
+  document.getElementById('openHotkeysBtn')?.addEventListener('click', () => {
+    document.getElementById('hotkeysModal').classList.remove('hidden');
+  });
+  document.getElementById('hotkeysModalClose')?.addEventListener('click', () => {
+    document.getElementById('hotkeysModal').classList.add('hidden');
+  });
 
   window.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
       e.preventDefault();
       document.getElementById('cmdPalette').classList.toggle('hidden');
-      input?.focus();
+      document.getElementById('cmdInput')?.focus();
+    }
+    if ((e.ctrlKey || e.metaKey) && e.key === 'r') {
+      e.preventDefault();
+      triggerReconciliation();
     }
     if (e.key === 'Escape') {
       document.getElementById('cmdPalette').classList.add('hidden');
       document.getElementById('adjustModal').classList.add('hidden');
       document.getElementById('slideOverBackdrop').classList.add('hidden');
+      document.getElementById('hotkeysModal').classList.add('hidden');
+    }
+    if (e.key === '?' && document.activeElement.tagName !== 'INPUT') {
+      e.preventDefault();
+      document.getElementById('hotkeysModal').classList.toggle('hidden');
     }
     if (e.key === '/' && document.activeElement.tagName !== 'INPUT') {
       e.preventDefault();
       switchView('inventory');
       document.getElementById('invSearchInput')?.focus();
+    }
+    if (document.activeElement.tagName !== 'INPUT') {
+      const viewMap = {
+        '1': 'overview',
+        '2': 'inventory',
+        '3': 'orders',
+        '4': 'channels',
+        '5': 'drift',
+        '6': 'events',
+        '7': 'chaos'
+      };
+      if (viewMap[e.key]) {
+        switchView(viewMap[e.key]);
+      }
     }
   });
 }

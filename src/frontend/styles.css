@@ -1679,3 +1679,187 @@ canvas {
 .toast-success { border-left: 3px solid var(--emerald); }
 .toast-error { border-left: 3px solid var(--rose); }
 .toast-info { border-left: 3px solid var(--cyan); }
+
+/* ==========================================================================
+   SHORTCUTS MODAL & RESPONSIVE EXTENSIONS
+   ========================================================================== */
+.shortcut-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: var(--bg-well);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+}
+.shortcut-row kbd {
+  font-family: var(--font-mono);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
+  color: var(--emerald);
+  font-weight: 700;
+  font-size: 11px;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: var(--radius-xs);
+}
+.mobile-menu-btn svg { width: 20px; height: 20px; }
+.mobile-menu-btn:hover { color: var(--text-primary); }
+
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 45;
+}
+
+@media (max-width: 1024px) {
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .charts-row {
+    grid-template-columns: 1fr;
+  }
+  .channel-deck {
+    grid-template-columns: 1fr;
+  }
+  .chaos-suite-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    transition: transform var(--trans-smooth);
+    box-shadow: var(--shadow-modal);
+  }
+  .sidebar.mobile-open {
+    transform: translateX(0);
+  }
+  .sidebar-backdrop.active {
+    display: block;
+  }
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+  }
+  .header-center {
+    display: none;
+  }
+  .view-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .toolbar-left, .toolbar-right {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .search-box {
+    width: 100%;
+  }
+  .slide-drawer {
+    width: 100vw;
+  }
+  .modal-card {
+    width: 92vw;
+  }
+  .cmd-box {
+    width: 92vw;
+  }
+}
+
+/* RESPONSIVE DESIGN SYSTEM BREAKPOINTS */
+
+/* ==========================================================================
+   RESPONSIVE DESIGN SYSTEM BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .charts-row {
+    grid-template-columns: 1fr !important;
+  }
+  .channel-deck {
+    grid-template-columns: 1fr !important;
+  }
+  .chaos-suite-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 260px !important;
+    transform: translateX(-100%) !important;
+    transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8) !important;
+    z-index: 50 !important;
+  }
+  .sidebar.mobile-open {
+    transform: translateX(0) !important;
+  }
+  .sidebar-backdrop.active {
+    display: block !important;
+  }
+  .mobile-menu-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .header-center {
+    display: none !important;
+  }
+  .top-header {
+    padding: 0 14px !important;
+  }
+  .viewport {
+    padding: 14px !important;
+  }
+  .metrics-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+  .view-toolbar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+  .toolbar-left, .toolbar-right {
+    width: 100% !important;
+    flex-wrap: wrap !important;
+  }
+  .search-box {
+    width: 100% !important;
+  }
+  .slide-drawer {
+    width: 100vw !important;
+  }
+  .modal-card {
+    width: 92vw !important;
+  }
+  .cmd-box {
+    width: 92vw !important;
+  }
+}
