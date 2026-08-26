@@ -1,42 +1,42 @@
-# OmniSync — Self-Healing Multi-Channel Ecommerce Operations Platform
+# OmniSync: Multi-Channel Ecommerce Operations Platform
 
-[![CI/CD Tests](https://img.shields.io/badge/Tests-47%2F47%20Passed-10B981?style=flat-square&logo=node.js)](https://github.com/)
+[![Tests](https://img.shields.io/badge/Tests-47%2F47%20Passed-10B981?style=flat-square&logo=node.js)](https://github.com/)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
 [![Node Version](https://img.shields.io/badge/Node.js-%3E%3D20.0-06B6D4?style=flat-square&logo=node.js)](https://nodejs.org/)
 [![Oversell Rate](https://img.shields.io/badge/Oversell%20Rate-0.000%25-10B981?style=flat-square)](testing/RED_TEAM_REPORT.md)
 [![Sync Latency](https://img.shields.io/badge/Sync%20Latency%20(p95)-280ms-10B981?style=flat-square)](testing/PERFORMANCE_REPORT.md)
 
-**OmniSync** is an enterprise-grade multi-channel inventory orchestration and self-healing operations engine designed for high-velocity merchants selling simultaneously across **Shopify** and **WooCommerce**.
+OmniSync is a multi-channel inventory orchestration and automated reconciliation engine built for high-velocity merchants selling simultaneously across **Shopify** and **WooCommerce**.
 
-Trapped between fragile, polling-based automation tools (Zapier/Make with 5–15 min delay) and bloated $25k/yr legacy ERPs (NetSuite/Cin7), multi-store brands frequently suffer from **ghost inventory**, **flash sale overselling**, and **unreconciled stock drift** requiring hours of manual spreadsheet audits.
+Multi-store brands often struggle with polling delays in automation tools or rigid legacy ERPs, resulting in ghost inventory, overselling during flash sales, and unreconciled stock drift between sales channels.
 
-OmniSync solves this with an **append-only PostgreSQL master delta ledger**, **sub-second bi-directional synchronization**, **proactive token-bucket rate regulation**, and an **autonomous background drift auditor** that continuously auto-repairs cross-store discrepancies.
+OmniSync addresses this with an append-only PostgreSQL master delta ledger, sub-second bi-directional synchronization, token-bucket rate regulation, and an automated background drift auditor that reconciles storefront discrepancies.
 
 ---
 
-## 🖥️ Operations Console Preview
+## Operations Console Preview
 
 ![OmniSync Operations Console](docs/assets/dashboard_preview.png)
 
-*High-density dark operations console featuring real-time telemetry sparklines, DOM virtualized inventory matrix (60 FPS scrolling), multi-location allocations, animated token-bucket gauges, side-by-side drift diffing, live CloudEvents streaming terminal, and an interactive chaos simulator.*
+*High-density operations console featuring real-time telemetry, virtualized inventory matrix, multi-location hub allocations, token-bucket rate gauges, side-by-side drift diffs, and live CloudEvents streaming.*
 
 ---
 
-## ⚡ Key Architectural Capabilities
+## Core Architectural Capabilities
 
 ### 1. Zero Ghost Inventory & Concurrency Protection
-- **Append-Only Delta Ledger**: Deducts stock via atomic relative signed mutations (`quantityDelta = -N/+N`) with row-level optimistic concurrency control (`version`), guaranteeing **0.000% overselling** during simultaneous multi-store checkout bursts.
+- **Append-Only Delta Ledger**: Deducts stock via atomic relative signed mutations (`quantityDelta = -N/+N`) with row-level optimistic concurrency control (`version`), preventing overselling during concurrent checkout bursts.
 - **Idempotency Guard**: 24-hour sliding TTL cache preventing duplicate ledger deductions from replayed webhooks.
 
 ### 2. Sub-Second Cross-Channel Broadcast
-- **Event-Driven CQRS Pipeline**: Ingests orders in `<15ms`, mutates the ledger, and propagates stock updates downstream across all connected channels in **< 420ms (p95)**.
+- **Event-Driven CQRS Pipeline**: Ingests orders in `<15ms`, mutates the ledger, and propagates stock updates downstream across all connected channels in `< 420ms (p95)`.
 
 ### 3. Proactive Client-Side Rate Limiting
 - **Token Bucket Regulation**: Outbound workers regulate API traffic mirroring platform rate constraints (**Shopify 40/80 point leaky bucket**, **WooCommerce 25 req/s batch limit**) with 15% safety headroom, eliminating `HTTP 429 Too Many Requests` exceptions.
 
-### 4. Continuous Drift Detection & 1-Click Auto-Healing
-- **Automated Background Auditor**: Scans live channel stock against Master Ledger truth every 15 minutes.
-- **Autonomous Self-Healing**: Automatically computes required adjustments, syncs drifted storefronts, and records immutable double-entry audit trail logs.
+### 4. Continuous Drift Detection & Automated Reconciliation
+- **Automated Background Auditor**: Scans live channel stock against Master Ledger records every 15 minutes.
+- **Automated Reconciliation**: Computes required adjustments, synchronizes drifted storefronts, and records immutable double-entry audit trail logs.
 
 ### 5. Multi-Location Fulfillment & Composite Bundles
 - **Warehouse Hub Allocations**: Physical stock partitioned across 4 geographic fulfillment hubs (`MAIN_US_3PL`, `WEST_US_HUB`, `EU_CENTRAL`, `UK_FULFILLMENT`) with atomic inter-hub transfers.
@@ -47,7 +47,7 @@ OmniSync solves this with an **append-only PostgreSQL master delta ledger**, **s
 
 ---
 
-## 🏛️ System Architecture
+## System Architecture
 
 ```
                                     ┌───────────────────────┐
@@ -84,9 +84,9 @@ OmniSync solves this with an **append-only PostgreSQL master delta ledger**, **s
 
 ---
 
-## 🧪 Verification & Benchmark Results
+## Verification & Benchmark Results
 
-The entire codebase is verified by **47 automated test suites** covering unit mechanics, integration gateways, adversarial security attacks, and high-concurrency chaos simulations:
+The entire codebase is verified by 47 automated test suites covering unit mechanics, integration gateways, HMAC security validations, and high-concurrency simulations:
 
 ```bash
 $ npm test
@@ -135,7 +135,7 @@ Total Tests: 47 | Passed: 47 | Failed: 0 | Duration: 33.1s
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Prerequisites
 - **Node.js**: `>= 20.0.0`
@@ -156,7 +156,7 @@ npm test
 # Starts the server and UI at http://localhost:3000
 node --experimental-strip-types src/index.ts
 ```
-Open **[http://localhost:3000](http://localhost:3000)** in your browser.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### 4. Interactive Simulation & CLI Utilities
 ```bash
@@ -169,7 +169,7 @@ python scripts/reconciliation/drift_checker.py
 
 ---
 
-## 📡 API Endpoints
+## API Endpoints
 
 | Method | Endpoint | Description | Auth / Headers |
 | :--- | :--- | :--- | :--- |
@@ -178,15 +178,15 @@ python scripts/reconciliation/drift_checker.py
 | `POST` | `/api/v1/inventory/adjust` | Atomic manual delta adjustment with OCC versioning | JSON Body |
 | `POST` | `/api/v1/inventory/transfer` | Warehouse transfer between fulfillment hubs | JSON Body |
 | `GET` | `/api/v1/orders` | Unified multi-channel order stream | Public |
-| `POST` | `/api/v1/reconciliation/trigger` | Triggers full catalog drift audit & self-healing | Public |
+| `POST` | `/api/v1/reconciliation/trigger` | Triggers full catalog drift audit and self-healing | Public |
 | `GET` | `/api/v1/circuit-breakers` | Live circuit breaker states (`CLOSED`, `OPEN`) | Public |
 | `GET` | `/api/v1/events/stream` | Server-Sent Events (SSE) stream (CloudEvents v1.0) | `text/event-stream` |
-| `POST` | `/api/v1/webhooks/shopify/:storeId` | Ingests Shopify order/inventory webhooks | `X-Shopify-Hmac-Sha256` |
-| `POST` | `/api/v1/webhooks/woocommerce/:storeId` | Ingests WooCommerce order/stock webhooks | `X-WC-Webhook-Signature` |
+| `POST` | `/api/v1/webhooks/shopify/:storeId` | Ingests Shopify order and inventory webhooks | `X-Shopify-Hmac-Sha256` |
+| `POST` | `/api/v1/webhooks/woocommerce/:storeId` | Ingests WooCommerce order and stock webhooks | `X-WC-Webhook-Signature` |
 
 ---
 
-## 📖 Comprehensive Documentation
+## Documentation
 
 - [Developer Setup & Environment Guide](docs/SETUP.md)
 - [Internal API Specifications](docs/API.md)
@@ -197,5 +197,6 @@ python scripts/reconciliation/drift_checker.py
 
 ---
 
-## 📄 License
+## License
+
 MIT License. Open source and free for multi-store operators.
