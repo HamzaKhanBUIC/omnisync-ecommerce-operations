@@ -32,6 +32,20 @@ export class IdempotencyGuard {
     this.markProcessed(idempotencyKey, response);
   }
 
+  /**
+   * Claims a key in one synchronous step. Returns false when the key is already
+   * processed or in flight. Call release() if the work does not complete.
+   */
+  public reserve(idempotencyKey: string, response?: any): boolean {
+    if (this.isProcessed(idempotencyKey)) return false;
+    this.markProcessed(idempotencyKey, response);
+    return true;
+  }
+
+  public release(idempotencyKey: string): void {
+    this.processedKeys.delete(idempotencyKey);
+  }
+
   public getResponse(idempotencyKey: string): any {
     return this.processedKeys.get(idempotencyKey)?.response;
   }

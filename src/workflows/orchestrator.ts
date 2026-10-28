@@ -113,16 +113,29 @@ export class EcommerceOperationsOrchestrator extends EventEmitter {
     order: NormalizedOrder,
     eventId: string
   ): Promise<{ status: 'PROCESSED' | 'DUPLICATE' | 'REJECTED'; error?: string; orderId?: string }> {
-    // 1. Idempotency Check
-    if (this.idempotency.isProcessed(eventId)) {
+    // 1. Idempotency: claim the event id and the order id synchronously, before the
+    //    first await, so concurrent or retried deliveries (including a different
+    //    event for the same order) cannot deduct stock twice.
+    const orderKey = `order:${order.storeId}:${order.orderId}`;
+    const inFlight = { orderId: order.orderId, status: 'IN_FLIGHT' };
+    if (!this.idempotency.reserve(eventId, inFlight)) {
       const cached = this.idempotency.getResponse(eventId);
       return { status: 'DUPLICATE', orderId: cached?.orderId || order.orderId };
     }
+    if (!this.idempotency.reserve(orderKey, inFlight)) {
+      this.idempotency.release(eventId);
+      return { status: 'DUPLICATE', orderId: order.orderId };
+    }
+    const releaseKeys = () => {
+      this.idempotency.release(eventId);
+      this.idempotency.release(orderKey);
+    };
 
     // 2. Pre-check stock for all line items
     for (const item of order.items) {
       const product = this.ledger.getProduct(item.sku);
       if (!product || product.currentStock < item.quantity) {
+        releaseKeys(); // a rejected order may be retried after restock
         order.status = 'FAILED_DLQ';
         this.orders.unshift(order);
         this.emitCloudEvent('com.ecom.order.rejected', {
@@ -138,7 +151,8 @@ export class EcommerceOperationsOrchestrator extends EventEmitter {
       }
     }
 
-    // 3. Process Ledger Deductions atomically
+    // 3. Process Ledger Deductions atomically. If anything below throws, the keys stay
+    //    claimed until the TTL expires: a lost retry is safer than a double deduction.
     const deductedItems: Array<{ sku: string; delta: number; newStock: number }> = [];
     for (const item of order.items) {
       const preferredLoc: WarehouseLocation = order.shippingCountry === 'GB' ? 'UK_FULFILLMENT' :
@@ -173,7 +187,9 @@ export class EcommerceOperationsOrchestrator extends EventEmitter {
       });
     }
 
-    this.idempotency.markProcessed(eventId, { orderId: order.orderId, status: 'PROCESSED' });
+    const processed = { orderId: order.orderId, status: 'PROCESSED' };
+    this.idempotency.markProcessed(eventId, processed);
+    this.idempotency.markProcessed(orderKey, processed);
     return { status: 'PROCESSED', orderId: order.orderId };
   }
 

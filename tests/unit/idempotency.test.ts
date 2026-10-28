@@ -118,3 +118,14 @@ test('IdempotencyGuard - Edge cases: special characters, nullish responses, defa
   assert.equal(defaultGuard.isProcessed(specialKey), true);
   assert.deepEqual(defaultGuard.getResponse(specialKey), { updated: true });
 });
+
+test('IdempotencyGuard - reserve() claims a key once and release() frees it', () => {
+  const guard = new IdempotencyGuard();
+  assert.equal(guard.reserve('evt_reserve_1', { status: 'IN_FLIGHT' }), true);
+  assert.equal(guard.reserve('evt_reserve_1'), false, 'second claim must fail while in flight');
+  assert.equal(guard.isProcessed('evt_reserve_1'), true);
+
+  guard.release('evt_reserve_1');
+  assert.equal(guard.isProcessed('evt_reserve_1'), false);
+  assert.equal(guard.reserve('evt_reserve_1'), true, 'released key can be claimed again');
+});

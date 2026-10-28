@@ -179,3 +179,56 @@ test('Hardening: CORS allow-list replaces the wildcard', async (t) => {
     }
   });
 });
+
+test('Hardening: duplicate webhook events and orders are ignored', async (t) => {
+  const platform = await startPlatform({ shopifyWebhookSecret: SHOPIFY_TEST_SECRET }, { apiToken: API_TEST_TOKEN });
+  t.after(async () => {
+    await platform.server.stop();
+  });
+
+  const deliver = (body: string, eventId: string) =>
+    fetch(`${platform.url}/api/v1/webhooks/shopify/store_shopify_us`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Shopify-Hmac-Sha256': sign(body, SHOPIFY_TEST_SECRET), 'X-Shopify-Webhook-Id': eventId },
+      body
+    }).then(res => res.json());
+
+  await t.test('5 parallel deliveries of one event deduct stock once', async () => {
+    const body = shopifyOrder(8001, 1, 'CAP-NVY');
+    const results = await Promise.all(Array.from({ length: 5 }, () => deliver(body, 'evt_parallel_8001')));
+    assert.equal(results.filter(r => r.status === 'acknowledged' && !r.isDuplicate).length, 1);
+    assert.equal(results.filter(r => r.isDuplicate).length, 4);
+    assert.equal(platform.ledger.getProduct('CAP-NVY')?.currentStock, 74, '75 - 1');
+  });
+
+  await t.test('5 concurrent ingests of one event in the same tick deduct stock once', async () => {
+    const payload = { id: 8010, line_items: [{ sku: 'HOODIE-GRY-L', quantity: 1 }] };
+    const results = await Promise.all(
+      Array.from({ length: 5 }, () => platform.orchestrator.handleInboundOrder(payload, 'store_shopify_us', 'evt_same_tick_8010'))
+    );
+    assert.equal(results.filter(r => r.success && !r.isDuplicate).length, 1);
+    assert.equal(platform.ledger.getProduct('HOODIE-GRY-L')?.currentStock, 49, '50 - 1');
+  });
+
+  await t.test('a different event id for the same order is ignored', async () => {
+    const body = shopifyOrder(8002, 2, 'CAP-NVY');
+    const first = await deliver(body, 'evt_orders_create_8002');
+    const second = await deliver(body, 'evt_orders_paid_8002');
+    assert.equal(first.isDuplicate, undefined);
+    assert.equal(second.isDuplicate, true);
+    assert.equal(platform.ledger.getProduct('CAP-NVY')?.currentStock, 72, '74 - 2, once');
+  });
+
+  await t.test('an order rejected for stock can be retried after restock', async () => {
+    const { orchestrator, ledger } = platform;
+    const payload = { id: 8003, line_items: [{ sku: 'WATCH-GLD', quantity: 30 }] };
+    const rejected = await orchestrator.handleInboundOrder(payload, 'store_shopify_us', 'evt_retry_8003');
+    assert.equal(rejected.success, false);
+
+    await ledger.applyDelta('WATCH-GLD', 10, 'MANUAL_ADJUSTMENT');
+    const retried = await orchestrator.handleInboundOrder(payload, 'store_shopify_us', 'evt_retry_8003');
+    assert.equal(retried.success, true);
+    assert.equal(retried.isDuplicate, undefined);
+    assert.equal(ledger.getProduct('WATCH-GLD')?.currentStock, 5, '25 + 10 - 30');
+  });
+});
