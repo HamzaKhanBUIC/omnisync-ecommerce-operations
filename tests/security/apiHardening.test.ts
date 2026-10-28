@@ -144,3 +144,38 @@ test('Hardening: bearer token on mutating routes', async (t) => {
     }
   });
 });
+
+test('Hardening: CORS allow-list replaces the wildcard', async (t) => {
+  const allowed = 'https://ops.example.test';
+  const listed = await startPlatform({}, { apiToken: API_TEST_TOKEN, allowedOrigins: [`${allowed}/`] });
+  const unlisted = await startPlatform({}, { apiToken: API_TEST_TOKEN, allowedOrigins: [] });
+  t.after(async () => {
+    await listed.server.stop();
+    await unlisted.server.stop();
+  });
+
+  await t.test('listed origin is echoed back, never "*"', async () => {
+    const res = await fetch(`${listed.url}/api/v1/inventory`, { headers: { Origin: allowed } });
+    assert.equal(res.headers.get('access-control-allow-origin'), allowed);
+    assert.match(res.headers.get('vary') || '', /Origin/);
+
+    const preflight = await fetch(`${listed.url}/api/v1/inventory/adjust`, {
+      method: 'OPTIONS',
+      headers: { Origin: allowed, 'Access-Control-Request-Method': 'POST', 'Access-Control-Request-Headers': 'authorization' }
+    });
+    assert.equal(preflight.status, 204);
+    assert.match(preflight.headers.get('access-control-allow-headers') || '', /Authorization/);
+  });
+
+  await t.test('unlisted origin gets no CORS headers', async () => {
+    for (const server of [listed, unlisted]) {
+      const res = await fetch(`${server.url}/api/v1/inventory`, { headers: { Origin: 'https://evil.example.test' } });
+      assert.equal(res.headers.get('access-control-allow-origin'), null);
+      const preflight = await fetch(`${server.url}/api/v1/inventory/adjust`, {
+        method: 'OPTIONS',
+        headers: { Origin: 'https://evil.example.test', 'Access-Control-Request-Method': 'POST' }
+      });
+      assert.equal(preflight.headers.get('access-control-allow-origin'), null);
+    }
+  });
+});

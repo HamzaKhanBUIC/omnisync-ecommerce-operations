@@ -13,6 +13,8 @@ export interface ServerOptions {
   frontendDir?: string;
   /** Bearer token required on state-changing API routes. Defaults to OMNISYNC_API_TOKEN. */
   apiToken?: string;
+  /** Exact origins allowed to call the API cross-origin. Defaults to ALLOWED_ORIGINS (comma-separated). */
+  allowedOrigins?: string[];
 }
 
 export class EcommerceApiServer {
@@ -22,12 +24,18 @@ export class EcommerceApiServer {
   public frontendDir: string;
   private sseClients: Set<http.ServerResponse> = new Set();
   private apiToken: string;
+  private allowedOrigins: Set<string>;
 
   constructor(options: ServerOptions = {}) {
     this.orchestrator = options.orchestrator || new EcommerceOperationsOrchestrator();
     this.port = options.port ?? 3000;
     this.frontendDir = options.frontendDir || path.resolve(process.cwd(), 'src/frontend');
     this.apiToken = options.apiToken ?? process.env.OMNISYNC_API_TOKEN ?? '';
+    this.allowedOrigins = new Set(
+      (options.allowedOrigins ?? (process.env.ALLOWED_ORIGINS || '').split(','))
+        .map(origin => origin.trim().replace(/\/+$/, ''))
+        .filter(Boolean)
+    );
 
     this.orchestrator.on('cloudEvent', (event: CloudEvent) => {
       const payload = `event: ${event.type}\ndata: ${JSON.stringify(event.data || event)}\n\n`;
@@ -122,10 +130,15 @@ export class EcommerceApiServer {
     const pathname = parsedUrl.pathname;
     const method = req.method || 'GET';
 
-    // CORS Headers
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Shopify-Hmac-Sha256, X-WC-Webhook-Signature, X-Shopify-Webhook-Id, X-WC-Webhook-ID, X-Event-Id');
+    // CORS: only origins listed in ALLOWED_ORIGINS get cross-origin access. The dashboard
+    // is served by this server (same origin) and needs no entry.
+    res.setHeader('Vary', 'Origin');
+    const origin = req.headers.origin;
+    if (origin && this.allowedOrigins.has(origin)) {
+      res.setHeader('Access-Control-Allow-Origin', origin);
+      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+      res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Shopify-Hmac-Sha256, X-WC-Webhook-Signature, X-Shopify-Webhook-Id, X-WC-Webhook-ID, X-Event-Id');
+    }
 
     if (method === 'OPTIONS') {
       res.writeHead(204);
