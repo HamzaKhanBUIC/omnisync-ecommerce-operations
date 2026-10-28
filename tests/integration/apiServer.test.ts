@@ -6,6 +6,7 @@ import { createEcommerceServer, EcommerceApiServer } from '../../src/backend/ser
 
 const SHOPIFY_TEST_SECRET = 'test_shopify_webhook_secret';
 const WOO_TEST_SECRET = 'test_woo_webhook_secret';
+const API_TEST_TOKEN = 'test_api_token';
 
 function computeHmac(payload: string, secret: string): string {
   return crypto.createHmac('sha256', secret).update(payload).digest('base64');
@@ -18,7 +19,8 @@ test('API Server - Integration Test Suite', async (t) => {
   });
   const server = createEcommerceServer({
     port: 0, // dynamic port allocation
-    orchestrator
+    orchestrator,
+    apiToken: API_TEST_TOKEN
   });
 
   const { url, port } = await server.start(0);
@@ -205,7 +207,7 @@ test('API Server - Integration Test Suite', async (t) => {
   await t.test('8. Manual Inventory Adjustment (POST /api/v1/inventory/adjust)', async () => {
     const res = await fetch(`${url}/api/v1/inventory/adjust`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${API_TEST_TOKEN}` },
       body: JSON.stringify({
         masterSku: 'WATCH-GLD',
         quantityDelta: 15,
@@ -228,7 +230,7 @@ test('API Server - Integration Test Suite', async (t) => {
   await t.test('9. Manual Adjustment - Prevent Stockout Overselling (400)', async () => {
     const res = await fetch(`${url}/api/v1/inventory/adjust`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${API_TEST_TOKEN}` },
       body: JSON.stringify({
         masterSku: 'WATCH-GLD',
         quantityDelta: -500 // Exceeds available 40
@@ -248,7 +250,8 @@ test('API Server - Integration Test Suite', async (t) => {
     assert.equal(ledger.getProduct('CAP-NVY')?.currentStock, 75);
 
     const res = await fetch(`${url}/api/v1/reconciliation/trigger`, {
-      method: 'POST'
+      method: 'POST',
+      headers: { Authorization: `Bearer ${API_TEST_TOKEN}` }
     });
 
     assert.equal(res.status, 200);
@@ -297,7 +300,7 @@ test('API Server - Integration Test Suite', async (t) => {
     // Trigger an inventory adjustment in parallel to test CloudEvent SSE delivery
     const adjustPromise = fetch(`${url}/api/v1/inventory/adjust`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${API_TEST_TOKEN}` },
       body: JSON.stringify({
         masterSku: 'SHIRT-BLK-M',
         quantityDelta: 5,

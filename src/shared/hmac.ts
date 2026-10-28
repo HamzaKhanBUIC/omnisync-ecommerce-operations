@@ -22,6 +22,17 @@ export function verifyShopifyHmac(rawBody: string | Buffer, headerSignature: str
 }
 
 /**
+ * Constant-time comparison for shared secrets such as API tokens. Both values are
+ * hashed first, so the comparison time does not depend on the expected length.
+ */
+export function safeCompare(provided: string, expected: string): boolean {
+  if (typeof provided !== 'string' || typeof expected !== 'string' || !provided || !expected) return false;
+  const a = crypto.createHash('sha256').update(provided, 'utf8').digest();
+  const b = crypto.createHash('sha256').update(expected, 'utf8').digest();
+  return crypto.timingSafeEqual(a, b);
+}
+
+/**
  * Validates WooCommerce Webhook HMAC-SHA256 signature (Base64)
  */
 export function verifyWooCommerceHmac(rawBody: string | Buffer, headerSignature: string, secret: string): boolean {

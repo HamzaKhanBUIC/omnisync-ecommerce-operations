@@ -3,7 +3,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { MasterLedgerEngine } from './ledgerEngine.ts';
 import { IdempotencyGuard } from './idempotencyGuard.ts';
-import { verifyShopifyHmac, verifyWooCommerceHmac } from '../shared/hmac.ts';
+import { safeCompare, verifyShopifyHmac, verifyWooCommerceHmac } from '../shared/hmac.ts';
 import { EcommerceOperationsOrchestrator } from '../workflows/orchestrator.ts';
 import type { CloudEvent, NormalizedOrder, PlatformType, WarehouseLocation } from '../shared/types.ts';
 
@@ -11,6 +11,8 @@ export interface ServerOptions {
   port?: number;
   orchestrator?: EcommerceOperationsOrchestrator;
   frontendDir?: string;
+  /** Bearer token required on state-changing API routes. Defaults to OMNISYNC_API_TOKEN. */
+  apiToken?: string;
 }
 
 export class EcommerceApiServer {
@@ -19,11 +21,13 @@ export class EcommerceApiServer {
   public port: number;
   public frontendDir: string;
   private sseClients: Set<http.ServerResponse> = new Set();
+  private apiToken: string;
 
   constructor(options: ServerOptions = {}) {
     this.orchestrator = options.orchestrator || new EcommerceOperationsOrchestrator();
     this.port = options.port ?? 3000;
     this.frontendDir = options.frontendDir || path.resolve(process.cwd(), 'src/frontend');
+    this.apiToken = options.apiToken ?? process.env.OMNISYNC_API_TOKEN ?? '';
 
     this.orchestrator.on('cloudEvent', (event: CloudEvent) => {
       const payload = `event: ${event.type}\ndata: ${JSON.stringify(event.data || event)}\n\n`;
@@ -55,6 +59,9 @@ export class EcommerceApiServer {
    */
   public getConfigWarnings(): string[] {
     const warnings: string[] = [];
+    if (!this.apiToken) {
+      warnings.push('OMNISYNC_API_TOKEN is not set: POST /api/v1/inventory/adjust, /api/v1/inventory/transfer and /api/v1/reconciliation/trigger will be rejected with 503.');
+    }
     for (const store of this.orchestrator.stores.values()) {
       if (!store.webhookSecret) {
         const envName = store.platform === 'SHOPIFY' ? 'SHOPIFY_WEBHOOK_SECRET' : 'WOO_WEBHOOK_SECRET';
@@ -82,6 +89,24 @@ export class EcommerceApiServer {
     return store.webhookSecret;
   }
 
+  /**
+   * Bearer-token check for state-changing API routes. Fails closed: with no token
+   * configured these routes are disabled (503). Returns false when a response has
+   * already been sent.
+   */
+  private requireApiToken(req: http.IncomingMessage, res: http.ServerResponse): boolean {
+    if (!this.apiToken) {
+      sendJson(res, 503, { success: false, error: 'This route is disabled: OMNISYNC_API_TOKEN is not configured' });
+      return false;
+    }
+    const match = /^Bearer\s+(\S+)\s*$/i.exec(req.headers.authorization || '');
+    if (!match || !safeCompare(match[1], this.apiToken)) {
+      sendJson(res, 401, { success: false, error: 'Unauthorized: missing or invalid bearer token' }, { 'WWW-Authenticate': 'Bearer' });
+      return false;
+    }
+    return true;
+  }
+
   public stop(): Promise<void> {
     return new Promise((resolve, reject) => {
       for (const client of this.sseClients) {
@@ -100,7 +125,7 @@ export class EcommerceApiServer {
     // CORS Headers
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Shopify-Hmac-Sha256, X-WC-Webhook-Signature, X-Shopify-Webhook-Id, X-WC-Webhook-ID, X-Event-Id');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Shopify-Hmac-Sha256, X-WC-Webhook-Signature, X-Shopify-Webhook-Id, X-WC-Webhook-ID, X-Event-Id');
 
     if (method === 'OPTIONS') {
       res.writeHead(204);
@@ -178,6 +203,7 @@ export class EcommerceApiServer {
 
       // 6. Manual Inventory Adjustment
       if (pathname === '/api/v1/inventory/adjust' && method === 'POST') {
+        if (!this.requireApiToken(req, res)) return;
         const body = await parseJsonBody(req);
         const { masterSku, quantityDelta, reason, referenceId, preferredLocation } = body;
 
@@ -217,6 +243,7 @@ export class EcommerceApiServer {
 
       // 7. Warehouse Location Stock Transfer
       if (pathname === '/api/v1/inventory/transfer' && method === 'POST') {
+        if (!this.requireApiToken(req, res)) return;
         const body = await parseJsonBody(req);
         const { masterSku, fromLocation, toLocation, quantity } = body;
 
@@ -246,6 +273,7 @@ export class EcommerceApiServer {
 
       // 8. Drift Reconciliation Trigger
       if (pathname === '/api/v1/reconciliation/trigger' && method === 'POST') {
+        if (!this.requireApiToken(req, res)) return;
         const auditResult = await this.orchestrator.runDriftAudit();
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ success: true, ...auditResult }));

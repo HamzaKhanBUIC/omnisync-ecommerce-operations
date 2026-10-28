@@ -6,6 +6,13 @@ import { createEcommerceServer, type ServerOptions } from '../../src/backend/ser
 
 const SHOPIFY_TEST_SECRET = 'test_shopify_webhook_secret';
 const WOO_TEST_SECRET = 'test_woo_webhook_secret';
+const API_TEST_TOKEN = 'test_api_token';
+const AUTH = { Authorization: `Bearer ${API_TEST_TOKEN}` };
+const MUTATING_ROUTES: Array<[string, unknown]> = [
+  ['/api/v1/inventory/adjust', { masterSku: 'SHIRT-BLK-M', quantityDelta: 5 }],
+  ['/api/v1/inventory/transfer', { masterSku: 'SHIRT-BLK-M', fromLocation: 'MAIN_US_3PL', toLocation: 'EU_CENTRAL', quantity: 1 }],
+  ['/api/v1/reconciliation/trigger', {}]
+];
 
 function sign(payload: string, secret: string): string {
   return crypto.createHmac('sha256', secret).update(payload).digest('base64');
@@ -23,8 +30,8 @@ function shopifyOrder(id: number, quantity: unknown = 1, sku = 'SHIRT-BLK-M'): s
 }
 
 test('Hardening: webhook secrets fail closed', async (t) => {
-  const unconfigured = await startPlatform({ shopifyWebhookSecret: '', wooWebhookSecret: '' });
-  const configured = await startPlatform({ shopifyWebhookSecret: SHOPIFY_TEST_SECRET, wooWebhookSecret: WOO_TEST_SECRET });
+  const unconfigured = await startPlatform({ shopifyWebhookSecret: '', wooWebhookSecret: '' }, { apiToken: '' });
+  const configured = await startPlatform({ shopifyWebhookSecret: SHOPIFY_TEST_SECRET, wooWebhookSecret: WOO_TEST_SECRET }, { apiToken: API_TEST_TOKEN });
   t.after(async () => {
     await unconfigured.server.stop();
     await configured.server.stop();
@@ -84,5 +91,56 @@ test('Hardening: webhook secrets fail closed', async (t) => {
     });
     assert.equal(noHeader.status, 401);
     assert.equal(configured.ledger.getProduct('SHIRT-BLK-M')?.currentStock, 100, 'stock must be unchanged');
+  });
+});
+
+test('Hardening: bearer token on mutating routes', async (t) => {
+  const secured = await startPlatform({ shopifyWebhookSecret: SHOPIFY_TEST_SECRET }, { apiToken: API_TEST_TOKEN });
+  const noToken = await startPlatform({ shopifyWebhookSecret: SHOPIFY_TEST_SECRET }, { apiToken: '' });
+  t.after(async () => {
+    await secured.server.stop();
+    await noToken.server.stop();
+  });
+
+  const post = (base: string, path: string, body: unknown, headers: Record<string, string> = {}) =>
+    fetch(`${base}${path}`, { method: 'POST', headers: { 'Content-Type': 'application/json', ...headers }, body: JSON.stringify(body) });
+
+  await t.test('missing token: every mutating route returns 401', async () => {
+    for (const [path, body] of MUTATING_ROUTES) {
+      const res = await post(secured.url, path, body);
+      assert.equal(res.status, 401, path);
+      assert.equal(res.headers.get('www-authenticate'), 'Bearer');
+    }
+    assert.equal(secured.ledger.getProduct('SHIRT-BLK-M')?.currentStock, 100, 'stock must be unchanged');
+  });
+
+  await t.test('wrong token or wrong scheme returns 401', async () => {
+    const wrong = await post(secured.url, '/api/v1/inventory/adjust', MUTATING_ROUTES[0][1], { Authorization: 'Bearer not-the-token' });
+    assert.equal(wrong.status, 401);
+    const basic = await post(secured.url, '/api/v1/inventory/adjust', MUTATING_ROUTES[0][1], { Authorization: `Basic ${API_TEST_TOKEN}` });
+    assert.equal(basic.status, 401);
+    assert.equal(secured.ledger.getProduct('SHIRT-BLK-M')?.currentStock, 100);
+  });
+
+  await t.test('valid token is accepted', async () => {
+    const res = await post(secured.url, '/api/v1/inventory/adjust', MUTATING_ROUTES[0][1], AUTH);
+    assert.equal(res.status, 200);
+    assert.equal(secured.ledger.getProduct('SHIRT-BLK-M')?.currentStock, 105);
+  });
+
+  await t.test('no OMNISYNC_API_TOKEN configured: mutating routes return 503 and a warning is logged', async () => {
+    for (const [path, body] of MUTATING_ROUTES) {
+      const res = await post(noToken.url, path, body, AUTH);
+      assert.equal(res.status, 503, path);
+    }
+    assert.match(noToken.server.getConfigWarnings().join('\n'), /OMNISYNC_API_TOKEN/);
+    assert.doesNotMatch(secured.server.getConfigWarnings().join('\n'), /OMNISYNC_API_TOKEN/);
+  });
+
+  await t.test('read-only demo routes stay public', async () => {
+    for (const path of ['/health', '/api/v1/inventory', '/api/v1/orders', '/api/v1/audit', '/api/v1/circuit-breakers']) {
+      const res = await fetch(`${secured.url}${path}`);
+      assert.equal(res.status, 200, path);
+    }
   });
 });
