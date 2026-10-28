@@ -5,7 +5,7 @@ import { MasterLedgerEngine } from './ledgerEngine.ts';
 import { IdempotencyGuard } from './idempotencyGuard.ts';
 import { verifyShopifyHmac, verifyWooCommerceHmac } from '../shared/hmac.ts';
 import { EcommerceOperationsOrchestrator } from '../workflows/orchestrator.ts';
-import type { CloudEvent, NormalizedOrder, WarehouseLocation } from '../shared/types.ts';
+import type { CloudEvent, NormalizedOrder, PlatformType, WarehouseLocation } from '../shared/types.ts';
 
 export interface ServerOptions {
   port?: number;
@@ -47,6 +47,39 @@ export class EcommerceApiServer {
       });
       this.server.on('error', reject);
     });
+  }
+
+  /**
+   * Security settings that are missing. The server still starts, but the affected
+   * routes reject every request until the setting is provided (fail closed).
+   */
+  public getConfigWarnings(): string[] {
+    const warnings: string[] = [];
+    for (const store of this.orchestrator.stores.values()) {
+      if (!store.webhookSecret) {
+        const envName = store.platform === 'SHOPIFY' ? 'SHOPIFY_WEBHOOK_SECRET' : 'WOO_WEBHOOK_SECRET';
+        warnings.push(`${envName} is not set: webhooks for ${store.id} will be rejected with 503.`);
+      }
+    }
+    return warnings;
+  }
+
+  /**
+   * Looks up the signing secret for a webhook route. Fails closed: an unknown store,
+   * a store on another platform, or a store without a secret is rejected before any
+   * signature check. Returns null when a response has already been sent.
+   */
+  private resolveWebhookSecret(storeId: string, platform: PlatformType, res: http.ServerResponse): string | null {
+    const store = this.orchestrator.stores.get(storeId);
+    if (!store || store.platform !== platform) {
+      sendJson(res, 404, { success: false, error: 'Unknown store' });
+      return null;
+    }
+    if (!store.webhookSecret) {
+      sendJson(res, 503, { success: false, error: 'Webhook signing secret is not configured for this store' });
+      return null;
+    }
+    return store.webhookSecret;
   }
 
   public stop(): Promise<void> {
@@ -232,11 +265,12 @@ export class EcommerceApiServer {
 
       // 10. Shopify Webhook Ingest
       if (pathname.startsWith('/api/v1/webhooks/shopify') && method === 'POST') {
+        const storeId = pathname.split('/').pop() || '';
+        const secret = this.resolveWebhookSecret(storeId, 'SHOPIFY', res);
+        if (secret === null) return;
+
         const rawBody = await readRawBody(req);
         const sig = (req.headers['x-shopify-hmac-sha256'] as string) || '';
-        const storeId = pathname.split('/').pop() || 'store_shopify_us';
-        const store = this.orchestrator.stores.get(storeId);
-        const secret = store ? store.webhookSecret : 'shopify_secret_live_771';
 
         if (!verifyShopifyHmac(rawBody, sig, secret)) {
           res.writeHead(401, { 'Content-Type': 'application/json' });
@@ -259,11 +293,12 @@ export class EcommerceApiServer {
 
       // 11. WooCommerce Webhook Ingest
       if (pathname.startsWith('/api/v1/webhooks/woocommerce') && method === 'POST') {
+        const storeId = pathname.split('/').pop() || '';
+        const secret = this.resolveWebhookSecret(storeId, 'WOOCOMMERCE', res);
+        if (secret === null) return;
+
         const rawBody = await readRawBody(req);
         const sig = (req.headers['x-wc-webhook-signature'] as string) || '';
-        const storeId = pathname.split('/').pop() || 'store_woo_eu';
-        const store = this.orchestrator.stores.get(storeId);
-        const secret = store ? store.webhookSecret : 'woo_secret_live_882';
 
         if (!verifyWooCommerceHmac(rawBody, sig, secret)) {
           res.writeHead(401, { 'Content-Type': 'application/json' });
@@ -326,6 +361,11 @@ export class EcommerceApiServer {
 
 export function createEcommerceServer(options: ServerOptions = {}): EcommerceApiServer {
   return new EcommerceApiServer(options);
+}
+
+function sendJson(res: http.ServerResponse, status: number, body: unknown, headers: http.OutgoingHttpHeaders = {}): void {
+  res.writeHead(status, { 'Content-Type': 'application/json', ...headers });
+  res.end(JSON.stringify(body));
 }
 
 function readRawBody(req: http.IncomingMessage): Promise<Buffer> {

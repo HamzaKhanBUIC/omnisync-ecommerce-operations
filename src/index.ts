@@ -4,7 +4,14 @@ import { MockShopifyAdapter, MockWooCommerceAdapter } from './integrations/chann
 import { EcommerceApiServer, createEcommerceServer } from './backend/server.ts';
 import type { Store, NormalizedOrder } from './shared/types.ts';
 
-export function initializePlatform() {
+export interface PlatformOptions {
+  /** Overrides SHOPIFY_WEBHOOK_SECRET (used by tests). */
+  shopifyWebhookSecret?: string;
+  /** Overrides WOO_WEBHOOK_SECRET (used by tests). */
+  wooWebhookSecret?: string;
+}
+
+export function initializePlatform(options: PlatformOptions = {}) {
   // 1. Initialize Master Ledger Authority with realistic catalog fixtures
   const ledger = new MasterLedgerEngine();
   ledger.registerProduct('SHIRT-BLK-M', 'Classic Black Cotton T-Shirt (M)', 100, {
@@ -55,14 +62,15 @@ export function initializePlatform() {
   // 2. Initialize Operations Orchestrator
   const orchestrator = new EcommerceOperationsOrchestrator(ledger);
 
-  // 3. Register Channel Stores with Webhook Secrets
+  // 3. Register Channel Stores. Webhook secrets come from the environment only;
+  //    a store without a secret rejects every webhook (fail closed).
   const shopifyStoreMeta: Store = {
     id: 'store_shopify_us',
     name: 'Shopify US Flagship Store',
     platform: 'SHOPIFY',
     storeUrl: 'https://brand-us.myshopify.com',
-    apiKey: 'shp_live_key_99182',
-    webhookSecret: 'shopify_secret_live_771',
+    apiKey: '', // mock adapter: no platform API key is used
+    webhookSecret: options.shopifyWebhookSecret ?? process.env.SHOPIFY_WEBHOOK_SECRET ?? '',
     isActive: true
   };
 
@@ -71,8 +79,8 @@ export function initializePlatform() {
     name: 'WooCommerce EU Central Store',
     platform: 'WOOCOMMERCE',
     storeUrl: 'https://shop-eu.brand.com',
-    apiKey: 'wc_live_ck_44109',
-    webhookSecret: 'woo_secret_live_882',
+    apiKey: '', // mock adapter: no platform API key is used
+    webhookSecret: options.wooWebhookSecret ?? process.env.WOO_WEBHOOK_SECRET ?? '',
     isActive: true
   };
 
@@ -189,6 +197,9 @@ export async function bootstrapServer(port: number = parseInt(process.env.PORT |
   console.log(`🛒 Shopify Webhook Ingest:     ${url}/api/v1/webhooks/shopify/store_shopify_us`);
   console.log(`🛍️ WooCommerce Webhook Ingest: ${url}/api/v1/webhooks/woocommerce/store_woo_eu`);
   console.log("==========================================================");
+  for (const warning of apiServer.getConfigWarnings()) {
+    console.warn(`[security] ${warning}`);
+  }
 
   return { apiServer, orchestrator, ledger, shopifyAdapter, wooAdapter, url };
 }
