@@ -3,6 +3,7 @@ import { MasterLedgerEngine } from '../backend/ledgerEngine.ts';
 import { IdempotencyGuard } from '../backend/idempotencyGuard.ts';
 import { MockShopifyAdapter, MockWooCommerceAdapter, type ChannelAdapter } from '../integrations/channelAdapter.ts';
 import { CircuitBreaker } from '../shared/circuitBreaker.ts';
+import { isOrderId, validateOrderItems } from '../shared/validation.ts';
 import type { Store, ChannelMapping, CloudEvent, NormalizedOrder, WarehouseLocation } from '../shared/types.ts';
 
 export class EcommerceOperationsOrchestrator extends EventEmitter {
@@ -70,6 +71,10 @@ export class EcommerceOperationsOrchestrator extends EventEmitter {
     originStoreId: string,
     idempotencyKey?: string
   ): Promise<{ success: boolean; orderId?: string; error?: string; isDuplicate?: boolean }> {
+    // The platform order id is required: it is the order-level idempotency key.
+    if (!rawPayload || typeof rawPayload !== 'object' || !isOrderId(rawPayload.id)) {
+      return { success: false, error: 'Invalid order: id is required' };
+    }
     const eventId = idempotencyKey || `evt_${rawPayload.id || Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
     const adapter = this.adapters.get(originStoreId);
 
@@ -84,8 +89,8 @@ export class EcommerceOperationsOrchestrator extends EventEmitter {
         orderNumber: String(rawPayload.order_number || rawPayload.number || 'ORD-100'),
         customerEmail: rawPayload.email,
         items: (rawPayload.line_items || []).map((li: any) => ({
-          sku: li.sku || li.masterSku || 'UNKNOWN',
-          quantity: li.quantity || 1,
+          sku: li.sku || li.masterSku,
+          quantity: li.quantity,
           price: parseFloat(li.price || '0'),
           title: li.title || li.name || 'Item'
         })),
@@ -113,6 +118,13 @@ export class EcommerceOperationsOrchestrator extends EventEmitter {
     order: NormalizedOrder,
     eventId: string
   ): Promise<{ status: 'PROCESSED' | 'DUPLICATE' | 'REJECTED'; error?: string; orderId?: string }> {
+    // 0. Reject malformed line items (a negative quantity would add stock) before
+    //    touching idempotency state or the ledger.
+    const invalidItems = validateOrderItems(order.items);
+    if (invalidItems) {
+      return { status: 'REJECTED', error: `Invalid order: ${invalidItems}` };
+    }
+
     // 1. Idempotency: claim the event id and the order id synchronously, before the
     //    first await, so concurrent or retried deliveries (including a different
     //    event for the same order) cannot deduct stock twice.

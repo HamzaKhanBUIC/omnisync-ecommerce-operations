@@ -109,6 +109,9 @@ export class MasterLedgerEngine {
       if (!product) {
         return { success: false, newStock: 0, error: `SKU ${masterSku} not found` };
       }
+      if (!Number.isInteger(quantityDelta)) {
+        return { success: false, newStock: product.currentStock, error: 'quantityDelta must be an integer' };
+      }
 
       // Handle Bundle Breakdown
       if (product.isBundle && product.bundleRecipe && product.bundleRecipe.length > 0) {
@@ -197,6 +200,12 @@ export class MasterLedgerEngine {
   ): Promise<{ success: boolean; error?: string }> {
     const product = this.products.get(masterSku);
     if (!product) return { success: false, error: `SKU ${masterSku} not found` };
+    if (!Number.isInteger(quantity) || quantity <= 0) {
+      return { success: false, error: 'Transfer quantity must be a positive integer' };
+    }
+    if (!Object.hasOwn(product.locations, fromLoc) || !Object.hasOwn(product.locations, toLoc) || fromLoc === toLoc) {
+      return { success: false, error: 'Transfer needs two different known warehouse locations' };
+    }
 
     if ((product.locations[fromLoc] || 0) < quantity) {
       return { success: false, error: `Insufficient stock at ${fromLoc} for transfer` };

@@ -5,7 +5,26 @@ import { MasterLedgerEngine } from './ledgerEngine.ts';
 import { IdempotencyGuard } from './idempotencyGuard.ts';
 import { safeCompare, verifyShopifyHmac, verifyWooCommerceHmac } from '../shared/hmac.ts';
 import { EcommerceOperationsOrchestrator } from '../workflows/orchestrator.ts';
+import {
+  MANUAL_ADJUSTMENT_REASONS,
+  MAX_STOCK_CHANGE,
+  WAREHOUSE_LOCATIONS,
+  isIdentifier,
+  isPositiveInt,
+  isWarehouseLocation
+} from '../shared/validation.ts';
 import type { CloudEvent, NormalizedOrder, PlatformType, WarehouseLocation } from '../shared/types.ts';
+
+const MAX_BODY_BYTES = 1024 * 1024; // 1 MB
+
+/** An error that maps to a specific HTTP status and a message that is safe to return. */
+class HttpError extends Error {
+  status: number;
+  constructor(status: number, message: string) {
+    super(message);
+    this.status = status;
+  }
+}
 
 export interface ServerOptions {
   port?: number;
@@ -220,9 +239,20 @@ export class EcommerceApiServer {
         const body = await parseJsonBody(req);
         const { masterSku, quantityDelta, reason, referenceId, preferredLocation } = body;
 
-        if (!masterSku || typeof quantityDelta !== 'number') {
+        if (!isIdentifier(masterSku) || !Number.isInteger(quantityDelta) || quantityDelta === 0 || Math.abs(quantityDelta) > MAX_STOCK_CHANGE) {
           res.writeHead(400, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ success: false, error: 'masterSku and numeric quantityDelta are required' }));
+          res.end(JSON.stringify({ success: false, error: `masterSku and a non-zero integer quantityDelta (at most ${MAX_STOCK_CHANGE} either way) are required` }));
+          return;
+        }
+        if (
+          !MANUAL_ADJUSTMENT_REASONS.includes(reason || 'MANUAL_ADJUSTMENT') ||
+          (preferredLocation && !isWarehouseLocation(preferredLocation)) ||
+          (referenceId && !isIdentifier(referenceId))
+        ) {
+          sendJson(res, 400, {
+            success: false,
+            error: `reason must be one of ${MANUAL_ADJUSTMENT_REASONS.join(', ')}; preferredLocation one of ${WAREHOUSE_LOCATIONS.join(', ')}; referenceId at most 128 characters`
+          });
           return;
         }
 
@@ -260,9 +290,18 @@ export class EcommerceApiServer {
         const body = await parseJsonBody(req);
         const { masterSku, fromLocation, toLocation, quantity } = body;
 
-        if (!masterSku || !fromLocation || !toLocation || !quantity) {
+        if (
+          !isIdentifier(masterSku) ||
+          !isWarehouseLocation(fromLocation) ||
+          !isWarehouseLocation(toLocation) ||
+          fromLocation === toLocation ||
+          !isPositiveInt(quantity, MAX_STOCK_CHANGE)
+        ) {
           res.writeHead(400, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ success: false, error: 'masterSku, fromLocation, toLocation, and quantity are required' }));
+          res.end(JSON.stringify({
+            success: false,
+            error: `masterSku, two different locations (${WAREHOUSE_LOCATIONS.join(', ')}) and an integer quantity from 1 to ${MAX_STOCK_CHANGE} are required`
+          }));
           return;
         }
 
@@ -319,7 +358,7 @@ export class EcommerceApiServer {
           return;
         }
 
-        const payload = JSON.parse(rawBody.toString('utf8'));
+        const payload = parseJsonObject(rawBody);
         const eventId = (req.headers['x-shopify-webhook-id'] as string) || `sh_evt_${payload.id || Date.now()}`;
 
         const outcome = await this.orchestrator.handleInboundOrder(payload, storeId, eventId);
@@ -347,7 +386,7 @@ export class EcommerceApiServer {
           return;
         }
 
-        const payload = JSON.parse(rawBody.toString('utf8'));
+        const payload = parseJsonObject(rawBody);
         const eventId = (req.headers['x-wc-webhook-id'] as string) || `wc_evt_${payload.id || Date.now()}`;
 
         const outcome = await this.orchestrator.handleInboundOrder(payload, storeId, eventId);
@@ -394,8 +433,17 @@ export class EcommerceApiServer {
       res.writeHead(404, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ error: 'Not Found', path: pathname }));
     } catch (err: any) {
-      res.writeHead(500, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'Internal Server Error', message: err.message }));
+      if (res.headersSent) {
+        res.end();
+        return;
+      }
+      if (err instanceof HttpError) {
+        sendJson(res, err.status, { success: false, error: err.message });
+        return;
+      }
+      // Log details server-side only; never echo internal error messages to clients.
+      console.error('Unhandled request error:', err);
+      sendJson(res, 500, { error: 'Internal Server Error' });
     }
   }
 }
@@ -409,17 +457,48 @@ function sendJson(res: http.ServerResponse, status: number, body: unknown, heade
   res.end(JSON.stringify(body));
 }
 
-function readRawBody(req: http.IncomingMessage): Promise<Buffer> {
+function readRawBody(req: http.IncomingMessage, limit: number = MAX_BODY_BYTES): Promise<Buffer> {
   return new Promise((resolve, reject) => {
+    const tooLarge = () => {
+      req.removeAllListeners('data');
+      req.resume(); // drain and discard the rest
+      reject(new HttpError(413, `Request body exceeds ${limit} bytes`));
+    };
+    if (Number(req.headers['content-length']) > limit) {
+      tooLarge();
+      return;
+    }
     const chunks: Buffer[] = [];
-    req.on('data', chunk => chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk)));
+    let size = 0;
+    req.on('data', chunk => {
+      const buf = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+      size += buf.length;
+      if (size > limit) {
+        tooLarge();
+        return;
+      }
+      chunks.push(buf);
+    });
     req.on('end', () => resolve(Buffer.concat(chunks)));
     req.on('error', reject);
   });
 }
 
+function parseJsonObject(raw: Buffer): any {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(raw.toString('utf8'));
+  } catch {
+    throw new HttpError(400, 'Request body is not valid JSON');
+  }
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+    throw new HttpError(400, 'Request body must be a JSON object');
+  }
+  return parsed;
+}
+
 async function parseJsonBody(req: http.IncomingMessage): Promise<any> {
   const raw = await readRawBody(req);
   if (!raw.length) return {};
-  return JSON.parse(raw.toString('utf8'));
+  return parseJsonObject(raw);
 }

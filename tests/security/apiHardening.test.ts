@@ -232,3 +232,99 @@ test('Hardening: duplicate webhook events and orders are ignored', async (t) => 
     assert.equal(ledger.getProduct('WATCH-GLD')?.currentStock, 5, '25 + 10 - 30');
   });
 });
+
+test('Hardening: input validation on mutating routes', async (t) => {
+  const platform = await startPlatform(
+    { shopifyWebhookSecret: SHOPIFY_TEST_SECRET, wooWebhookSecret: WOO_TEST_SECRET },
+    { apiToken: API_TEST_TOKEN }
+  );
+  t.after(async () => {
+    await platform.server.stop();
+  });
+
+  const stock = (sku: string) => platform.ledger.getProduct(sku)?.currentStock;
+  const post = (path: string, body: string, headers: Record<string, string> = {}) =>
+    fetch(`${platform.url}${path}`, { method: 'POST', headers: { 'Content-Type': 'application/json', ...headers }, body });
+  const shopifyWebhook = (body: string) =>
+    post('/api/v1/webhooks/shopify/store_shopify_us', body, { 'X-Shopify-Hmac-Sha256': sign(body, SHOPIFY_TEST_SECRET) });
+
+  await t.test('invalid webhook line-item quantity returns 400 and leaves stock unchanged', async () => {
+    let id = 9100;
+    for (const quantity of [-5, 0, 1.5, '2', null, 10_001]) {
+      const res = await shopifyWebhook(shopifyOrder(++id, quantity));
+      assert.equal(res.status, 400, `quantity ${JSON.stringify(quantity)}`);
+    }
+    const woo = JSON.stringify({ id: 9200, line_items: [{ sku: 'SHIRT-BLK-M', quantity: -3 }] });
+    const wooRes = await post('/api/v1/webhooks/woocommerce/store_woo_eu', woo, { 'X-WC-Webhook-Signature': sign(woo, WOO_TEST_SECRET) });
+    assert.equal(wooRes.status, 400);
+    assert.equal(stock('SHIRT-BLK-M'), 100, 'a negative quantity must never add stock');
+  });
+
+  await t.test('webhook without order id, sku or line items returns 400', async () => {
+    for (const payload of [
+      { line_items: [{ sku: 'SHIRT-BLK-M', quantity: 1 }] },
+      { id: 9301, line_items: [{ quantity: 1 }] },
+      { id: 9302, line_items: [] },
+      { id: 9303 }
+    ]) {
+      const res = await shopifyWebhook(JSON.stringify(payload));
+      assert.equal(res.status, 400, JSON.stringify(payload));
+    }
+    assert.equal(stock('SHIRT-BLK-M'), 100);
+  });
+
+  await t.test('invalid adjustment returns 400', async () => {
+    for (const body of [
+      { masterSku: 'SHIRT-BLK-M', quantityDelta: 1.5 },
+      { masterSku: 'SHIRT-BLK-M', quantityDelta: '5' },
+      { masterSku: 'SHIRT-BLK-M', quantityDelta: 0 },
+      { masterSku: 'SHIRT-BLK-M', quantityDelta: 1_000_000 },
+      { masterSku: '', quantityDelta: 1 },
+      { masterSku: 'SHIRT-BLK-M', quantityDelta: 1, reason: 'ORDER_FULFILLED' },
+      { masterSku: 'SHIRT-BLK-M', quantityDelta: 1, preferredLocation: 'MARS_BASE' }
+    ]) {
+      const res = await post('/api/v1/inventory/adjust', JSON.stringify(body), AUTH);
+      assert.equal(res.status, 400, JSON.stringify(body));
+    }
+    assert.equal(stock('SHIRT-BLK-M'), 100);
+  });
+
+  await t.test('invalid transfer returns 400; a valid one still works', async () => {
+    const base = { masterSku: 'SHIRT-BLK-M', fromLocation: 'MAIN_US_3PL', toLocation: 'EU_CENTRAL' };
+    for (const body of [
+      { ...base, quantity: -3 },
+      { ...base, quantity: 0 },
+      { ...base, quantity: '2' },
+      { ...base, quantity: 2.5 },
+      { ...base, fromLocation: 'NOWHERE', quantity: 1 },
+      { ...base, toLocation: '__proto__', quantity: 1 },
+      { ...base, toLocation: 'MAIN_US_3PL', quantity: 1 }
+    ]) {
+      const res = await post('/api/v1/inventory/transfer', JSON.stringify(body), AUTH);
+      assert.equal(res.status, 400, JSON.stringify(body));
+    }
+    assert.equal(platform.ledger.getProduct('SHIRT-BLK-M')?.locations.MAIN_US_3PL, 50);
+
+    const ok = await post('/api/v1/inventory/transfer', JSON.stringify({ ...base, quantity: 5 }), AUTH);
+    assert.equal(ok.status, 200);
+    assert.equal(platform.ledger.getProduct('SHIRT-BLK-M')?.locations.MAIN_US_3PL, 45);
+  });
+
+  await t.test('malformed JSON returns 400 and oversized bodies return 413', async () => {
+    const badJson = await post('/api/v1/inventory/adjust', '{"masterSku":', AUTH);
+    assert.equal(badJson.status, 400);
+    const array = await post('/api/v1/inventory/adjust', '[1,2]', AUTH);
+    assert.equal(array.status, 400);
+    const badWebhookJson = await shopifyWebhook('not json');
+    assert.equal(badWebhookJson.status, 400);
+
+    const huge = await post('/api/v1/inventory/adjust', JSON.stringify({ pad: 'x'.repeat(1024 * 1024 + 10) }), AUTH);
+    assert.equal(huge.status, 413);
+  });
+
+  await t.test('ledger rejects non-integer deltas directly', async () => {
+    const result = await platform.ledger.applyDelta('CAP-NVY', Number.NaN, 'MANUAL_ADJUSTMENT');
+    assert.equal(result.success, false);
+    assert.equal(stock('CAP-NVY'), 75);
+  });
+});
