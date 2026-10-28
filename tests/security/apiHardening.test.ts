@@ -186,7 +186,7 @@ test('Hardening: duplicate webhook events and orders are ignored', async (t) => 
     await platform.server.stop();
   });
 
-  const deliver = (body: string, eventId: string) =>
+  const deliver = (body: string, eventId: string): Promise<any> =>
     fetch(`${platform.url}/api/v1/webhooks/shopify/store_shopify_us`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'X-Shopify-Hmac-Sha256': sign(body, SHOPIFY_TEST_SECRET), 'X-Shopify-Webhook-Id': eventId },

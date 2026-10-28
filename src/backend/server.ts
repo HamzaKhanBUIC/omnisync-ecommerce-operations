@@ -52,7 +52,7 @@ export class EcommerceApiServer {
     this.apiToken = options.apiToken ?? process.env.OMNISYNC_API_TOKEN ?? '';
     this.allowedOrigins = new Set(
       (options.allowedOrigins ?? (process.env.ALLOWED_ORIGINS || '').split(','))
-        .map(origin => origin.trim().replace(/\/+$/, ''))
+        .map((origin: string) => origin.trim().replace(/\/+$/, ''))
         .filter(Boolean)
     );
 
