@@ -1,202 +1,78 @@
-# OmniSync: Multi-Channel Ecommerce Operations Platform
+# OmniSync
 
-[![Tests](https://img.shields.io/badge/Tests-47%2F47%20Passed-10B981?style=flat-square&logo=node.js)](https://github.com/)
-[![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
-[![Node Version](https://img.shields.io/badge/Node.js-%3E%3D20.0-06B6D4?style=flat-square&logo=node.js)](https://nodejs.org/)
-[![Oversell Rate](https://img.shields.io/badge/Oversell%20Rate-0.000%25-10B981?style=flat-square)](testing/RED_TEAM_REPORT.md)
-[![Sync Latency](https://img.shields.io/badge/Sync%20Latency%20(p95)-280ms-10B981?style=flat-square)](testing/PERFORMANCE_REPORT.md)
+> An in-memory inventory-sync engine for stores selling on both Shopify and WooCommerce: one master ledger takes HMAC-verified order webhooks, deducts stock under a per-SKU lock, and pushes the new level to every channel, so a sale on one store does not oversell the other.
 
-OmniSync is a multi-channel inventory orchestration and automated reconciliation engine built for high-velocity merchants selling simultaneously across **Shopify** and **WooCommerce**.
+**Status:** Prototype (Aug 2026) · in-memory ledger; the Shopify and WooCommerce adapters are mocks, so no real store is connected · 47 tests pass (`npm test`, verified on Node 24)
+**Demo:** none yet (no video or live deployment)
 
-Multi-store brands often struggle with polling delays in automation tools or rigid legacy ERPs, resulting in ghost inventory, overselling during flash sales, and unreconciled stock drift between sales channels.
+![OmniSync operations console](docs/assets/dashboard_preview.png)
 
-OmniSync addresses this with an append-only PostgreSQL master delta ledger, sub-second bi-directional synchronization, token-bucket rate regulation, and an automated background drift auditor that reconciles storefront discrepancies.
+*The dashboard is real, but parts of it are scripted: the throughput chart uses random values and the "chaos" console is an animation (`src/frontend/app.js`).*
 
----
+## How it works
 
-## Operations Console Preview
+1. A signed webhook arrives at `/api/v1/webhooks/shopify/:storeId` or `/api/v1/webhooks/woocommerce/:storeId`. The HMAC-SHA256 signature is checked over the raw body with a timing-safe compare.
+2. An idempotency guard (24-hour TTL) drops replayed event IDs. It only catches sequential replays; concurrent duplicates can both be processed on `main`.
+3. The ledger (`src/backend/ledgerEngine.ts`) applies a signed stock delta under a per-SKU lock, in a single process, and appends to an audit log.
+4. Updated levels go through an in-process event emitter to the **mock** channel adapters (`src/integrations/channelAdapter.ts`), which write to local maps. Nothing calls Shopify or WooCommerce.
+5. A drift check compares channel stock to the ledger and corrects differences. It runs only when you call `POST /api/v1/reconciliation/trigger`.
 
-![OmniSync Operations Console](docs/assets/dashboard_preview.png)
+Also included: four warehouse locations with transfers, bundle SKUs that deduct their components, a three-state circuit breaker, per-channel token-bucket limiters, and a server-sent-events stream of CloudEvents-shaped messages.
 
-*High-density operations console featuring real-time telemetry, virtualized inventory matrix, multi-location hub allocations, token-bucket rate gauges, side-by-side drift diffs, and live CloudEvents streaming.*
+## Quickstart
 
----
-
-## Core Architectural Capabilities
-
-### 1. Zero Ghost Inventory & Concurrency Protection
-- **Append-Only Delta Ledger**: Deducts stock via atomic relative signed mutations (`quantityDelta = -N/+N`) with row-level optimistic concurrency control (`version`), preventing overselling during concurrent checkout bursts.
-- **Idempotency Guard**: 24-hour sliding TTL cache preventing duplicate ledger deductions from replayed webhooks.
-
-### 2. Sub-Second Cross-Channel Broadcast
-- **Event-Driven CQRS Pipeline**: Ingests orders in `<15ms`, mutates the ledger, and propagates stock updates downstream across all connected channels in `< 420ms (p95)`.
-
-### 3. Proactive Client-Side Rate Limiting
-- **Token Bucket Regulation**: Outbound workers regulate API traffic mirroring platform rate constraints (**Shopify 40/80 point leaky bucket**, **WooCommerce 25 req/s batch limit**) with 15% safety headroom, eliminating `HTTP 429 Too Many Requests` exceptions.
-
-### 4. Continuous Drift Detection & Automated Reconciliation
-- **Automated Background Auditor**: Scans live channel stock against Master Ledger records every 15 minutes.
-- **Automated Reconciliation**: Computes required adjustments, synchronizes drifted storefronts, and records immutable double-entry audit trail logs.
-
-### 5. Multi-Location Fulfillment & Composite Bundles
-- **Warehouse Hub Allocations**: Physical stock partitioned across 4 geographic fulfillment hubs (`MAIN_US_3PL`, `WEST_US_HUB`, `EU_CENTRAL`, `UK_FULFILLMENT`) with atomic inter-hub transfers.
-- **Virtual Composite Bundles**: Dynamic bundle recipe calculation (e.g. `2x T-Shirt` + `1x Cap`), determining real-time bundle availability from component bottlenecks and atomically deducting individual raw items on fulfillment.
-
-### 6. Fault Tolerance & Circuit Breaking
-- **Three-State Circuit Breaker**: (`CLOSED`, `OPEN`, `HALF_OPEN`) with exponential backoff and jitter, preventing cascading worker stalls during external API outages.
-
----
-
-## System Architecture
-
-```
-                                    ┌───────────────────────┐
-                                    │    Shopify Store      │
-                                    └──────────┬────────────┘
-                                               │ Webhook Event (orders/create)
-                                               ▼
-┌──────────────────────┐            ┌───────────────────────┐
-│  WooCommerce Store   ├───────────►│ Ingestion Gateway API │
-└──────────────────────┘ Webhook    │ (Timing-Safe HMAC &   │
-                                    │  Idempotency Check)   │
-                                    └──────────┬────────────┘
-                                               │
-                                               ▼
-                                    ┌───────────────────────┐
-                                    │ Master Ledger Engine  │
-                                    │ (PostgreSQL + Prisma) │
-                                    │ (Atomic Delta Mutex)  │
-                                    └──────────┬────────────┘
-                                               │
-                                               ▼
-                                    ┌───────────────────────┐
-                                    │ Transactional Outbox  │
-                                    │ (CloudEvents v1.0)    │
-                                    └──────────┬────────────┘
-                                               │
-                        ┌──────────────────────┴──────────────────────┐
-                        ▼                                             ▼
-            ┌───────────────────────┐                     ┌───────────────────────┐
-            │ Update Shopify Stock  │                     │ Update WooCommerce    │
-            │ (GraphQL Mutation)    │                     │ (REST v3 Batch HPOS)  │
-            └───────────────────────┘                     └───────────────────────┘
-```
-
----
-
-## Verification & Benchmark Results
-
-The entire codebase is verified by 47 automated test suites covering unit mechanics, integration gateways, HMAC security validations, and high-concurrency simulations:
+Requires Node.js 22.18 or newer (the code runs `.ts` files directly through Node's type stripping; the repo was tested on Node 24.15). There are no runtime dependencies, so no install step is needed to run.
 
 ```bash
-$ npm test
-
-✔ Shopify Adapter - Order Normalization (2.22ms)
-✔ Shopify Adapter - GraphQL Mutations & Limits (4.78ms)
-✔ Shopify Adapter - 250-Item Hard Limit Check (1.51ms)
-✔ Shopify Adapter - Concurrent Lock Contention & userErrors (1.55ms)
-✔ Shopify Adapter - Leaky bucket depletion & Throttling (1177.03ms)
-✔ WooCommerce Adapter - HPOS & Legacy Normalization (0.45ms)
-✔ WooCommerce Adapter - REST v3 Batch Stock Updates (0.41ms)
-✔ WooCommerce Adapter - 100-Object Limit & Chunking (0.47ms)
-✔ WooCommerce Adapter - HPOS Storage Engine Validation (0.31ms)
-✔ WooCommerce Adapter - HTTP 503 & Parameter Validation (0.36ms)
-✔ API Server - Health Check Endpoints (33.93ms)
-✔ API Server - Master Inventory Endpoint (3.03ms)
-✔ API Server - Shopify Webhook Ingest with Valid HMAC (8.96ms)
-✔ API Server - Idempotency Deduplication (2.30ms)
-✔ API Server - Reject Invalid HMAC 401 (3.51ms)
-✔ API Server - WooCommerce Webhook Ingest with Valid HMAC (2.05ms)
-✔ API Server - Reject Invalid WooCommerce HMAC 401 (2.75ms)
-✔ API Server - Manual Inventory Adjustment (2.44ms)
-✔ API Server - Stockout Prevention Barrier 400 (2.33ms)
-✔ API Server - Drift Reconciliation Endpoint (1.99ms)
-✔ API Server - Static File Serving (17.35ms)
-✔ API Server - Real-Time SSE Stream (7.16ms)
-✔ Security: Shopify HMAC Signature Verification & Forgery Defense (1.89ms)
-✔ Security: WooCommerce HMAC Signature Verification & Forgery Defense (0.41ms)
-✔ Security: Unicode, UTF-8 Multi-Byte, and Boundary Payloads (0.25ms)
-✔ Security: Timing-Safe Resistance Verification (6.74ms)
-✔ Security: Replay Attack Inundation (50 replayed webhooks in 1 second) (4.02ms)
-✔ Security: Concurrent Replay Inundation (0.56ms)
-✔ Security: Idempotency TTL Expiration Boundary (75.02ms)
-✔ Flash Sale Burst: 1,000 Rapid Order Checkout Webhooks (16385.19ms) -> 0.000% Oversell Rate
-✔ Flash Sale Burst: Catalog-Wide 1,000 Order Wave Across 100 SKUs (16414.50ms)
-✔ Flash Sale Burst: Zero Initial Stock Stockout Barrier (6.29ms)
-✔ High Concurrency Flash Sale - Zero Overselling Guarantee (6.24ms)
-✔ Reconciliation Workflow - Drift Detection and Auto-Healing (0.60ms)
-✔ Composite Bundles - Virtual Stock Calculation & Atomic Deductions (1.86ms)
-✔ Circuit Breaker - State Machine Transitions and Threshold Tripping (65.90ms)
-✔ Multi-Location Warehouse Inventory - Allocation & Transfers (1.67ms)
-✔ Unit Tests: HMAC, IdempotencyGuard, MasterLedger, TokenBucketLimiter (175.32ms)
-
-Total Tests: 47 | Passed: 47 | Failed: 0 | Duration: 33.1s
-```
-
----
-
-## Quick Start
-
-### 1. Prerequisites
-- **Node.js**: `>= 20.0.0`
-- **Python**: `>= 3.10` (for simulation utilities)
-
-### 2. Installation & Setup
-```bash
-# Clone the repository
 git clone https://github.com/HamzaKhanBUIC/omnisync-ecommerce-operations.git
 cd omnisync-ecommerce-operations
-
-# Run all 47 automated test suites
-npm test
+npm test        # 47 tests in 13 files, about 33 s
+npm start       # http://localhost:3000
 ```
 
-### 3. Start the Live Operations Server & Dashboard
-```bash
-# Starts the server and UI at http://localhost:3000
-node --experimental-strip-types src/index.ts
-```
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+`npm start` runs `node src/index.ts` and seeds a demo catalog of 5 SKUs and two demo stores.
 
-### 4. Interactive Simulation & CLI Utilities
-```bash
-# Run 100-order concurrent flash sale simulator
-python scripts/simulation/traffic_simulator.py
+`npm run build` (`tsc`) currently fails with type and config errors; it is not needed to run or test.
 
-# Run live channel drift auditor and automated self-healing utility
-python scripts/reconciliation/drift_checker.py
-```
+## Configuration
 
----
+| Variable | Default | Description |
+| :--- | :--- | :--- |
+| `PORT` | `3000` | HTTP port |
 
-## API Endpoints
+No other environment variables are read on `main`. Webhook secrets and demo API keys are set in code (`src/index.ts`).
 
-| Method | Endpoint | Description | Auth / Headers |
-| :--- | :--- | :--- | :--- |
-| `GET` | `/health` | Server health, uptime, and store counts | Public |
-| `GET` | `/api/v1/inventory` | Paginated Master Ledger stock and channel mappings | Public |
-| `POST` | `/api/v1/inventory/adjust` | Atomic manual delta adjustment with OCC versioning | JSON Body |
-| `POST` | `/api/v1/inventory/transfer` | Warehouse transfer between fulfillment hubs | JSON Body |
-| `GET` | `/api/v1/orders` | Unified multi-channel order stream | Public |
-| `POST` | `/api/v1/reconciliation/trigger` | Triggers full catalog drift audit and self-healing | Public |
-| `GET` | `/api/v1/circuit-breakers` | Live circuit breaker states (`CLOSED`, `OPEN`) | Public |
-| `GET` | `/api/v1/events/stream` | Server-Sent Events (SSE) stream (CloudEvents v1.0) | `text/event-stream` |
-| `POST` | `/api/v1/webhooks/shopify/:storeId` | Ingests Shopify order and inventory webhooks | `X-Shopify-Hmac-Sha256` |
-| `POST` | `/api/v1/webhooks/woocommerce/:storeId` | Ingests WooCommerce order and stock webhooks | `X-WC-Webhook-Signature` |
+## API
 
----
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/health` | Uptime and store counts |
+| `GET` | `/api/v1/inventory` | Ledger stock and channel mappings (optional `sku` filter; not paginated) |
+| `POST` | `/api/v1/inventory/adjust` | Manual stock adjustment |
+| `POST` | `/api/v1/inventory/transfer` | Transfer between warehouse locations |
+| `GET` | `/api/v1/orders` | Order stream |
+| `GET` | `/api/v1/audit` | Ledger audit trail |
+| `POST` | `/api/v1/reconciliation/trigger` | Run the drift check |
+| `GET` | `/api/v1/circuit-breakers` | Circuit breaker states |
+| `GET` | `/api/v1/events/stream` | Server-sent events |
+| `POST` | `/api/v1/webhooks/shopify/:storeId` | Shopify-style order webhook (`X-Shopify-Hmac-Sha256`) |
+| `POST` | `/api/v1/webhooks/woocommerce/:storeId` | WooCommerce-style order webhook (`X-WC-Webhook-Signature`) |
 
-## Documentation
+## Limitations
 
-- [Developer Setup & Environment Guide](docs/SETUP.md)
-- [Internal API Specifications](docs/API.md)
-- [Channel Integration Runbook (Shopify & WooCommerce)](docs/INTEGRATIONS.md)
-- [Production Operations & SRE Runbook](docs/OPERATIONS.md)
-- [Red Team Chaos Engineering Report](testing/RED_TEAM_REPORT.md)
-- [Final Production Release Report](docs/FINAL_RELEASE_REPORT.md)
-
----
+- **All state is in memory.** There is no database, no persistence and no multi-process support. A restart resets everything. There is no PostgreSQL, Prisma, transactional outbox or version-based concurrency control.
+- **Channels are mocked.** No request is sent to Shopify or WooCommerce. Latency and rate-limit behavior are properties of the mocks. No latency benchmark exists in the repo.
+- **Not safe to expose on `main`.**
+  - Unknown store IDs fall back to secrets hard-coded in the source.
+  - The adjust, transfer and reconcile routes need no authentication, and CORS allows any origin.
+  - Webhook quantities are not validated.
+  - The dashboard renders order fields with `innerHTML`.
+  - These are fixed in [open PR #1](https://github.com/HamzaKhanBUIC/omnisync-ecommerce-operations/pull/1) (except the dashboard escaping); do not deploy before it is merged.
+- **Concurrent duplicate webhooks** are not blocked by the idempotency guard on `main` (also addressed in PR #1).
+- **Dashboard** values for throughput and the chaos console are simulated.
+- **Docs in `docs/` and `testing/` still describe PostgreSQL, Redis and production operations**, which do not match the code. Treat them as design notes.
+- The Python scripts under `scripts/` only print hard-coded data; they do not call the server.
 
 ## License
 
-MIT License. Open source and free for multi-store operators.
+MIT. See [LICENSE](LICENSE).
