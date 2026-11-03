@@ -6,6 +6,26 @@ const API_BASE = window.location.origin.includes('localhost') || window.location
   ? window.location.origin
   : 'http://localhost:3000';
 
+// State-changing API calls need the server's OMNISYNC_API_TOKEN. It is asked for
+// once and kept in memory for this page load only (never written to storage).
+let apiToken = '';
+
+function authHeaders(headers = {}) {
+  if (!apiToken) {
+    apiToken = (window.prompt('Enter the OmniSync API token (OMNISYNC_API_TOKEN) to make changes:') || '').trim();
+  }
+  return apiToken ? { ...headers, Authorization: `Bearer ${apiToken}` } : headers;
+}
+
+function handleAuthFailure(res) {
+  if (res.status !== 401 && res.status !== 503) return false;
+  apiToken = '';
+  showToast(res.status === 401
+    ? 'API token rejected. Try again with a valid token.'
+    : 'Changes are disabled: the server has no OMNISYNC_API_TOKEN configured.', 'error');
+  return true;
+}
+
 function generateInitialWave(base, amp) {
   const arr = [];
   for (let i = 0; i < 30; i++) {
@@ -635,7 +655,7 @@ function initModalsAndDrawers() {
     try {
       const res = await fetch(`${API_BASE}/api/v1/inventory/adjust`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: authHeaders({ 'Content-Type': 'application/json' }),
         body: JSON.stringify({
           masterSku: sku,
           quantityDelta: delta,
@@ -651,6 +671,9 @@ function initModalsAndDrawers() {
         document.getElementById('adjustModal').classList.add('hidden');
         showToast(`Stock updated for ${sku}: ${delta > 0 ? '+' : ''}${delta}`, 'success');
         loadInitialData();
+      } else if (!handleAuthFailure(res)) {
+        const err = await res.json().catch(() => ({}));
+        showToast(err.error || `Adjustment failed (HTTP ${res.status})`, 'error');
       }
     } catch (e) {
       const p = state.inventory.find(i => i.masterSku === sku);
@@ -786,7 +809,7 @@ window.triggerDriftTest = function(storeId) {
 async function triggerReconciliation() {
   showToast('Scanning connected channel storefronts for inventory drift...', 'info');
   try {
-    const res = await fetch(`${API_BASE}/api/v1/reconciliation/trigger`, { method: 'POST' });
+    const res = await fetch(`${API_BASE}/api/v1/reconciliation/trigger`, { method: 'POST', headers: authHeaders() });
     if (res.ok) {
       const data = await res.json();
       if (data.discrepanciesFound > 0) {
@@ -795,6 +818,8 @@ async function triggerReconciliation() {
         showToast('All channel stores in 100% parity with Master Ledger.', 'success');
       }
       loadInitialData();
+    } else {
+      handleAuthFailure(res);
     }
   } catch (e) {
     showToast('Audit complete. Store parity verified.', 'success');
